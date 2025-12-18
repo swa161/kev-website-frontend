@@ -1,0 +1,37 @@
+.sections-container {
+    max-width: 1300px;
+    width: 100%;
+    margin: 60px auto 0;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+section {
+  height: 95vh;
+  padding-top: 10px;
+  padding-bottom: 0;
+  scroll-margin-top: 60px; 
+}
+
+.hero-section {
+
+}
+
+.about-section {
+
+}
+
+.skills-sections {
+
+}
+
+.projects-section {
+
+}
+
+.contact-section {
+
+}
+

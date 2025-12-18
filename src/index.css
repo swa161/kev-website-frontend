@@ -1,5 +1,12 @@
-body {
-    height: 100vh;
+html {
     scroll-behavior: smooth;
+}
+
+body {
     margin: 0;
+    background-color: #FFF9F0;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }

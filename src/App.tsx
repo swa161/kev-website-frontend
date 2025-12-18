@@ -1,12 +1,23 @@
 import { Route, Routes } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { HomePage } from './pages/HomePage'
-import './App.css'
+import axios from 'axios'
+import type { User } from './types/user'
+
 
 function App() {
+  const [userData, setUserData] = useState<User | null>(null)
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const response = await axios.get<User>('/api/v1/users/1')
+      setUserData(response.data)
+    }
+    fetchUserData()
+  }, [])
   return (
     <Routes>
-      <Route index element={<HomePage />}/>
+      <Route index element={userData ?<HomePage user={userData}/> : null}/>
     </Routes>
   )
 }

@@ -1,0 +1,14 @@
+.hero-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-image {
+    image-rendering: auto;
+    width: 300px;
+    border-radius: 10px;
+}
+
+.user-image:hover {
+    
+}

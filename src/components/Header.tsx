@@ -20,16 +20,18 @@ export function Header() {
 
     return (
         <div className="header">
-            <div className="fullname-section">
-                {name?.fullName}
-            </div>
-            
-            <div className="right-section">
-                <a href="#home">Home</a>
-                <a href="#about">About me</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
+            <div className="header-inner">
+                <div className="fullname-section">
+                    {name?.fullName}
+                </div>
+
+                <div className="right-section">
+                    <a href="#home">Home</a>
+                    <a href="#about">About me</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
             </div>
         </div>
     )
