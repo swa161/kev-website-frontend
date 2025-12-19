@@ -2,14 +2,15 @@
     background-color: #FFF9F0;
     background-image: linear-gradient(to right, #CDFFD8, #94B9FF);;
     position: fixed;
+    z-index: 1000;
 
     top: 0;
     left: 0;
     right: 0;
     height: 60px;
-    /*border-bottom: 0.5px solid  ;
-    border-image-source: linear-gradient(to right, #CDFFD8, #94B9FF);
-    border-image-slice: 1;*/
+    border-bottom: 0.5px solid  ;
+    border-image-source: linear-gradient(to right, #6495ED, #e4456c);
+    border-image-slice: 1;
 }
 
 .header-inner {
