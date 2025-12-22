@@ -25,23 +25,18 @@ export function Hero({ user }: HeroProps) {
         if (!target) {
             return
         }
-        const imgs = target.getElementsByClassName('user-image')
-        const img = imgs[0] as HTMLElement | undefined
+        const img = target.querySelector('.user-image') as HTMLElement | null
         if (!img) {
             return
         }
         img.style.setProperty('transform', `translateX(${px * -40}px) translateY(${py * -40}px)`)
         target.style.setProperty('transform', `perspective(1000px) rotateX(${py * -30}deg) rotateY(${px * 30}deg)`)
-
-
     }
 
     const titleMessage = `Hello, I'm ${user?.first_name}`
 
-
     return (
         <div className="hero-container">
-
             <div className='top-section'>
                 <div
                     className="user-image-container"
@@ -56,7 +51,6 @@ export function Hero({ user }: HeroProps) {
                     {userImg ? <img src={userImg} className="user-image" alt="profile" /> : null}
                 </div>
 
-
                 <div id="message-container" className='message-container'>
                     <div className='hero-title'>
                         {titleMessage}
@@ -66,7 +60,9 @@ export function Hero({ user }: HeroProps) {
                     </div>
                 </div>
             </div>
-
+            <div>
+                Contact Me
+            </div>
             <div className='cv-container'>
                 <a href='http://localhost:4941/api/v1/users/1/cv' target='_blank' className='hero-cv'>
                     <span>

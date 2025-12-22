@@ -4,7 +4,7 @@ html {
 
 body {
     margin: 0;
-    background-color: #FFF9F0;
+    background-image: linear-gradient(to top, #9795f0 10%, #dceeea 100%);
 }
 
 ::-webkit-scrollbar {
