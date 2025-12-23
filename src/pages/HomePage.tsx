@@ -18,7 +18,7 @@ export function HomePage({ user }: HeroProps) {
                 </section>
 
                 <section id='about' className="about-section">
-                    <About user={user}/>
+                    <About />
                 </section>
 
                 <section id='skills' className="skills-section">
