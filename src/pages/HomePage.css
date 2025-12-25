@@ -1,6 +1,27 @@
 .sections-container {
-    max-width: 1300px;
     width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 80px;
+
+}
+
+section {
+  /* height: 95vh;
+  padding-top: 10px;
+  padding-bottom: 0;
+  scroll-margin-top: 60px;  */
+  max-height: 95vh;
+  padding: 2rem 0;
+  scroll-margin-top: 20px;
+}
+
+@media screen and (min-width: 768px) {
+.sections-container {
+    max-width: 85%;
+
     margin: 60px auto 0;
     padding: 0 24px;
     display: flex;
@@ -13,6 +34,8 @@ section {
   padding-top: 10px;
   padding-bottom: 0;
   scroll-margin-top: 60px; 
+}
+
 }
 
 .hero-section {

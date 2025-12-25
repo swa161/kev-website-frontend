@@ -22,7 +22,7 @@ export function Hero({ user }: HeroProps) {
     }, [])
 
     function setTransform(target: HTMLElement | null, px: number, py: number) {
-        if (!target) {
+        if (!target || window.innerWidth < 768) {
             return
         }
         const img = target.querySelector('.user-image') as HTMLElement | null
@@ -55,18 +55,18 @@ export function Hero({ user }: HeroProps) {
                     <div className='hero-title'>
                         {titleMessage}
                     </div>
+                    <div className='hero-welcome'>
+                        Welcome to my website!
+                    </div>
                     <div className='hero-description'>
                         {user?.description}
                     </div>
                 </div>
             </div>
-            <div>
-                Contact Me
-            </div>
             <div className='cv-container'>
                 <a href='http://localhost:4941/api/v1/users/1/cv' target='_blank' className='hero-cv'>
                     <span>
-                        My CV
+                        View CV
                     </span>
                     <span>
                         <Download size={30} />
