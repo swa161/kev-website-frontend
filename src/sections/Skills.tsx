@@ -1,9 +1,24 @@
-import type { HeroProps } from '../types/user'
+import './Skill.css'
 
-export function Skills({ user }: HeroProps) {
+export function Skills() {
     return (
-        <div>
-            Skills
+        <div className="skill-container">
+            <h2>Skills</h2>
+            <h3 className='sub-title'>My technical level</h3>
+                        <h2>Skills</h2>
+            <h3 className='sub-title'>My technical level</h3>
+                        <h2>Skills</h2>
+            <h3 className='sub-title'>My technical level</h3>
+                        <h2>Skills</h2>
+            <h3 className='sub-title'>My technical level</h3>
+                        <h2>Skills</h2>
+            <h3 className='sub-title'>My technical level</h3>
+                        <h2>Skills</h2>
+            <h3 className='sub-title'>My technical level</h3>
+                        <h2>Skills</h2>
+            <h3 className='sub-title'>My technical level</h3>
+                        <h2>Skills</h2>
+            <h3 className='sub-title'>My technical level</h3>
         </div>
     )
 }

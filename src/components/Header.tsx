@@ -37,8 +37,6 @@ export function Header() {
                 </nav>
             </div>
 
-
-
             <div className="header-inner desktop-only">
                 <div className="fullname-section desktop-only">
                     {name?.fullName}

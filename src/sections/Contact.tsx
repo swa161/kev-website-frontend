@@ -1,9 +1,10 @@
-import type { HeroProps } from '../types/user'
 
-export function Contact({ user }: HeroProps) {
+import './Contact.css'
+
+export function Contact() {
     return (
-        <div>
-            Contact
+        <div className="project-container">
+            <h2>Contact Me</h2>
         </div>
     )
 }

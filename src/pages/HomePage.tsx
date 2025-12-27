@@ -22,15 +22,15 @@ export function HomePage({ user }: HeroProps) {
                 </section>
 
                 <section id='skills' className="skills-section">
-                    <Skills user={user}/>
+                    <Skills />
                 </section>
 
                 <section id='projects' className="projects-section">
-                    <Projects user={user}/>
+                    <Projects />
                 </section>
 
                 <section id='contact' className="contact-section">
-                    <Contact user={user}/>
+                    <Contact />
                 </section>
             </div>
         </Fragment>

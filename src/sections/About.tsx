@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from 'react'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
 import axios from 'axios'
 import './About.css'
@@ -16,7 +16,37 @@ export function About() {
     const [imageData, setImageData] = useState<ImageData[] | null>(null)
     const [isPaused, setIsPaused] = useState(false)
     const [counter, setCounter] = useState(1)
+    const touchStart = useRef<number>(0)
+    const touchEnd = useRef<number>(0)
     const slideRef = useRef<HTMLDivElement | null>(null)
+
+    const handleTouchStart = (e: React.TouchEvent) => {
+        setIsPaused(true)
+        touchStart.current = e.targetTouches[0].clientX
+    }
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        touchEnd.current = e.targetTouches[0].clientX
+    }
+
+    const handleTouchEnd = () => {
+        if (!touchStart || !touchEnd) return 
+
+        const distance = touchStart.current - touchEnd.current
+        const minSwipeDistance = 50
+
+        if (distance > minSwipeDistance) {
+            nextImg()
+        }
+
+        if (distance < -minSwipeDistance) {
+            previousImg()
+        }
+
+        touchStart.current = 0
+        touchEnd.current = 0
+        setIsPaused(false)
+    }
 
     const previousImg = () => {
         if (!slideRef.current || !imageData) return
@@ -100,8 +130,12 @@ export function About() {
         <Fragment>
             <div className='about-container' >
                 <div className='carousel-container' >
-                    {<ArrowBackIosNew className='leftBtn' onClick={previousImg} />}
-                    <div className='carousel-viewport'>
+                    {window.innerWidth >= 768 && <ArrowBackIosNew className='leftBtn' onClick={previousImg} />}
+                    <div className='carousel-viewport'
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                    >
                         <div
                             className='carousel-slide'
                             ref={slideRef}
@@ -156,7 +190,7 @@ export function About() {
                                             year: 'numeric'
                                         }).format(new Date(img.created_at))}
                                     </div>
-                                    <div>
+                                    <div className='image-and-reflection'>
                                         <img
                                             className='image'
                                             src={`/api/v1/photos/${img.id}/image`}
@@ -210,7 +244,7 @@ export function About() {
 
                         </div>
                     </div>
-                    {<ArrowForwardIos className='rightBtn' onClick={nextImg} />}
+                    {window.innerWidth >= 768 && <ArrowForwardIos className='rightBtn' onClick={nextImg} />}
                 </div>
 
             </div>

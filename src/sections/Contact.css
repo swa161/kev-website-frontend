@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+}
+.project-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sub-title {
+    font-size: 0.9rem;
+    color: rgb(0, 0, 0, 0.3);
+}

@@ -74,9 +74,10 @@
         left: 0;
         right: 0;
         height: 60px;
-        border-bottom: 0.5px solid;
+        /* border-bottom: 0.5px solid;
         border-image-source: linear-gradient(to right, #6495ED, #e4456c);
-        border-image-slice: 1;
+        border-image-slice: 1; */
+        box-shadow: 0 1px 10px rgb(0, 0, 0);
     }
 
     .header-inner {

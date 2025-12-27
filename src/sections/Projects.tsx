@@ -1,9 +1,9 @@
-import type { HeroProps } from '../types/user'
 
-export function Projects({ user }: HeroProps) {
+import './Projects.css'
+export function Projects() {
     return (
-        <div>
-            Projects
+        <div className="project-container">
+            <h2>Projects</h2>
         </div>
     )
 }
