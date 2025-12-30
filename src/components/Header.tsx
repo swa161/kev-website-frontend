@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
+import WidgetsRoundedIcon from '@mui/icons-material/WidgetsRounded';
 import './Header.css'
 
 type FullNameResponse = {
@@ -53,7 +54,7 @@ export function Header() {
 
             <div className="mobile-only bottom-trigger-bar">
                 <button className="menu-toggle-btn" onClick={toggleMenu}>
-                    {isMenuOpen ? 'Close Menu' : 'Menu'}
+                    <WidgetsRoundedIcon/> 
                 </button>
                 <span className="fullname-section mobile-only">{name?.fullName}</span>
             </div>

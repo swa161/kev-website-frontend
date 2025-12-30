@@ -1,5 +1,7 @@
+
 :root {
-    --bottom-bar-height: 2.2rem;
+    --bottom-bar-height: 3rem;
+    --white-color: #FBFBFB
 }
 
 .desktop-only {
@@ -9,13 +11,14 @@
 .fullname-section.mobile-only {
     font-size: 1.5rem;
     font-weight: 350;
+    align-self: center;
 }
 
 .mobile-menu-overlay {
     position: fixed;
     left: 0;
     right: 0;
-    background-color: #FFF9F0;
+    background-color: var(--white-color);
     z-index: 90;
 
     bottom: 0;
@@ -28,7 +31,8 @@
 .mobile-menu-overlay.active {
     visibility: visible;
     max-height: 300px;
-    bottom: calc(var(--bottom-bar-height) + 20px);
+    height:calc(var(--bottom-bar-height)) ;
+    bottom:calc(var(--bottom-bar-height)) ;
 }
 
 .mobile-menu-overlay.hide {
@@ -39,20 +43,28 @@
     position: fixed;
     width: 100%;
     display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
     padding: 0.5rem;
     bottom: 0;
     height: var(--bottom-bar-height);
-    background-color: #6495ED;
-    border: 2px solid red;
+    background-color: var(--white-color);
+    box-shadow: rgb(0, 0, 0, 60%) 0 -0.6px 4.2px 0;
     z-index: 100;
 
+}
+
+.bottom-trigger-bar .menu-toggle-btn {
+    border: none;
+    background-color: transparent;
+    color: #6495ED;
 }
 
 .mobile-links {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 @media (min-width: 768px) {
@@ -66,7 +78,10 @@
 
     .header {
         background-color: #FFF9F0;
-        background-image: linear-gradient(to right, #CDFFD8, #94B9FF);
+        background-image: linear-gradient(to right,
+        rgba(205, 255, 216, 1) 0%,
+         rgba(101, 232, 235, 1) 50%,
+          rgba(188, 163, 255, 1) 100%);
         position: fixed;
         z-index: 1000;
 

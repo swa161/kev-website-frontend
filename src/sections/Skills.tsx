@@ -5,8 +5,9 @@ import './Skill.css'
 export function Skills() {
     return (
         <div className="skill-container">
-            <h2>Skills</h2>
-            <h3 className='sub-title'>My technical level</h3>
+
+            <Typography variant='h2' className="skills-title">Skills</Typography>
+            <Typography variant='subtitle1' className="skills-sub-title">My technical level</Typography>
             <div className="accordion-container">
                 <Accordion defaultExpanded
                     sx={{

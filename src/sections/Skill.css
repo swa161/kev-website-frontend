@@ -8,10 +8,10 @@
     align-items: center;
 }
 
-.sub-title {
+.skills-sub-title {
     font-size: 0.9rem;
-    color: rgb(0, 0, 0, 0.3);
-    padding: 1rem 0;
+    color: rgb(0, 0, 0, 0.4);
+    padding:0 0 1rem 0;
 }
 
 .accordion-container {

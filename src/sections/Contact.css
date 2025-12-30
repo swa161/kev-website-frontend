@@ -1,13 +1,16 @@
-* {
-    margin: 0;
-}
-.project-container {
+
+.contact-container {
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.sub-title {
+
+
+.contact-sub-title {
     font-size: 0.9rem;
-    color: rgb(0, 0, 0, 0.3);
+    color: rgb(0, 0, 0, 0.4);
+
+    padding-bottom: 1rem;
 }
