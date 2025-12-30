@@ -16,28 +16,19 @@
 
 .mobile-menu-overlay {
     position: fixed;
+    box-sizing: border-box;
     left: 0;
     right: 0;
-    background-color: var(--white-color);
-    z-index: 90;
-
     bottom: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-in-out, padding 0.4s;
-    visibility: hidden;
+    background-color: var(--white-color);
+    z-index: 999;
+    transform: translateY(100%);
 }
 
 .mobile-menu-overlay.active {
-    visibility: visible;
-    max-height: 300px;
-    height:calc(var(--bottom-bar-height)) ;
-    bottom:calc(var(--bottom-bar-height)) ;
+    height:calc(var(--bottom-bar-height) + 7rem ) ;
 }
 
-.mobile-menu-overlay.hide {
-    display: none;
-}
 
 .bottom-trigger-bar {
     position: fixed;
@@ -62,10 +53,35 @@
 
 .mobile-links {
     display: flex;
-    flex-direction: row;
-    gap: 20px;
-    justify-content: space-between;
+    flex-direction: column;
+    box-sizing: border-box;
 }
+
+.icon {
+    color: #5589e9;
+}
+
+.close {
+    display: flex;
+    flex-direction: row;
+    padding: 0 0 1rem 2rem;
+}
+
+.home-abouts-skills {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+
+.projects-contact-language {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+
+
 
 @media (min-width: 768px) {
     .mobile-only {

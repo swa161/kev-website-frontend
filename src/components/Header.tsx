@@ -1,7 +1,15 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import WidgetsRoundedIcon from '@mui/icons-material/WidgetsRounded';
+import InfoRoundedIcon from '@mui/icons-material/InfoRounded'
+import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
+import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
+import CottageRoundedIcon from '@mui/icons-material/CottageRounded';
+import CallRoundedIcon from '@mui/icons-material/CallRounded';
+import TranslateRoundedIcon from '@mui/icons-material/TranslateRounded';
+import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import './Header.css'
+import { Slide } from "@mui/material";
 
 type FullNameResponse = {
     fullName: string
@@ -28,15 +36,25 @@ export function Header() {
 
     return (
         <header className="header">
-            <div className={`mobile-only mobile-menu-overlay ${isMenuOpen ? 'active' : 'hide'}`}>
+            <Slide direction="up" in={isMenuOpen} mountOnEnter unmountOnExit 
+            className={`mobile-only mobile-menu-overlay ${isMenuOpen ? 'active' : 'hide'}`}>
                 <nav className="mobile-links">
-                    <a href="#home" onClick={toggleMenu}>Home</a>
-                    <a href="#about" onClick={toggleMenu}>About me</a>
-                    <a href="#skills" onClick={toggleMenu}>Skills</a>
-                    <a href="#projects" onClick={toggleMenu}>Projects</a>
-                    <a href="#contact" onClick={toggleMenu}>Contact</a>
+                    <div className="home-abouts-skills">
+                        <a href="#home" onClick={toggleMenu}><CottageRoundedIcon className="icon" /></a>
+                        <a href="#about" onClick={toggleMenu}><InfoRoundedIcon className="icon"/></a>
+                        <a href="#skills" onClick={toggleMenu}><CodeRoundedIcon className="icon"/></a>
+                    </div>
+                    <div className="projects-contact-language">
+                        <a href="#projects" onClick={toggleMenu}><AccountTreeRoundedIcon className="icon" /></a>
+                        <a href="#contact" onClick={toggleMenu}><CallRoundedIcon className="icon"/></a>
+                        <a href="#contact" onClick={toggleMenu}><TranslateRoundedIcon className="icon"/></a>
+                    </div>
+                    <div className="close">
+                        <ClearRoundedIcon className="icon" onClick={toggleMenu}/>
+                    </div>
                 </nav>
-            </div>
+            </Slide>
+
 
             <div className="header-inner desktop-only">
                 <div className="fullname-section desktop-only">
@@ -54,7 +72,7 @@ export function Header() {
 
             <div className="mobile-only bottom-trigger-bar">
                 <button className="menu-toggle-btn" onClick={toggleMenu}>
-                    <WidgetsRoundedIcon/> 
+                    <WidgetsRoundedIcon />
                 </button>
                 <span className="fullname-section mobile-only">{name?.fullName}</span>
             </div>
