@@ -4,6 +4,11 @@ html {
 
 :root {
     --bottom-bar-height: 3rem;
+    --bottom-bar-height-web: 12rem;
+    --contact-text-size: 1.7rem;
+
+
+
     --bg-color: #FBFBFB;
     --txt-color: #333b3c;
     --primary-blue: #6495ED;
@@ -15,7 +20,7 @@ html.darkmode {
     --bg-color: #1a1d2a;
     --txt-color: #f6f6f6;
     --primary-blue: #6495ED;
-    --subtitle1-color: rgba(255, 255, 255, 0.469);
+    --subtitle1-color: rgba(255, 255, 255, 0.644);
 }
 
 body {

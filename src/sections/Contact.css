@@ -1,4 +1,3 @@
-
 .contact-container {
     display: flex;
     box-sizing: border-box;
@@ -11,8 +10,42 @@
     color: var(--txt-color);
 }
 
+.contact-element-text-label {
+    color: var(--subtitle1-color);
+}
+
+.contact-element-text-value.MuiTypography-root {
+    color: var(--txt-color);
+}
+
+
 .contact-sub-title {
     font-size: 0.9rem;
     padding-bottom: 1rem;
     color: var(--subtitle1-color);
+}
+
+
+@media (min-width: 768px) {
+
+    .contact-stack {
+        padding: 2rem 0;
+        gap: 2rem;
+    }
+
+
+    .contact-element-text-label.MuiTypography-root {
+        font-size: var(--contact-text-size);
+        color: var(--subtitle1-color);
+    }
+
+    .contact-element-text-value.MuiTypography-root {
+        font-size: var(--contact-text-size);
+        color: var(--txt-color);
+    }
+
+    .contact-container .contact-icon {
+        font-size: var(--contact-text-size);
+    }
+
 }

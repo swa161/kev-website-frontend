@@ -10,16 +10,16 @@ import { blue } from '@mui/material/colors';
 export function Contact({ user }: HeroProps) {
 
     const contactMethods = [
-        { icon: <EmailRoundedIcon sx={{ color: blue[500] }} className='email-icon' />, label: 'Email me', value: user?.email },
-        { icon: <LocalPhoneRoundedIcon sx={{ color: blue[500] }} className='email-icon' />, label: 'Call me', value: user?.phone_number },
-        { icon: <LocationOnRoundedIcon sx={{ color: blue[500] }} className='email-icon' />, label: 'Where I live', value: user?.address }
+        { icon: <EmailRoundedIcon sx={{ color: blue[500] }} className='contact-icon' />, label: 'Email me', value: user?.email },
+        { icon: <LocalPhoneRoundedIcon sx={{ color: blue[500] }} className='contact-icon' />, label: 'Call me', value: user?.phone_number },
+        { icon: <LocationOnRoundedIcon sx={{ color: blue[500] }} className='contact-icon' />, label: 'Where I live', value: user?.address }
     ]
 
     return (
         <Box sx={{ paddingBottom: '4rem' }} component="section" className='contact-container'>
             <Typography variant='h2' className="contact-title">Contact</Typography>
             <Typography variant='subtitle1' className="contact-sub-title">Get in touch</Typography>
-            <Stack
+            <Stack className='contact-stack'
                 sx={{
                     width: {
                         xs: '90%',
@@ -45,8 +45,8 @@ export function Contact({ user }: HeroProps) {
                         className="address-box">
                         {method.icon}
                         <Box sx={{ flexDirection: 'column' }}>
-                            <Typography variant='body2'>{method.label}</Typography>
-                            <Typography variant='body1'>{method.value}</Typography>
+                            <Typography className='contact-element-text-label' >{method.label}</Typography>
+                            <Typography className='contact-element-text-value' >{method.value}</Typography>
                         </Box>
 
                     </Box>
