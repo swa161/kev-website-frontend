@@ -5,7 +5,7 @@ let theme = createTheme({
         h2: {
             fontSize: '3.3rem',
             fontWeight: 600,
-        }
+        },
     }
 })
 theme = responsiveFontSizes(theme)

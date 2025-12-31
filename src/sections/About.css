@@ -81,9 +81,13 @@
     margin-top: -5%;
 }
 
+.image-description {
+    color: var(--txt-color);
+}
 
 .image-date {
     padding-bottom: 20px;
+    color: var(--txt-color);
 }
 
 

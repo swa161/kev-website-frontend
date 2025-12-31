@@ -9,7 +9,7 @@ export function Skills() {
             <Typography variant='h2' className="skills-title">Skills</Typography>
             <Typography variant='subtitle1' className="skills-sub-title">My technical level</Typography>
             <div className="accordion-container">
-                <Accordion defaultExpanded
+                <Accordion className='accordion' defaultExpanded
                     sx={{
                         width: {
                             xs: '80vw',
@@ -25,16 +25,16 @@ export function Skills() {
                         aria-controls="programming-language-content"
                         id="pl-content"
                     >
-                        <Typography component={'span'}>Frontend</Typography>
+                        <Typography className="skills-text" component={'span'}>Frontend</Typography>
                     </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography component="span">Python</Typography>
-                        <Typography component="span">TypeScript</Typography>
-                        <Typography component="span">Kotlin</Typography>
-                        <Typography component="span">SQL</Typography>
+                    <AccordionDetails className='accordion'>
+                        <Typography className="skills-text" component="span">Python</Typography>
+                        <Typography className="skills-text" component="span">TypeScript</Typography>
+                        <Typography className="skills-text" component="span">Kotlin</Typography>
+                        <Typography className="skills-text" component="span">SQL</Typography>
                     </AccordionDetails>
                 </Accordion>
-                <Accordion
+                <Accordion className='accordion'
                     sx={{
                         width: {
                             xs: '80vw',
@@ -50,12 +50,12 @@ export function Skills() {
                         aria-controls="tools-content"
                         id="tools-content"
                     >
-                        <Typography component={'span'}>Backend</Typography>
+                        <Typography className="skills-text" component={'span'}>Backend</Typography>
                     </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography component="span">React</Typography>
-                        <Typography component="span">Node.js</Typography>
-                        <Typography component="span">Express</Typography>
+                    <AccordionDetails className='accordion'>
+                        <Typography className="skills-text" component="span">React</Typography>
+                        <Typography className="skills-text" component="span">Node.js</Typography>
+                        <Typography className="skills-text" component="span">Express</Typography>
                     </AccordionDetails>
                 </Accordion>
             </div>

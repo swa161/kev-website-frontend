@@ -45,7 +45,7 @@ export function Contact({ user }: HeroProps) {
                         className="address-box">
                         {method.icon}
                         <Box sx={{ flexDirection: 'column' }}>
-                            <Typography variant='body2' color='textSecondary'>{method.label}</Typography>
+                            <Typography variant='body2'>{method.label}</Typography>
                             <Typography variant='body1'>{method.value}</Typography>
                         </Box>
 

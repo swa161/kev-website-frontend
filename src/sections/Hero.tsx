@@ -3,6 +3,7 @@ import { Download } from 'lucide-react'
 import './Hero.css'
 import axios from 'axios'
 import type { HeroProps } from '../types/user'
+import { Typography } from '@mui/material'
 
 export function Hero({ user }: HeroProps) {
     const [userImg, setUserImg] = useState<string | null>(null)
@@ -38,8 +39,31 @@ export function Hero({ user }: HeroProps) {
     return (
         <div className="hero-container">
             <div className='top-section'>
-                <div
-                    className="user-image-container"
+                <div className="left-section">
+                    <div id="message-container" className='message-container'>
+                        <Typography variant='h2' className='hero-title'>
+                            {titleMessage}
+                        </Typography>
+                        <Typography variant='subtitle2' className='hero-welcome'>
+                            Welcome to my website!
+                        </Typography>
+                        <Typography variant='subtitle1' className='hero-description'>
+                            {user?.description}
+                        </Typography>
+                    </div>
+                    <div className='cv-container'>
+                        <a href='http://localhost:4941/api/v1/users/1/cv' target='_blank' className='hero-cv'>
+                            <Typography variant='h4' className='cv'>
+                                View CV
+                            </Typography>
+                            <span>
+                                <Download size={30} />
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <div className="user-image-container"
                     onMouseMove={(e) => {
                         const rect = e.currentTarget.getBoundingClientRect()
                         const mouseX = e.clientX - rect.left - rect.width / 2
@@ -50,29 +74,8 @@ export function Hero({ user }: HeroProps) {
                 >
                     {userImg ? <img src={userImg} className="user-image" alt="profile" /> : null}
                 </div>
+            </div>
 
-                <div id="message-container" className='message-container'>
-                    <div className='hero-title'>
-                        {titleMessage}
-                    </div>
-                    <div className='hero-welcome'>
-                        Welcome to my website!
-                    </div>
-                    <div className='hero-description'>
-                        {user?.description}
-                    </div>
-                </div>
-            </div>
-            <div className='cv-container'>
-                <a href='http://localhost:4941/api/v1/users/1/cv' target='_blank' className='hero-cv'>
-                    <span>
-                        View CV
-                    </span>
-                    <span>
-                        <Download size={30} />
-                    </span>
-                </a>
-            </div>
         </div>
     )
 }

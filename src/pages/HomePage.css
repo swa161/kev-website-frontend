@@ -44,7 +44,7 @@ section {
 
 @media screen and (min-width: 768px) {
   .sections-container {
-    max-width: 85%;
+    max-width: 65%;
 
     margin: 60px auto 0;
     padding: 0 24px;
@@ -59,9 +59,6 @@ section {
     scroll-margin-top: 60px;
   }
 
-  .about-section {
-    min-height: 100vh;
-  }
 
   .skills-section {
     scroll-margin-top: 60px;

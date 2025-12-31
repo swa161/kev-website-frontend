@@ -1,9 +1,10 @@
+import { Typography } from "@mui/material"
 import "./Footer.css"
 
 export function Footer() {
     return (
         <div className="footer-container">
-            <h2 className="footer-name">Kevin Wang</h2>
+            <Typography variant="h1" className="footer-name">Kevin Wang</Typography>
         </div>
     )
 }

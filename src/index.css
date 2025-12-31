@@ -2,10 +2,28 @@ html {
     scroll-behavior: smooth;
 }
 
+:root {
+    --bottom-bar-height: 3rem;
+    --bg-color: #FBFBFB;
+    --txt-color: #333b3c;
+    --primary-blue: #6495ED;
+    --fixed-txt-color: #333b3c;
+    --subtitle1-color: rgb(0, 0, 0, 0.4);
+}
+
+html.darkmode {
+    --bg-color: #1a1d2a;
+    --txt-color: #f6f6f6;
+    --primary-blue: #6495ED;
+    --subtitle1-color: rgba(255, 255, 255, 0.469);
+}
+
 body {
     margin: 0;
-    background-color: white;
-    /*background-image: linear-gradient(to top, #9795f0 10%, #dceeea 100%);*/
+    background-color: var(--bg-color);
+    color: var(--txt-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+
 }
 
 ::-webkit-scrollbar {

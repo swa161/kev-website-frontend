@@ -7,10 +7,12 @@
     align-items: center;
 }
 
+.contact-title {
+    color: var(--txt-color);
+}
 
 .contact-sub-title {
     font-size: 0.9rem;
-    color: rgb(0, 0, 0, 0.4);
-
     padding-bottom: 1rem;
+    color: var(--subtitle1-color);
 }
