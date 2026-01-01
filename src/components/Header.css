@@ -32,8 +32,8 @@
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    padding: 0.5rem;
     bottom: 0;
+    padding: 0 0.9rem 0 0.9rem;
     height: var(--bottom-bar-height);
     background-color: var(--bg-color);
     box-shadow: rgb(0, 0, 0, 60%) 0 -0.6px 4.2px 0;
@@ -41,10 +41,9 @@
 
 }
 
-.bottom-trigger-bar .menu-toggle-btn {
-    border: none;
-    background-color: transparent;
-    color: var(--primary-blue);
+.bottom-trigger-bar-buttons-container {
+    display: flex;
+    gap: 1rem;
 }
 
 .mobile-links {
@@ -78,6 +77,19 @@
     padding: 1rem 2rem;
 }
 
+
+.menu-toggle-btn {
+    border: none;
+    background-color: transparent;
+    color: var(--primary-blue);
+    align-self: center;
+}
+
+.color-mode-btn {
+    border: none;
+    background-color: transparent;
+    align-self: center;
+}
 
 
 @media (min-width: 768px) {
@@ -119,7 +131,7 @@
 
 
     .fullname-section {
-        font-size: clamp(12px,2.2vw,35px);
+        font-size: clamp(12px, 2.2vw, 35px);
         font-weight: 250;
         color: var(--fixed-txt-color);
     }
@@ -132,9 +144,9 @@
     }
 
     .right-section a {
-        font-size: clamp(12px,2.2vw,27px);
+        font-size: clamp(12px, 2.2vw, 27px);
         text-decoration: none;
-        color:  var(--fixed-txt-color);
+        color: var(--fixed-txt-color);
         font-weight: 250;
         position: relative;
         display: inline-block;

@@ -6,19 +6,20 @@ import './Contact.css'
 import { Box, Divider, Stack, Typography } from '@mui/material'
 import type { HeroProps } from '../types/user';
 import { blue } from '@mui/material/colors';
+import { useTranslation } from 'react-i18next';
 
 export function Contact({ user }: HeroProps) {
-
+    const { t } = useTranslation()
     const contactMethods = [
-        { icon: <EmailRoundedIcon sx={{ color: blue[500] }} className='contact-icon' />, label: 'Email me', value: user?.email },
-        { icon: <LocalPhoneRoundedIcon sx={{ color: blue[500] }} className='contact-icon' />, label: 'Call me', value: user?.phone_number },
-        { icon: <LocationOnRoundedIcon sx={{ color: blue[500] }} className='contact-icon' />, label: 'Where I live', value: user?.address }
+        { icon: <EmailRoundedIcon sx={{ color: blue[500] }} className='contact-icon' />, label: t('email_me'), value: user?.email },
+        { icon: <LocalPhoneRoundedIcon sx={{ color: blue[500] }} className='contact-icon' />, label: t('call_me'), value: user?.phone_number },
+        { icon: <LocationOnRoundedIcon sx={{ color: blue[500] }} className='contact-icon' />, label: t('where_i_live'), value: user?.address }
     ]
 
     return (
         <Box sx={{ paddingBottom: '4rem' }} component="section" className='contact-container'>
-            <Typography variant='h2' className="contact-title">Contact</Typography>
-            <Typography variant='subtitle1' className="contact-sub-title">Get in touch</Typography>
+            <Typography variant='h2' className="contact-title">{t('contact')}</Typography>
+            <Typography variant='subtitle1' className="contact-sub-title">{t('get_in_touch')}</Typography>
             <Stack className='contact-stack'
                 sx={{
                     width: {

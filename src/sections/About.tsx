@@ -30,7 +30,7 @@ export function About() {
     }
 
     const handleTouchEnd = () => {
-        if (!touchStart || !touchEnd) return 
+        if (!touchStart || !touchEnd) return
 
         const distance = touchStart.current - touchEnd.current
         const minSwipeDistance = 50
@@ -51,31 +51,38 @@ export function About() {
     const previousImg = () => {
         if (!slideRef.current || !imageData) return
         if (counter <= 0) return
-        setCounter(prev => prev - 1)
+        setCounter(prev => {
+            if (prev <= 0) return prev
+            return prev - 1
+        })
     }
 
     const nextImg = () => {
         if (!slideRef.current || !imageData) return
-        setCounter(prev => prev + 1)
+
+        setCounter(prev => {
+            if (prev >= imageData.length + 1) return prev
+            return prev + 1
+        })
     }
 
     // After slide transition ends, reset the position when reaching
     // cloned first/last slides to create an infinite carousel effect
     useEffect(() => {
-        const handleTransitionEnd = () => {
+        const handleTransitionEnd = async () => {
             if (!slideRef.current || !imageData) return
             const size = slideRef.current.clientWidth
 
             if (counter === 0) {
                 slideRef.current.style.transition = 'none'
                 const realLastIndex = imageData.length
-                setCounter(realLastIndex)
+                await setCounter(realLastIndex)
                 slideRef.current.style.transform = `translateX(${-size * realLastIndex}px)`
             }
 
             if (counter === imageData.length + 1) {
                 slideRef.current.style.transition = 'none'
-                setCounter(1)
+                await setCounter(1)
                 slideRef.current.style.transform = `translateX(${-size * 1}px)`
             }
         }
@@ -123,7 +130,7 @@ export function About() {
             }
         }
         document.addEventListener('visibilitychange', handleVisibilityChange)
-        return (() => {document.removeEventListener('visibilitychange', handleVisibilityChange)})
+        return (() => { document.removeEventListener('visibilitychange', handleVisibilityChange) })
     }, [counter])
 
     return (

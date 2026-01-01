@@ -3,11 +3,11 @@ html {
 }
 
 :root {
-    --bottom-bar-height: 3rem;
+    --bottom-bar-height: 4rem;
     --bottom-bar-height-web: 12rem;
     --contact-text-size: 1.7rem;
 
-
+    --mobile-bottom-icon-size: 1.5rem;
 
     --bg-color: #FBFBFB;
     --txt-color: #333b3c;

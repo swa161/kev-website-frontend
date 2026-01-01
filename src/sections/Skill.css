@@ -1,6 +1,7 @@
 * {
     margin: 0;
 }
+
 .skill-container {
     display: flex;
     flex-direction: column;
@@ -11,7 +12,7 @@
 .skills-sub-title {
     font-size: 0.9rem;
     color: var(--subtitle1-color);
-    padding:0 0 1rem 0;
+    padding: 0 0 1rem 0;
 }
 
 .accordion-container {
@@ -21,13 +22,30 @@
 }
 
 .accordion {
+    width: 70vw;
+    background-color: var(--bg-color);
+}
+
+.accordion-details {
     background-color: var(--bg-color);
 }
 
 .accordion .MuiAccordionSummary-root {
-  background-color: var(--bg-color);
+    background-color: var(--bg-color);
+}
+
+
+.skills-item {
+    color: var(--txt-color);
 }
 
 .skills-text {
-   color: var(--txt-color);
+    color: var(--txt-color);
+}
+
+@media (min-width: 768px) {
+    .accordion {
+        width: 30vw;
+    }
+
 }

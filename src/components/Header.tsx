@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
+import { useTranslation } from "react-i18next";
 import WidgetsRoundedIcon from '@mui/icons-material/WidgetsRounded';
 import InfoRoundedIcon from '@mui/icons-material/InfoRounded'
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
@@ -22,7 +23,7 @@ export function Header() {
     const [name, setName] = useState<FullNameResponse | null>(null)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [isDarkMode, setIsDarkMode] = useState(false)
-
+    const {t, i18n } = useTranslation()
     useEffect(() => {
         const fetchFullName = async () => {
             try {
@@ -48,8 +49,15 @@ export function Header() {
 
     const setColorIcon = () => {
         return (isDarkMode ? 
-                <LightModeIcon className="color-mode-icon" onClick={toggleColorMode} /> : 
-                <DarkModeIcon className="color-mode-icon" onClick={toggleColorMode} />)
+                <LightModeIcon className="color-mode-btn" onClick={toggleColorMode} sx={{cursor: 'pointer', fontSize: '2rem'}}/> : 
+                <DarkModeIcon className="color-mode-btn" onClick={toggleColorMode} sx={{cursor: 'pointer', fontSize: '2rem'}}/>)
+    }
+
+    const languageHandler = () => {
+       const currentLang = i18n.language
+       const newLang = currentLang === 'en' ? 'zh' : 'en'
+       
+       i18n.changeLanguage(newLang)
     }
 
     return (
@@ -59,12 +67,13 @@ export function Header() {
                     {name?.fullName}
                 </div>
                 <div className="right-section desktop-only">
-                    <a href="#home">Home</a>
-                    <a href="#about">About me</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#home">{t('home')}</a>
+                    <a href="#about">{t('about_me')}</a>
+                    <a href="#skills">{t('skills')}</a>
+                    <a href="#projects">{t('qualification')}</a>
+                    <a href="#contact">{t('contact')}</a>
                     {setColorIcon()}
+                    <TranslateRoundedIcon onClick={languageHandler} sx={{cursor: 'pointer'}}/>
                 </div>
                 
             </div>
@@ -79,7 +88,7 @@ export function Header() {
                     <div className="projects-contact-language">
                         <a href="#projects" onClick={toggleMenu}><AccountTreeRoundedIcon className="icon" /></a>
                         <a href="#contact" onClick={toggleMenu}><CallRoundedIcon className="icon" /></a>
-                        <a href="#contact" onClick={toggleMenu}><TranslateRoundedIcon className="icon" /></a>
+                        <TranslateRoundedIcon className="icon" onClick={() => { languageHandler(); toggleMenu()}} sx={{cursor: 'pointer'}}/>
                     </div>
                     <div className="close">
                         <ClearRoundedIcon className="icon" onClick={toggleMenu} />
@@ -87,9 +96,9 @@ export function Header() {
                 </nav>
             </Slide>
             <div className="mobile-only bottom-trigger-bar">
-                <div>
+                <div className="mobile-only bottom-trigger-bar-buttons-container">
                     <button className="menu-toggle-btn" onClick={toggleMenu}>
-                        <WidgetsRoundedIcon />
+                        <WidgetsRoundedIcon sx={{fontSize: '2rem'}} />
                     </button>
                     {setColorIcon()}
                 </div>
