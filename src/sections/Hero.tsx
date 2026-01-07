@@ -4,9 +4,11 @@ import './Hero.css'
 import axios from 'axios'
 import type { HeroProps } from '../types/user'
 import { Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 export function Hero({ user }: HeroProps) {
     const [userImg, setUserImg] = useState<string | null>(null)
+    const { t }  = useTranslation()
     useEffect(() => {
         const fetchUserImg = async () => {
             const response = await axios.get(
@@ -45,7 +47,7 @@ export function Hero({ user }: HeroProps) {
                             {titleMessage}
                         </Typography>
                         <Typography variant='subtitle2' className='hero-welcome'>
-                            Welcome to my website!
+                            {t('welcome')}
                         </Typography>
                         <Typography variant='subtitle1' className='hero-description'>
                             {user?.description}
@@ -54,7 +56,7 @@ export function Hero({ user }: HeroProps) {
                     <div className='cv-container'>
                         <a href='http://localhost:4941/api/v1/users/1/cv' target='_blank' className='hero-cv'>
                             <Typography variant='h4' className='cv'>
-                                View CV
+                                {t('download_cv')}
                             </Typography>
                             <span>
                                 <Download size={30} />

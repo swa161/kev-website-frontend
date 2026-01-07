@@ -137,7 +137,11 @@ export function About() {
         <Fragment>
             <div className='about-container' >
                 <div className='carousel-container' >
-                    {window.innerWidth >= 768 && <ArrowBackIosNew className='leftBtn' onClick={previousImg} />}
+                    {window.innerWidth >= 768 &&
+                        <ArrowBackIosNew className='leftBtn'
+                            onClick={previousImg}
+                            onMouseEnter={() => setIsPaused(true)}
+                            onMouseLeave={() => setIsPaused(false)} />}
                     <div className='carousel-viewport'
                         onTouchStart={handleTouchStart}
                         onTouchMove={handleTouchMove}
@@ -251,7 +255,11 @@ export function About() {
 
                         </div>
                     </div>
-                    {window.innerWidth >= 768 && <ArrowForwardIos className='rightBtn' onClick={nextImg} />}
+                    {window.innerWidth >= 768 && 
+                    <ArrowForwardIos className='rightBtn' 
+                    onClick={nextImg} 
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)} />}
                 </div>
 
             </div>

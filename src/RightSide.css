@@ -1,0 +1,79 @@
+.rightside-container {
+    --cloud-color: white;
+    --moon-color: rgb(255, 254, 248);
+    --star-color: rgba(248, 233, 151, 0.926);
+    --rightside-font-size: var(--whole-page-side-width);
+    --shadow-highlight: rgba(0, 0, 0, 0.5);
+}
+
+.rightside-container {
+    display: none;
+    font-size: var(--rightside-font-size);
+    position: fixed;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.moon {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .rightside-container {
+        position: fixed;
+        display: block;
+        right: 0;
+        width: var(--whole-page-side-width);
+        height: calc(100vh - var(--header-height));
+        margin-top: var(--header-height);
+        /* border: 2px solid red; */
+    }
+
+    .toggle_cloud {
+        position: absolute;
+        inset: 0;
+    }
+
+    .toggle_cloud .cloud {
+        color: var(--cloud-color);
+        filter:
+            drop-shadow(0 6px 12px rgba(116, 180, 245, 0.387)) drop-shadow(0 -4px 6px rgba(244, 216, 149, 0.911));
+        /* box-shadow: 0.06em 0.06em 0.125em var(--shadow-highlight) inset; */
+
+
+    }
+
+    .toggle_cloud .cloud2 {
+        color: var(--cloud-color);
+        filter:
+            drop-shadow(0 6px 12px rgba(116, 180, 245, 0.387)) drop-shadow(0 -4px 6px rgba(244, 216, 149, 0.911));
+    }
+
+
+    .darkmode .rightside-container .star-triple:first-of-type {
+        display: block;
+        color: var(--star-color);
+        filter:
+            drop-shadow(8px -6px 6px rgba(174, 231, 249, 0.775)) drop-shadow(-2px 2px 10px rgb(217, 183, 246));
+        animation: starFlipAnimation 3s ease-in-out infinite;
+    }
+
+    .darkmode .moon {
+        display: block;
+        color: var(--moon-color);
+        filter:
+        drop-shadow(8px -6px 6px rgba(174, 231, 249, 0.775)) 
+        drop-shadow(-2px 2px 10px rgb(217, 183, 246));
+        animation: bounce2 6s ease-in-out infinite;
+    }
+
+    .darkmode .rightside-container .star-triple {
+        display: block;
+        color: var(--star-color);
+        
+        filter:
+            drop-shadow(8px -6px 6px rgba(174, 231, 249, 0.775)) drop-shadow(-2px 2px 10px rgb(217, 183, 246));
+        animation: bounce2 6s ease-in-out infinite;
+        
+    }
+}

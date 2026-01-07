@@ -1,0 +1,85 @@
+.leftside-container {
+    --cloud-color: white;
+    --sun-color: rgb(251, 189, 21);
+    --star-color: rgba(248, 233, 151, 0.926);
+    --leftside-font-size: var(--whole-page-side-width);
+    --shadow-highlight: rgba(0, 0, 0, 0.5);
+}
+
+.leftside-container {
+    display: none;
+    font-size: var(--leftside-font-size);
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.star-triple {
+    display: none;
+}
+
+
+
+@media (min-width: 768px) {
+    .leftside-container {
+        position: fixed;
+        display: block;
+        left: 0;
+        width: var(--whole-page-side-width);
+        height: calc(100vh - var(--header-height));
+        margin-top: var(--header-height);
+    }
+
+    .sun {
+        color: var(--sun-color);
+        filter:
+            drop-shadow(0 6px 12px rgba(252, 175, 52, 0.919)) drop-shadow(0 -4px 6px rgba(243, 218, 54, 0.518));
+        animation:
+            sunAnimation 10s linear infinite;
+    }
+
+    .toggle_cloud .cloud {
+        color: var(--cloud-color);
+        filter:
+            drop-shadow(0 6px 12px rgba(116, 180, 245, 0.387)) drop-shadow(0 -4px 6px rgba(244, 216, 149, 0.911));
+        animation: bounce1 5s ease-in-out infinite;
+
+    }
+
+    .toggle_cloud .cloud2 {
+        color: var(--cloud-color);
+        filter:
+            drop-shadow(0 6px 12px rgba(116, 180, 245, 0.387)) drop-shadow(0 -4px 6px rgba(244, 216, 149, 0.911));
+        animation: bounce2 6s ease-in-out infinite;
+    }
+
+    .darkmode .sun {
+        display: none;
+    }
+
+    .darkmode .cloud {
+        display: none;
+    }
+
+    .darkmode .cloud2 {
+        display: none;
+    }
+
+    .darkmode .leftside-container .star-triple:first-of-type {
+        display: block;
+        color: var(--star-color);
+        filter:
+            drop-shadow(8px -6px 6px rgba(174, 231, 249, 0.775)) drop-shadow(-2px 2px 10px rgb(217, 183, 246));
+        animation: bounce2 6s ease-in-out infinite;
+    }
+
+    .darkmode .leftside-container .star-triple {
+        display: block;
+        color: var(--star-color);
+        filter:
+            drop-shadow(8px -6px 6px rgba(174, 231, 249, 0.775)) drop-shadow(-2px 2px 10px rgb(217, 183, 246));
+        animation: bounce1 6s ease-in-out infinite;
+    }
+
+
+}

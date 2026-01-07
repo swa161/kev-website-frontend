@@ -37,20 +37,20 @@ section {
   height: 30vh;
 }
 
-.contact-section {
-
-}
+.contact-section {}
 
 
 @media screen and (min-width: 768px) {
-  .sections-container {
-    max-width: 65%;
-
-    margin: 60px auto 0;
-    padding: 0 24px;
+  .whole-page-container {
     display: flex;
-    flex-direction: column;
+    position: relative;
+    width: 100%;
+  }
 
+  .sections-container {
+    margin-left: var(--whole-page-side-width);
+    margin-right: var(--whole-page-side-width);
+    width: calc(100% - (var(--whole-page-side-width) * 2));
   }
 
   section {
@@ -62,6 +62,11 @@ section {
 
   .skills-section {
     scroll-margin-top: 60px;
+  }
+
+  .hero-section {
+    padding: 3rem 0 3rem 0;
+
   }
 
 }

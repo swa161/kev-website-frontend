@@ -1,0 +1,15 @@
+export interface DecorationStyle {
+    position: 'absolute',
+    zIndex?: number,
+    width: string,
+    top?: string,
+    right?: string,
+    left?: string,
+    transform?: string,
+    opacity?: number
+}
+
+export type DecorationProp = {
+    className?: string,
+    style: object 
+}

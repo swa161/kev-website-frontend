@@ -22,17 +22,12 @@ export function Contact({ user }: HeroProps) {
             <Typography variant='subtitle1' className="contact-sub-title">{t('get_in_touch')}</Typography>
             <Stack className='contact-stack'
                 sx={{
-                    width: {
-                        xs: '90%',
-                        sm: '400px',
-                        md: '600px',
-                        lg: '1200px'
-                    },
+                    width: "calc(100% - (var(--whole-page-side-width) * 2))",
                     mx: 'auto',
                     textAlign: 'left',
                     margin: '0 auto'
                 }}
-                divider={<Divider orientation='horizontal' flexItem />}
+                divider={<Divider orientation='horizontal' flexItem/>}
                 spacing={2}>
                 {contactMethods.map((method, i) => (
                     <Box 
