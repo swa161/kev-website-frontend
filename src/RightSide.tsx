@@ -1,9 +1,10 @@
 import './RightSide.css'
 import { Cloud } from './components/Cloud'
 import { Cloud2 } from './components/Cloud2'
-import { StarTriple } from './components/Stars'
+import { StarTriple, StarFourPoints } from './components/Stars'
 import { Moon } from './components/Moon'
 import type { DecorationStyle } from './types/decorationTypes'
+import { useEffect } from 'react'
 
 
 export function RightSide() {
@@ -50,14 +51,6 @@ export function RightSide() {
     const starTriples: DecorationStyle[] = [
         {
             position: 'absolute',
-            width: 'calc(var(--whole-page-side-width)*0.5)',
-            top: '40%',
-            zIndex: 999,
-            right: 'calc(var(--whole-page-side-width)*0.5)',
-            opacity: 1
-        },
-        {
-            position: 'absolute',
             width: 'calc(var(--whole-page-side-width)*0.8)',
             top: '87%',
             opacity: 1
@@ -71,6 +64,47 @@ export function RightSide() {
         right: 'calc(var(--whole-page-side-width)*0.1)',
         opacity: 1
     }
+    const startFourPts: DecorationStyle[] = [
+
+        {
+            position: 'absolute',
+            width: 'calc(var(--whole-page-side-width)*0.1)',
+            top: '30%',
+            zIndex: 999,
+            right: 'calc(var(--whole-page-side-width)*0.4)',
+            opacity: 1
+        },
+        {
+            position: 'absolute',
+            width: 'calc(var(--whole-page-side-width)*0.07)',
+            right: 'calc(var(--whole-page-side-width)*0.5)',
+            top: '50%',
+            opacity: 1
+        },        
+        {
+            position: 'absolute',
+            width: 'calc(var(--whole-page-side-width)*0.085)',
+            top: '70%',
+            right: 'calc(var(--whole-page-side-width)*0.3)',
+            opacity: 1
+        }
+
+
+    ]
+
+    useEffect(() => {
+        const stars = document.querySelectorAll<SVGElement>('.star-four')
+
+        stars.forEach(star => {
+            const duration = 2 + Math.random() * 3
+            const delay = Math.random() * 2
+
+            star.style.animationDuration =`${duration}s`
+            star.style.animationDelay = `${delay}s`
+
+        })
+    },[])
+
 
 
     return (
@@ -125,6 +159,19 @@ export function RightSide() {
                         width: s.width,
                         transform: s.transform,
                         opacity: s.opacity
+                    }} />
+                ))}
+                {startFourPts.map((f, index) => (
+                    <StarFourPoints key={index} style={{
+                        position: f.position,
+                        zIndex: f.zIndex,
+                        top: f.top,
+                        right: f.right,
+                        left: f.left,
+                        width: f.width,
+                        transform: f.transform,
+                        opacity: f.opacity,
+                        
                     }} />
                 ))}
             </div>

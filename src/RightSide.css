@@ -1,7 +1,8 @@
 .rightside-container {
     --cloud-color: white;
-    --moon-color: rgb(255, 254, 248);
-    --star-color: rgba(248, 233, 151, 0.926);
+    --moon-color: rgb(247, 253, 254);
+    --star-color: rgba(255, 249, 217, 0.926);
+    --star-blink-duration: 3s;
     --rightside-font-size: var(--whole-page-side-width);
     --shadow-highlight: rgba(0, 0, 0, 0.5);
 }
@@ -14,9 +15,12 @@
     overflow: hidden;
 }
 
+.star-four,
+.star-triple,
 .moon {
     display: none;
 }
+
 
 @media (min-width: 768px) {
     .rightside-container {
@@ -49,21 +53,14 @@
             drop-shadow(0 6px 12px rgba(116, 180, 245, 0.387)) drop-shadow(0 -4px 6px rgba(244, 216, 149, 0.911));
     }
 
-
-    .darkmode .rightside-container .star-triple:first-of-type {
-        display: block;
-        color: var(--star-color);
-        filter:
-            drop-shadow(8px -6px 6px rgba(174, 231, 249, 0.775)) drop-shadow(-2px 2px 10px rgb(217, 183, 246));
-        animation: starFlipAnimation 3s ease-in-out infinite;
-    }
-
     .darkmode .moon {
         display: block;
         color: var(--moon-color);
         filter:
-        drop-shadow(8px -6px 6px rgba(174, 231, 249, 0.775)) 
-        drop-shadow(-2px 2px 10px rgb(217, 183, 246));
+        drop-shadow(0px 0px 1px rgb(0, 0, 0))
+        drop-shadow(0px 0px 0.8px rgb(0, 0, 0)) 
+        drop-shadow(-1px 4px 12px rgba(132, 199, 253, 0.775)) 
+        drop-shadow(0px 2px 20px rgb(248, 249, 143));
         animation: bounce2 6s ease-in-out infinite;
     }
 
@@ -72,8 +69,20 @@
         color: var(--star-color);
         
         filter:
-            drop-shadow(8px -6px 6px rgba(174, 231, 249, 0.775)) drop-shadow(-2px 2px 10px rgb(217, 183, 246));
+            drop-shadow(8px 2px 5px rgba(174, 231, 249, 0.775)) 
+            drop-shadow(2px 2px 10px rgb(217, 183, 246));
         animation: bounce2 6s ease-in-out infinite;
-        
+    }
+
+    .darkmode .rightside-container .star-four {
+        display: block;
+        color: var(--star-color);
+         filter:
+            drop-shadow(8px -6px 6px rgba(174, 231, 249, 0.775)) 
+            drop-shadow(-2px 2px 10px rgb(217, 183, 246));
+
+        animation-name: starBlink;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
     }
 }

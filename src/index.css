@@ -93,3 +93,15 @@ body {
         transform: translateY(0%) scaleX(-1);
     }
 }
+
+@keyframes starBlink {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

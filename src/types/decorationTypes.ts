@@ -6,7 +6,9 @@ export interface DecorationStyle {
     right?: string,
     left?: string,
     transform?: string,
-    opacity?: number
+    opacity?: number,
+    blinkDuration?: string,
+    blinkDelay?: string
 }
 
 export type DecorationProp = {
