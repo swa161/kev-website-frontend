@@ -16,6 +16,7 @@ html {
 
     --bg-color: #FBFBFB;
     --txt-color: #333b3c;
+    --selected-color: #6f7ac5;
     --primary-blue: #6495ED;
     --fixed-txt-color: #333b3c;
     --subtitle1-color: rgb(0, 0, 0, 0.4);
@@ -24,6 +25,7 @@ html {
 html.darkmode {
     --bg-color: #1a1d2a;
     --txt-color: #f6f6f6;
+    --selected-color: #acf8f6;
     --primary-blue: #6495ED;
     --subtitle1-color: rgba(255, 255, 255, 0.644);
 }

@@ -6,7 +6,6 @@
     width: 50vw;
     align-self: center;
     gap: 2rem;
-    margin: var(--header-height);
 }
 
 .hero-container .top-section {
@@ -134,6 +133,7 @@
         padding-top: 5%;
         padding-bottom: 5%;
         align-items: start;
+        margin: var(--header-height);
     }
 
     .hero-container .top-section {

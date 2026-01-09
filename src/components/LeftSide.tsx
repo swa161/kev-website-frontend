@@ -1,25 +1,23 @@
-import './RightSide.css'
-import { Cloud } from './components/Cloud'
-import { Cloud2 } from './components/Cloud2'
-import { StarTriple, StarFourPoints } from './components/Stars'
-import { Moon } from './components/Moon'
-import type { DecorationStyle } from './types/decorationTypes'
-import { useEffect } from 'react'
 
+import './LeftSide.css'
+import { Cloud } from './Cloud'
+import { Cloud2 } from './Cloud2'
+import { StarFourPoints } from './Stars'
+import type { DecorationStyle } from '../types/decorationTypes'
 
-export function RightSide() {
+export function LeftSide() {
     const cloud1s: DecorationStyle[] = [
         {
             position: 'absolute',
             width: 'calc(var(--whole-page-side-width)*0.95)',
             top: '40%',
-            right: 'calc(var(--whole-page-side-width)*-0.3)',
+            zIndex: 999,
+            right: 'calc(var(--whole-page-side-width)*0.5)',
             opacity: 1
         },
         {
             position: 'absolute',
             width: 'calc(var(--whole-page-side-width)*0.90)',
-            right: 'calc(var(--whole-page-side-width)*-0.3)',
             top: '87%',
             opacity: 1
         }
@@ -28,42 +26,19 @@ export function RightSide() {
     const cloud2s: DecorationStyle[] = [
         {
             position: 'absolute',
-            width: 'calc(var(--whole-page-side-width)*0.45)',
-            right: 'calc(var(--whole-page-side-width)*0.15)',
-            top: '10%',
-            opacity: 1
-        },
-        {
-            position: 'absolute',
-            width: 'calc(var(--whole-page-side-width)*0.45)',
-            right: 'calc(var(--whole-page-side-width)*0.07)',
-            top: '12.5%',
-            opacity: 1
-        },
-        {
-            position: 'absolute',
             width: 'calc(var(--whole-page-side-width)*0.90)',
-            right: 'calc(var(--whole-page-side-width)*-0.2)',
-            top: '45%',
+            top: '35%',
             opacity: 1
         }
     ]
-    const starTriples: DecorationStyle[] = [
-        {
-            position: 'absolute',
-            width: 'calc(var(--whole-page-side-width)*0.8)',
-            top: '87%',
-            opacity: 1
-        }
+    // const sun: DecorationStyle = {
+    //     position: 'absolute',
+    //     width: 'calc(var(--whole-page-side-width)*0.5)',
+    //     top: '1%',
+    //     right: 'calc(var(--whole-page-side-width)*0.68)',
+    //     opacity: 1
+    // }
 
-    ]
-    const moon: DecorationStyle = {
-        position: 'absolute',
-        width: 'calc(var(--whole-page-side-width)*0.45)',
-        top: '1%',
-        right: 'calc(var(--whole-page-side-width)*0.1)',
-        opacity: 1
-    }
     const startFourPts: DecorationStyle[] = [
 
         {
@@ -72,53 +47,56 @@ export function RightSide() {
             top: '30%',
             zIndex: 999,
             right: 'calc(var(--whole-page-side-width)*0.4)',
-            opacity: 1
+            opacity: 1,
+            blinkDuration: '2.3s',
+            blinkDelay: '1s'
+
         },
         {
             position: 'absolute',
             width: 'calc(var(--whole-page-side-width)*0.07)',
-            right: 'calc(var(--whole-page-side-width)*0.5)',
-            top: '50%',
-            opacity: 1
-        },        
+            right: 'calc(var(--whole-page-side-width)*0.8)',
+            top: '10%',
+            opacity: 1,
+            blinkDuration: '1.3s',
+            blinkDelay: '1s'
+        },
         {
             position: 'absolute',
             width: 'calc(var(--whole-page-side-width)*0.085)',
             top: '70%',
             right: 'calc(var(--whole-page-side-width)*0.3)',
-            opacity: 1
+            opacity: 1,
+            blinkDuration: '3.3s',
+            blinkDelay: '1s'
+        },
+        {
+            position: 'absolute',
+            width: 'calc(var(--whole-page-side-width)*0.085)',
+            top: '83%',
+            right: 'calc(var(--whole-page-side-width)*0.6)',
+            opacity: 1,
+            blinkDuration: '5.3s',
+            blinkDelay: '1s'
         }
-
-
     ]
-
-    useEffect(() => {
-        const stars = document.querySelectorAll<SVGElement>('.star-four')
-
-        stars.forEach(star => {
-            const duration = 2 + Math.random() * 3
-            const delay = Math.random() * 2
-
-            star.style.animationDuration =`${duration}s`
-            star.style.animationDelay = `${delay}s`
-
-        })
-    },[])
-
 
 
     return (
-        <div className="rightside-container">
-            <Moon style={{
-                position: moon.position,
-                zIndex: moon.zIndex,
-                top: moon.top,
-                right: moon.right,
-                left: moon.left,
-                width: moon.width,
-                transform: moon.transform,
-                opacity: moon.opacity
-            }} />
+        <div className="leftside-container">
+
+            {/* <Sun style={{
+                position: sun.position,
+                zIndex: sun.zIndex,
+                top: sun.top,
+                right: sun.right,
+                left: sun.left,
+                width: sun.width,
+                transform: sun.transform,
+                opacity: sun.opacity
+            }} /> */}
+
+
             <div className="toggle_cloud">
                 {cloud1s.map((c: DecorationStyle, index) => (
                     <Cloud
@@ -149,18 +127,6 @@ export function RightSide() {
                 ))}
             </div>
             <div className="toggle_stars">
-                {starTriples.map((s, index) => (
-                    <StarTriple key={index} style={{
-                        position: s.position,
-                        zIndex: s.zIndex,
-                        top: s.top,
-                        right: s.right,
-                        left: s.left,
-                        width: s.width,
-                        transform: s.transform,
-                        opacity: s.opacity
-                    }} />
-                ))}
                 {startFourPts.map((f, index) => (
                     <StarFourPoints key={index} style={{
                         position: f.position,
@@ -171,7 +137,8 @@ export function RightSide() {
                         width: f.width,
                         transform: f.transform,
                         opacity: f.opacity,
-                        
+                        animationDuration: f.blinkDuration,
+                        animationDelay: f.blinkDelay
                     }} />
                 ))}
             </div>

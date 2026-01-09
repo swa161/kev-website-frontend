@@ -27,7 +27,7 @@ export function Contact({ user }: HeroProps) {
                     textAlign: 'left',
                     margin: '0 auto'
                 }}
-                divider={<Divider orientation='horizontal' flexItem/>}
+                divider={<Divider sx={{borderColor: 'var(--txt-color)'}} orientation='horizontal' flexItem/>}
                 spacing={2}>
                 {contactMethods.map((method, i) => (
                     <Box 

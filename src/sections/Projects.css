@@ -14,3 +14,11 @@
     font-size: 0.9rem;
     color: var(--subtitle1-color);
 }
+
+
+@media (min-width: 768px) {
+    .time-line {
+        width: 40vw;
+    }
+    
+}

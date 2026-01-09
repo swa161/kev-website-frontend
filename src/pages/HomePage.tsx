@@ -9,8 +9,8 @@ import { Footer } from "../components/Footer"
 import './HomePage.css'
 import type { HeroProps } from "../types/user"
 import { ThemeProvider } from "@emotion/react"
-import {LeftSide} from '../LeftSide'
-import { RightSide } from "../RightSide"
+import {LeftSide} from '../components/LeftSide'
+import { RightSide } from "../components/RightSide"
 import theme from "../utils/Theme"
 
 export function HomePage({ user }: HeroProps) {
