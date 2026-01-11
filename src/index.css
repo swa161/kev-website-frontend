@@ -5,14 +5,16 @@ html {
 :root {
     --bottom-bar-height: 4rem;
     --bottom-bar-height-web: 12rem;
-    --contact-text-size: 1.7rem;
+    --contact-text-size: 1.45rem;
 
     --mobile-bottom-icon-size: 1.5rem;
     --whole-page-side-width: 17vw;
     --header-height: 3.65rem;
 
-    --hero-image-width: 18rem;
-    --hero-image-height: 20rem;
+    --hero-image-min-width: 250px;
+    --hero-image-max-width: 500px;
+    --hero-image--min-height: 300px;
+    --hero-image--max-height: 600px;
 
     --bg-color: #FBFBFB;
     --txt-color: #333b3c;

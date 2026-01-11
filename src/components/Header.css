@@ -7,6 +7,7 @@
     font-weight: 350;
     color: var(--txt-color);
     align-self: center;
+    text-decoration: none;
 }
 
 .mobile-menu-overlay {
@@ -131,9 +132,11 @@
 
 
     .fullname-section {
-        font-size: clamp(12px, 2.2vw, 35px);
-        font-weight: 250;
+        /* font-size: clamp(12px, 2.2vw, 35px);
+        font-weight: 250; */
         color: var(--fixed-txt-color);
+        text-decoration: none;
+        white-space: nowrap;
     }
 
     .header-inner .right-section {
@@ -143,17 +146,18 @@
         align-items: center;
     }
 
-    .right-section a {
-        font-size: clamp(12px, 2.2vw, 27px);
+    .right-section a:not(.fullname-section) {
+        /* font-size: clamp(12px, 2.2vw, 27px);
+           font-weight: 250; */
         text-decoration: none;
         color: var(--fixed-txt-color);
-        font-weight: 250;
+        white-space: nowrap;
         position: relative;
         display: inline-block;
     }
 
-    .header a::after,
-    .header a::before {
+    .header a:not(.fullname-section)::after,
+    .header a:not(.fullname-section)::before {
         content: '';
         position: absolute;
         width: 100%;
@@ -167,13 +171,13 @@
 
     }
 
-    .header a::before {
+    .header a:not(.fullname-section)::before {
         top: -1px;
         transform-origin: left;
     }
 
-    .header a:hover::after,
-    .header a:hover::before {
+    .header a:not(.fullname-section):hover::after,
+    .header a:not(.fullname-section):hover::before {
         transform: scaleX(1);
     }
 

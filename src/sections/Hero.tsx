@@ -5,6 +5,47 @@ import axios from 'axios'
 import type { HeroProps } from '../types/user'
 import { Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import type { SxProps, Theme } from '@mui/material'
+
+const titleTheme: SxProps<Theme> = {
+    fontSize: {
+        xs: '2.5rem',
+        sm: '3rem',
+        md: '3.5rem',
+        lg: '4.5rem'
+    }
+}
+
+const subTitleTheme = {
+    fontSize: {
+        xs: '0.7rem',
+        sm: '0.9rem',
+        md: '1.2rem',
+        lg: '2rem'
+    },
+    fontWeight: 500
+}
+
+const cvTextTheme = {
+    fontSize: {
+        xs: '1rem',
+        sm: '1.1rem',
+        md: '1.2rem',
+        lg: '2rem'
+    },
+    fontWeight: 500
+}
+
+const textContentTheme = {
+    fontSize: {
+        xs: '0.8rem',
+        sm: '0.8rem',
+        md: '0.9rem',
+        lg: '1.2rem'
+    },
+}
+
+
 
 export function Hero({ user }: HeroProps) {
     const [userImg, setUserImg] = useState<string | null>(null)
@@ -43,19 +84,19 @@ export function Hero({ user }: HeroProps) {
             <div className='top-section'>
                 <div className="left-section">
                     <div id="message-container" className='message-container'>
-                        <Typography variant='h2' className='hero-title'>
+                        <Typography sx={titleTheme} variant='h2'  className='hero-title'>
                             {titleMessage}
                         </Typography>
-                        <Typography variant='subtitle2' className='hero-welcome'>
+                        <Typography sx={subTitleTheme} variant='subtitle2' className='hero-welcome'>
                             {t('welcome')}
                         </Typography>
-                        <Typography variant='subtitle1' className='hero-description'>
+                        <Typography sx={textContentTheme} variant='subtitle1' className='hero-description'>
                             {user?.description}
                         </Typography>
                     </div>
                     <div className='cv-container'>
                         <a href='http://localhost:4941/api/v1/users/1/cv' target='_blank' className='hero-cv'>
-                            <Typography variant='h4' className='cv'>
+                            <Typography sx={cvTextTheme} variant='subtitle2' className='cv'>
                                 {t('download_cv')}
                             </Typography>
                             <span>
@@ -64,8 +105,8 @@ export function Hero({ user }: HeroProps) {
                         </a>
                     </div>
                 </div>
-
-                <div className="user-image-container"
+            </div>
+            <div className="user-image-container"
                     onMouseMove={(e) => {
                         const rect = e.currentTarget.getBoundingClientRect()
                         const mouseX = e.clientX - rect.left - rect.width / 2
@@ -76,7 +117,6 @@ export function Hero({ user }: HeroProps) {
                 >
                     {userImg ? <img src={userImg} className="user-image" alt="profile" /> : null}
                 </div>
-            </div>
 
         </div>
     )

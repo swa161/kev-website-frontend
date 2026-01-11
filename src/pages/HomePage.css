@@ -56,7 +56,7 @@ section {
 
 
   .skills-section {
-    scroll-margin-top: 60px;
+    /* scroll-margin-top: 60px; */
   }
 
   .hero-section {
@@ -64,4 +64,11 @@ section {
 
   }
 
+  .projects-section {
+    padding-top: 3rem;
+  }
+
+  .contact-section {
+    padding-top: 3rem;
+  }
 }

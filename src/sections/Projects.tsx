@@ -1,6 +1,6 @@
 
 import './Projects.css'
-import { Typography, Tabs, Tab, colors } from '@mui/material'
+import { Typography, Tabs, Tab } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
@@ -196,10 +196,10 @@ function WorkPanel(props: TabPanelProps) {
 export function Projects() {
     const { t } = useTranslation()
     const [value, setValue] = useState(0)
-
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue)
     }
+    
     return (
         <div className="project-container">
             <Typography variant='h2' className="project-title">{t('qualification')}</Typography>

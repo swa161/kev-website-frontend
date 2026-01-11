@@ -2,15 +2,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex-direction: column-reverse;
     /* padding-top: 2rem; */
-    width: 50vw;
     align-self: center;
     gap: 2rem;
 }
 
 .hero-container .top-section {
     display: flex;
-    flex-direction: column-reverse;
+    
     justify-content: center;
     align-items: center;
     gap: 2rem;
@@ -33,16 +33,16 @@
 
 .hero-container .hero-title {
     color: var(--txt-color);
-    font-size: 2.7rem;
+    /* font-size: 2.7rem; */
 }
 
 .hero-container .hero-welcome {
-    font-size: 1.1rem;
+    /* font-size: 1.1rem; */
     color: var(--txt-color);
 }
 
 .hero-container .hero-description {
-    font-size: 1.2rem;
+    /* font-size: 1.2rem; */
     color: var(--txt-color);
 }
 
@@ -128,15 +128,19 @@
 
 
 
-@media (min-width: 768px) {
+
+@media (min-width: 1000px) {
     .hero-container {
-        padding-top: 5%;
+        width: 58vw;
         padding-bottom: 5%;
         align-items: start;
-        margin: var(--header-height);
+        flex-direction: row;
+        margin-top: var(--header-height); 
+        gap: 2.5rem;
     }
 
     .hero-container .top-section {
+        max-width: 70%;
         flex-direction: row;
         justify-content: flex-start;
         align-items: stretch;
@@ -156,26 +160,9 @@
         gap: 0;
     }
 
-    .hero-container .hero-welcome {
-        font-size: clamp(2.2rem, 2.1vw, 5.5rem);
-    }
-
-    .hero-container .hero-title {
-        font-size: clamp(2.2rem, 6vw, 5.5rem);
-    }
-
-    .hero-container .hero-description {
-        font-size: clamp(1.1rem, 1.5vw, 2rem);
-    }
-
-    .user-image-container {
-        width: 300px;
-        height: 400px;
-    }
-
     .cv-container {
         display: inline-flex;
-        /* margin-top: 8.9rem; */
+        margin-top: 5rem; 
         height: 3.5rem;
         border-radius: 8px;
         background-image: linear-gradient(to right, #CDFFD8, #94B9FF);
@@ -187,10 +174,6 @@
         gap: 10px;
         font-size: 25px;
         text-decoration: none;
-
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-bottom: 2px;
     }
 
     .user-image-container {
@@ -198,10 +181,13 @@
         image-rendering: auto;
         position: relative;
         background-color: #333;
-        overflow: hidden;
+        /* overflow: hidden; */
         /* flex: 0 0 300px; */
-        width: var(--hero-image-width);
-        height: var(--hero-image-height);
+        min-width: var(--hero-image-min-width);
+        max-width: var(--hero-image-max-width);
+        min-height: var(--hero-image-max-height);
+        max-height: var(--hero-image-max-height);
+
         border-radius: 10px;
         box-shadow: rgb(0 0 0 / 66%) 0 30px 60px 0,
             inset #333 0 0 0 5px,

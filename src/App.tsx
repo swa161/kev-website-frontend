@@ -1,8 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { HomePage } from './pages/HomePage'
+import { LoggedInPage } from './pages/LoggedInPage'
 import axios from 'axios'
 import type { User } from './types/user'
+import { LoginPage } from './pages/LoginPage'
 
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
   return (
     <Routes>
       <Route index element={userData ?<HomePage user={userData}/> : null}/>
+      <Route path="/login" element={<LoginPage />} />
+      <Route  path='/profile' element={userData ? <LoggedInPage user={userData} /> : null}/>
     </Routes>
   )
 }

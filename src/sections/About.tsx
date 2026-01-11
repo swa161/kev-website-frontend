@@ -99,7 +99,7 @@ export function About() {
         fetchImagesInfo()
     }, [])
 
-    useEffect(() => {
+    useEffect(() => { // Auto play
         if (!imageData || isPaused) return
         const interval = setInterval(() => {
             setCounter(prev => prev + 1)
@@ -107,7 +107,7 @@ export function About() {
         return () => clearInterval(interval)
     }, [imageData, isPaused])
 
-    useEffect(() => {
+    useEffect(() => { // set the transition animation
         if (slideRef.current && imageData) {
             const size = slideRef.current.clientWidth
             slideRef.current.style.transition = `transform 0.5s ease-in-out`
@@ -115,7 +115,7 @@ export function About() {
         }
     }, [imageData, counter])
 
-    useEffect(() => {
+    useEffect(() => { // handle when hidden
         const handleVisibilityChange = () => {
             if (document.hidden) {
                 setIsPaused(true)

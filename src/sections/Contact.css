@@ -18,21 +18,18 @@
     color: var(--txt-color);
 }
 
-
 .contact-sub-title {
     font-size: 0.9rem;
     padding-bottom: 1rem;
     color: var(--subtitle1-color);
 }
 
-
 @media (min-width: 768px) {
 
     .contact-stack {
         padding: 2rem 0;
-        gap: 2rem;
+        gap: 1.5rem;
     }
-
 
     .contact-element-text-label.MuiTypography-root {
         font-size: var(--contact-text-size);
@@ -47,5 +44,4 @@
     .contact-container .contact-icon {
         font-size: var(--contact-text-size);
     }
-
 }
