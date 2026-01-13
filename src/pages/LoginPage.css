@@ -1,0 +1,132 @@
+.login-cmp {
+    --container-width: clamp(280px, 75vw, 420px);
+    --container-height: clamp(320px, 50vh, 520px);
+    --container-inner-gap: 2rem;
+    --container-inner-padding: 4rem;
+    --color-block-width: 17rem;
+    --color-block-height: 18rem;
+
+
+    --login-page-background-color:
+        linear-gradient(to bottom, rgb(250, 238, 238), rgb(229, 236, 247));
+    --login-cmp-background-color: rgba(255, 255, 255, 0.34);
+    --box-shadow: rgba(53, 81, 105, 0.394) 0px 0px 12px 0.5px;
+}
+
+.login-cmp {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    background-image: var(--login-page-background-color);
+
+}
+
+.login-cmp>.color {
+    position: absolute;
+    filter: blur(150px);
+}
+
+.login-cmp>.color:nth-of-type(1) {
+    width: calc(var(--color-block-width) + 100px);
+    height: var(--color-block-height);
+    background-color: rgb(205, 255, 216);
+    transform: translateY(-20rem);
+    animation: fade-in-out 7s ease-in-out infinite;
+}
+
+.login-cmp>.color:nth-of-type(2) {
+    width: var(--color-block-width);
+    height: var(--color-block-height);
+    background-color: rgb(101, 232, 235);
+    transform: translateY(10rem) translateX(-5rem);
+    animation: fade-in-out 6s ease-in-out infinite;
+}
+
+.login-cmp>.color:nth-of-type(3) {
+    width: var(--color-block-width);
+    height: var(--color-block-height);
+    background-color: rgb(188, 163, 255);
+    transform: translateY(20rem) translateX(5rem);
+    animation: fade-in-out 7s ease-in-out infinite;
+}
+
+.login-cmp>.color:nth-of-type(4) {
+    width: var(--color-block-width);
+    height: var(--color-block-height);
+    background-color: rgb(241, 143, 198);
+    transform: translateY(-3rem) translateX(5rem);
+    animation: fade-in-out 6s ease-in-out infinite;
+}
+
+
+.login-container {
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 999;
+    border: 1px solid rgba(255, 255, 255, 0.474);
+    border-radius: 7px;
+    /* background-color: var(--login-cmp-background-color); */
+    max-height: 90vh;
+    gap: var(--container-inner-gap);
+    width: var(--container-width);
+    padding: var(--container-inner-padding) 1.2rem;
+    box-shadow: var(--box-shadow);
+    backdrop-filter: blur(40px);
+    animation: fade-bottom-up 1s forwards;
+
+}
+
+
+
+.login-container .MuiInputBase-input {
+    padding: 0.7rem 0.7rem;
+}
+
+.login-button {
+    box-shadow: var(--box-shadow);
+    border-color: rgb(170, 170, 170);
+    color: var(--txt-color);
+
+}
+
+@media (min-width: 768px) {
+    .login-cmp {
+        --container-width: clamp(280px, 32vw, 500px);
+
+    }
+
+    .login-cmp>.color:nth-of-type(1) {
+        width: calc(var(--color-block-width) + 600px);
+        height: calc(var(--color-block-height) + 300px);
+        background-color: rgba(127, 238, 248, 0.77);
+        top: 5%;
+    }
+
+    .login-cmp>.color:nth-of-type(2) {
+        width: calc(var(--color-block-width) + 600px);
+        height: calc(var(--color-block-height) + 300px);
+        background-color: rgba(101, 235, 184, 0.601);
+        left: 10%;
+    }
+
+    .login-cmp>.color:nth-of-type(3) {
+        width: calc(var(--color-block-width) + 600px);
+        height: calc(var(--color-block-height) + 200px);
+        background-color: rgba(255, 180, 219, 0.616);
+        bottom: 5%;
+    }
+
+    .login-cmp>.color:nth-of-type(4) {
+        width: calc(var(--color-block-width) + 600px);
+        height: calc(var(--color-block-height) + 200px);
+        background-color: rgba(174, 167, 255, 0.728);
+        right: 15%
+    }
+
+}

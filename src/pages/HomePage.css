@@ -65,10 +65,10 @@ section {
   }
 
   .projects-section {
-    padding-top: 3rem;
+    padding-top: var(--section-padding);
   }
 
   .contact-section {
-    padding-top: 3rem;
+    padding-top: var(--section-padding);
   }
 }

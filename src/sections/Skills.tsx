@@ -6,9 +6,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CircleIcon from '@mui/icons-material/Circle';
 import './Skill.css'
 import { useTranslation } from 'react-i18next';
+import { useObserver } from '../hooks/useObserver';
 
 export function Skills() {
     const { t } = useTranslation()
+    const { ref, visible } = useObserver({threshold: 0})
     const skillsData = [{
         title: "Frontend Engineering",
         expand: 'defaultExpanded',
@@ -36,9 +38,8 @@ export function Skills() {
         title: "Development Tools",
         values: ['Vite', 'React', 'Node.js','Express']
     }]
-
     return (
-        <div className="skill-container">
+        <div ref={ref as React.RefObject<HTMLDivElement>} className={`skill-container ${visible ? 'is-visible' : ''}`}>
 
             <Typography variant='h2' className="skills-title">{t('skills')}</Typography>
             <Typography variant='subtitle1' className="skills-sub-title">{t('my_tech_level')}</Typography>

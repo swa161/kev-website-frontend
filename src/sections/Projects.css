@@ -17,6 +17,10 @@
 
 
 @media (min-width: 768px) {
+    .project-container.is-visible {
+        animation: fade-bottom-up 1s;
+    }
+
     .time-line {
         width: 40vw;
     }

@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
+import { useObserver } from '../hooks/useObserver';
 import axios from 'axios'
 import './About.css'
 
@@ -12,7 +13,7 @@ type ImageData = {
 }
 
 export function About() {
-
+    const { ref, visible } = useObserver({ threshold: 0 })
     const [imageData, setImageData] = useState<ImageData[] | null>(null)
     const [isPaused, setIsPaused] = useState(false)
     const [counter, setCounter] = useState(1)
@@ -135,13 +136,13 @@ export function About() {
 
     return (
         <Fragment>
-            <div className='about-container' >
+            <div ref={ref as React.RefObject<HTMLDivElement>} className={`about-container ${visible ? 'is-visible' : ''}`}>
+                {window.innerWidth >= 768 &&
+                    <ArrowBackIosNew className='leftBtn'
+                        onClick={previousImg}
+                        onMouseEnter={() => setIsPaused(true)}
+                        onMouseLeave={() => setIsPaused(false)} />}
                 <div className='carousel-container' >
-                    {window.innerWidth >= 768 &&
-                        <ArrowBackIosNew className='leftBtn'
-                            onClick={previousImg}
-                            onMouseEnter={() => setIsPaused(true)}
-                            onMouseLeave={() => setIsPaused(false)} />}
                     <div className='carousel-viewport'
                         onTouchStart={handleTouchStart}
                         onTouchMove={handleTouchMove}
@@ -176,13 +177,13 @@ export function About() {
                                             loading='lazy'
                                             alt={imageData?.[imageData.length - 1].title && imageData[imageData.length - 1].title}
                                         />
-                                        <img
+                                        {/* <img
                                             className='reflection'
                                             src={`/api/v1/photos/${imageData?.[imageData.length - 1].title
                                                 && imageData[imageData.length - 1].id}/image`}
                                             loading='lazy'
                                             alt={imageData?.[imageData.length - 1].title
-                                                && imageData[imageData.length - 1].title} />
+                                                && imageData[imageData.length - 1].title} /> */}
                                     </div>
                                 </div>
                             )}
@@ -210,11 +211,11 @@ export function About() {
                                             id={String(index)}
 
                                         />
-                                        <img
+                                        {/* <img
                                             className='reflection'
                                             src={`/api/v1/photos/${img.id}/image`}
                                             loading='lazy'
-                                            alt={img.title} />
+                                            alt={img.title} /> */}
                                     </div>
 
                                 </div>
@@ -242,26 +243,26 @@ export function About() {
                                             loading='lazy'
                                             alt={imageData?.[0].title && imageData[0].title}
                                         />
-                                        <img
+                                        {/* <img
                                             className='reflection'
                                             src={`/api/v1/photos/${imageData?.[0].title
                                                 && imageData[0].id}/image`}
                                             loading='lazy'
                                             alt={imageData?.[0].title
-                                                && imageData[0].title} />
+                                                && imageData[0].title} /> */}
                                     </div>
                                 </div>
                             )}
 
                         </div>
                     </div>
-                    {window.innerWidth >= 768 && 
-                    <ArrowForwardIos className='rightBtn' 
-                    onClick={nextImg} 
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)} />}
-                </div>
 
+                </div>
+                {window.innerWidth >= 768 &&
+                    <ArrowForwardIos className='rightBtn'
+                        onClick={nextImg}
+                        onMouseEnter={() => setIsPaused(true)}
+                        onMouseLeave={() => setIsPaused(false)} />}
             </div>
 
         </Fragment>

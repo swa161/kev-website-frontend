@@ -40,7 +40,7 @@ const headerTextTheme = {
 export function Header() {
     const [name, setName] = useState<FullNameResponse | null>(null)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const [isDarkMode, setIsDarkMode] = useState(false)
+    const [isDarkMode, setIsDarkMode] = useState(() => { return Boolean(localStorage.getItem('theme'))})
     const navigate = useNavigate()
     const { t, i18n } = useTranslation()
 
@@ -76,8 +76,10 @@ export function Header() {
     const toggleColorMode = () => {
         if (isDarkMode) {
             document.documentElement.classList.remove('darkmode')
+            localStorage.removeItem('theme')
         } else {
             document.documentElement.classList.add('darkmode')
+            localStorage.setItem('theme', 'darkmode')
         }
         setIsDarkMode(!isDarkMode)
     }
@@ -92,6 +94,7 @@ export function Header() {
         const currentLang = i18n.language
         const newLang = currentLang === 'en' ? 'zh' : 'en'
         i18n.changeLanguage(newLang)
+        localStorage.setItem('lang', newLang)
     }
 
     return (

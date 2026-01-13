@@ -106,8 +106,8 @@
 .user-image {
     opacity: 1;
     position: absolute;
-    top: -50px;
-    left: -50px;
+    top: -40px;
+    left: -25px;
     width: 115%;
     height: 115%;
     padding: 20px;
@@ -158,6 +158,7 @@
         justify-content: space-between;
         align-items: start;
         gap: 0;
+        animation: fade-left-right 1s ;
     }
 
     .cv-container {
@@ -193,6 +194,7 @@
             inset #333 0 0 0 5px,
             inset rgb(255 255 255 / 50%) 0 0 0 6px;
         transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        animation: fade-right-left 1s;
     }
 
     .user-image-container:hover {
@@ -211,7 +213,7 @@
         position: absolute;
         padding: 20px;
         width: 130%;
-        height: 115%;
+        height: 130%;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;

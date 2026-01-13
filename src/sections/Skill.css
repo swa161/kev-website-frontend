@@ -1,6 +1,3 @@
-* {
-    margin: 0;
-}
 
 .skill-container {
     display: flex;
@@ -44,6 +41,14 @@
 }
 
 @media (min-width: 768px) {
+    .skill-container {
+        opacity: 0;
+    }
+
+    .skill-container.is-visible {
+        animation: fade-bottom-up 1s ease-out forwards;
+    }
+
     .accordion {
         width: 30vw;
     }

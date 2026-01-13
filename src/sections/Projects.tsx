@@ -10,6 +10,7 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import { useState } from 'react';
+import { useObserver } from '../hooks/useObserver';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -105,6 +106,8 @@ function EducationPanel(props: TabPanelProps) {
 }
 
 function WorkPanel(props: TabPanelProps) {
+
+
     return (
         <div
             hidden={props.value !== props.index}
@@ -196,12 +199,13 @@ function WorkPanel(props: TabPanelProps) {
 export function Projects() {
     const { t } = useTranslation()
     const [value, setValue] = useState(0)
+    const { ref, visible } = useObserver({threshold: 0})
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue)
     }
-    
+
     return (
-        <div className="project-container">
+        <div ref={ref as React.RefObject<HTMLDivElement>} className={`project-container ${visible ? 'is-visible' : ''}`}>
             <Typography variant='h2' className="project-title">{t('qualification')}</Typography>
             <Typography variant='subtitle1' className="project-sub-title">{t('my_education_journey')}</Typography>
             <div className="project-content-container">

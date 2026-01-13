@@ -1,7 +1,7 @@
 .about-container {
     overflow: hidden;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .carousel-container {
@@ -34,9 +34,9 @@
     display: flex;
     flex-direction: column;
 
-    padding: 0px 20px;
-    /* padding-bottom: 60px; */
+    padding: 20px 20px;
 }
+
 
 .image {
     width: 100%;
@@ -45,42 +45,7 @@
     opacity: 1;
 }
 
-.reflection {
-    width: 100%;
-    border-radius: 6px;
-    height: 60px;
-    display: block;
-    object-fit: cover;
-    object-position: bottom;
-    transform: scaleY(-1);
-    opacity: 0.3;
-    mask-image: linear-gradient(transparent 30%, black);
-    /* width: 100%;
-    max-height: 10%;
-    object-fit: cover;
-    object-position: bottom;
-    transform: scaleY(-1);
-    opacity: 0.3;
-    margin-top: 7px;
-    border-radius: 6px;
-    mask-image: linear-gradient(transparent 30%, black);
 
-    display: block; */
-}
-
-.leftBtn,
-.rightBtn {
-    cursor: pointer;
-    z-index: 100;
-}
-
-.leftBtn {
-    margin-top: -5%;
-}
-
-.rightBtn {
-    margin-top: -5%;
-}
 
 .image-description {
     color: var(--txt-color);
@@ -94,61 +59,22 @@
 
 @media (min-width: 768px) {
 
-    /* .carousel-container {
-        width: 70%;
-        pad: auto;
-        margin: 0 auto;
+    .about-container.is-visible {
+        animation: fade-bottom-up 1s;
     }
 
-    .carousel-viewport {
-        overflow: hidden;
-    }
-
-    .carousel-slide {
-        display: flex;
-    }
-
-    .image-container {
-        min-width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-
-    }
-
-    .image {
-        width: 100%;
-        box-shadow: 0 1px 20px rgb(0, 0, 0);
-        border-radius: 6px;
-        opacity: 1;
-    }
-
-    .reflection {
-        width: 100%;
-        max-height: 10%;
-        object-fit: cover;
-        object-position: bottom;
-        transform: scaleY(-1);
-        opacity: 0.3;
-        margin-top: 7px;
-        border-radius: 6px;
-        mask-image: linear-gradient(transparent 30%, black);
-
-        display: block;
-    } */
     .carousel-container {
+        aspect-ratio: 16 / 9;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 0 auto;
-
+        animation: fade-bottom-up 1s;
     }
 
     .carousel-viewport {
         overflow: hidden;
-        width: 70%;
+        width: 90%;
         margin: 0;
         padding: 0;
 
@@ -160,6 +86,7 @@
     }
 
     .image-container {
+
         min-width: 100%;
         box-sizing: border-box;
         position: relative;
@@ -176,25 +103,17 @@
         opacity: 1;
     }
 
-    .reflection {
-        /* height: 10%;
-        object-fit: cover;
-        object-position: bottom;
-        transform: scaleY(-1);
-        opacity: 0.3;
-        margin-top: 7px;
-        border-radius: 6px;
-        mask-image: linear-gradient(transparent 30%, black);
 
-        display: block; */
-        width: 100%;
-        border-radius: 6px;
-        height: 60px;
-        display: block;
-        object-fit: cover;
-        object-position: bottom;
-        transform: scaleY(-1);
-        opacity: 0.3;
-        mask-image: linear-gradient(transparent 30%, black);
+    .leftBtn,
+    .rightBtn {
+        cursor: pointer;
+        z-index: 100;
+        align-self: center;
     }
+    .leftBtn {
+        padding-left: 0rem;
+    }
+
+
+
 }
