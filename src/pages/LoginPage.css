@@ -97,7 +97,7 @@
 
 @media (min-width: 768px) {
     .login-cmp {
-        --container-width: clamp(280px, 32vw, 500px);
+        --container-width: clamp(350px, 32vw, 500px);
 
     }
 
