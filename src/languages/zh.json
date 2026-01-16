@@ -13,5 +13,10 @@
     "call_me": "电话联系",
     "where_i_live": "所在地区",
     "welcome": "欢迎来到我的网页!",
-    "education&Work": "学历/工作"
+    "education&Work": "学历/工作",
+    "welcome-back": "欢迎回来！",
+    "email": "邮箱",
+    "password": "密码",
+    "sign-in": "登录",
+    "wrong-email-or-password-error": "邮箱或者密码不正确! o(╥﹏╥)o"
 }

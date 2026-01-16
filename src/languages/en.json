@@ -13,5 +13,10 @@
     "call_me": "Call me",
     "where_i_live": "Where I live",
     "welcome": "Welcome to my website!",
-    "education&Work": "Education / Work"
+    "education&Work": "Education / Work",
+    "welcome-back": "Welcom Back",
+    "email": "Email",
+    "password": "Password",
+    "sign-in": "Sign In",
+    "wrong-email-or-password-error": "Wrong Email or Password!  o(╥﹏╥)o"
 }

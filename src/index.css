@@ -164,6 +164,18 @@ body {
     }
 }
 
+@keyframes fade-top-bottom {
+    0% {
+        opacity: 0;
+        transform: translateY(-3.5rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
 @keyframes fade-in-out {
     0% {
         transform: scale(1);

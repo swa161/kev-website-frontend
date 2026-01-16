@@ -1,106 +1,28 @@
-import { Box, Button, IconButton, InputAdornment, OutlinedInput, TextField, Typography } from "@mui/material"
+import { Alert, Box, Button, IconButton, InputAdornment, OutlinedInput, Snackbar, TextField, Typography } from "@mui/material"
 import './LoginPage.css'
-import { useEffect, useState } from "react"
+import { useRef, useState } from "react"
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { useAuthStore } from "../stores/store";
+import CottageRoundedIcon from '@mui/icons-material/CottageRounded';
+import { useAuthStore } from "../stores/auth.store";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { loginContentTheme, textfieldTheme, loginTitleTheme, outlinedInputTheme, loginButtonTheme } from '../theme/Theme'
+import { ColorIcon } from "../components/ColorIcon";
+import { LanguageIcon } from "../components/LanguageIcon";
+import { useTranslation } from "react-i18next";
 
-
-
-const loginTitleTheme = {
-    fontFamily: "Helvetica Neue",
-    textAlign: 'center',
-    textOverflow: 'ellipsis',
-    lineHeight: 1.2,
-    fontSize: {
-        xs: '2rem',
-        sm: '2.2rem',
-        md: '2.5rem',
-        lg: '3rem'
-    }
-}
-
-const loginContentTheme = {
-    fontFamily: "Helvetica Neue",
-    fontSize: {
-        sm: '0.9rem',
-        md: '0.9rem',
-        lg: '1.1rem'
-    }
-
-}
-
-const textfieldTheme = {
-    '& .MuiOutlinedInput-root': {
-        '&.Mui-focused fieldset': {
-            borderColor: 'var(--txt-color)',
-        },
-    },
-    '& .MuiInputBase-input': {
-        fontFamily: "Helvetica Neue",
-        height: {
-            sm: '1rem',
-            md: '1rem',
-            lg: '1.2rem'
-        }
-    },
-    width: '100%',
-
-}
-
-const outlinedInputTheme = {
-    '&.MuiInputBase-root': {
-        '&.Mui-focused fieldset': {
-            borderColor: 'var(--txt-color)',
-        },
-    },
-    '& .MuiInputBase-input': {
-        fontFamily: "Helvetica Neue",
-        height: {
-            sm: '1rem',
-            md: '1rem',
-            lg: '1.2rem'
-        }
-    },
-    width: '100%',
-}
-
-const loginButtonTheme = {
-    '&.MuiButtonBase-root': {
-        borderColor: 'var(--txt-color)',
-        color: 'var(--txt-color)',
-
-    },
-    fontFamily: "Helvetica Neue",
-    marginTop: { xs: 2, sm: 2.5, md: 3, lg: 4 },
-    fontSize: {
-        sm: '0.9rem',
-        md: '0.9rem',
-        lg: '1.2rem'
-    },
-    width: {
-        sm: '5.6rem',
-        md: '6rem',
-        lg: '7rem'
-    },
-    height: {
-        sm: '2.5rem',
-        md: '2.7rem',
-        lg: '3rem'
-    }
-
-}
 
 export function LoginPage() {
-
+    const {t} = useTranslation()
     const [showPassword, setShowPassword] = useState(false)
     const [email, setEmail] = useState<string | ''>('')
     const [password, setPassword] = useState<string | ''>('')
+    const boxRef = useRef<HTMLDivElement | null>(null)
+    const floatingRef = useRef<HTMLDivElement | null>(null)
     const [error, setError] = useState('')
     const [openSnackBar, setOpenSnackBar] = useState(false)
-    const isLogIn = useAuthStore(state => state.isLogIn)
-    const logInUserId = useAuthStore(state => state.logInUserId)
+    const navigate = useNavigate()
     const setIsLogIn = useAuthStore(state => state.setIsLogIn)
     const setLogInUserId = useAuthStore(state => state.setLogInUserId)
 
@@ -129,64 +51,87 @@ export function LoginPage() {
                 setIsLogIn(true)
                 setEmail('')
                 setPassword('')
+                navigate('/profile')
             })
-            .catch((err) => {
-                setError('Wrong Email or password' + err)
+            .catch(() => {
+                setError(t('wrong-email-or-password-error'))
                 setOpenSnackBar(true)
             })
 
     }
+
+    const goToHomePage = () => {
+        navigate('/')
+    }
+
     return (
         <div className="login-cmp">
             <div className="color"></div>
             <div className="color"></div>
             <div className="color"></div>
             <div className="color"></div>
-            <Box className='login-container'>
-                <Typography className='login-title' sx={loginTitleTheme}>Welcome Back</Typography>
-                <Box sx={{
-                    width: '85%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: { xs: 0.5, sm: 1, md: 1.5, lg: 2 }
-                }} className="login-email-section">
-                    <Typography sx={loginContentTheme} variant="h6">Email</Typography>
-                    <TextField onChange={handleEmailChange} value={email} sx={textfieldTheme} id='email' className='login-password-textfield' variant="outlined" />
-                </Box>
-                <Box sx={{
-                    width: '85%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: { xs: 0.5, sm: 1, md: 1.5, lg: 2 }
-                }} className="login-password-section">
-                    <Typography sx={loginContentTheme} variant="h6">Password</Typography>
-                    <OutlinedInput
-                        onChange={handlePasswordChange}
-                        value={password}
-                        sx={outlinedInputTheme}
-                        id='password'
-                        className='login-password-textfield'
-                        type={showPassword ? 'text' : 'password'}
-                        // variant="outlined" 
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    aria-label={
-                                        showPassword ? 'hide the password' : 'display the password'
-                                    }
-                                    onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
-                                    onMouseUp={handleMouseUpPassword}
-                                    edge='end'>
-                                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                    />
-                </Box>
+            <div className="floating-login-container">
+                <div ref={floatingRef} className="floating-bar">
+                    <IconButton onClick={goToHomePage}><CottageRoundedIcon className="homepg-btn" sx={{ cursor: 'pointer', fontSize: '2rem' }} /></IconButton>
+                    <IconButton><ColorIcon /></IconButton>
+                    <IconButton><LanguageIcon /></IconButton>
 
-                <Button onClick={Login} sx={loginButtonTheme} className='login-button' variant="outlined" >Sign in</Button>
-            </Box>
+                </div>
+                <Box ref={boxRef} className='login-container'>
+                    <Typography className='login-title' sx={loginTitleTheme}>{t('welcome-back')}</Typography>
+                    <Box sx={{
+                        width: '85%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: { xs: 0.5, sm: 1, md: 1.5, lg: 2 }
+                    }} className="login-email-section">
+                        <Typography sx={loginContentTheme} variant="h6">{t('email')}</Typography>
+                        <TextField onChange={handleEmailChange} value={email} sx={textfieldTheme} id='email' className='login-password-textfield' variant="outlined" />
+                    </Box>
+                    <Box sx={{
+                        width: '85%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: { xs: 0.5, sm: 1, md: 1.5, lg: 2 }
+                    }} className="login-password-section">
+                        <Typography sx={loginContentTheme} variant="h6">{t('password')}</Typography>
+                        <OutlinedInput
+                            onChange={handlePasswordChange}
+                            value={password}
+                            sx={outlinedInputTheme}
+                            id='password'
+                            className='login-password-textfield'
+                            type={showPassword ? 'text' : 'password'}
+                            // variant="outlined" 
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label={
+                                            showPassword ? 'hide the password' : 'display the password'
+                                        }
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                        onMouseUp={handleMouseUpPassword}
+                                        edge='end'>
+                                        {showPassword ? <VisibilityOff sx={{ color: 'var(--txt-color)' }}/> : <Visibility sx={{ color: 'var(--txt-color)' }}/>}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                        />
+                    </Box>
+
+                    <Button type='button' onClick={Login} sx={loginButtonTheme} className='login-button' variant="outlined" >{t('sign-in')}</Button>
+                </Box>
+                <Snackbar
+                    open={openSnackBar}
+                    autoHideDuration={3000}
+                    onClose={() => setOpenSnackBar(false)}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                >
+                    <Alert severity="error">{error}</Alert>
+                </Snackbar>
+            </div>
+
         </div>
     )
 }

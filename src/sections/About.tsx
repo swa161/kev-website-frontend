@@ -137,12 +137,12 @@ export function About() {
     return (
         <Fragment>
             <div ref={ref as React.RefObject<HTMLDivElement>} className={`about-container ${visible ? 'is-visible' : ''}`}>
-                {window.innerWidth >= 768 &&
-                    <ArrowBackIosNew className='leftBtn'
+
+                <div className='carousel-container' >
+                                    {<ArrowBackIosNew className='leftBtn'
                         onClick={previousImg}
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)} />}
-                <div className='carousel-container' >
                     <div className='carousel-viewport'
                         onTouchStart={handleTouchStart}
                         onTouchMove={handleTouchMove}
@@ -256,13 +256,13 @@ export function About() {
 
                         </div>
                     </div>
-
-                </div>
-                {window.innerWidth >= 768 &&
+                                            {
                     <ArrowForwardIos className='rightBtn'
                         onClick={nextImg}
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)} />}
+                </div>
+
             </div>
 
         </Fragment>

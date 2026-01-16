@@ -11,7 +11,7 @@ import type { HeroProps } from "../types/user"
 import { ThemeProvider } from "@emotion/react"
 import {LeftSide} from '../components/LeftSide'
 import { RightSide } from "../components/RightSide"
-import theme from "../theme/Theme"
+import { theme } from "../theme/Theme"
 
 export function HomePage({ user }: HeroProps) {
     return (

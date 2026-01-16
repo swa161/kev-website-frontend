@@ -11,10 +11,24 @@
         linear-gradient(to bottom, rgb(250, 238, 238), rgb(229, 236, 247));
     --login-cmp-background-color: rgba(255, 255, 255, 0.34);
     --box-shadow: rgba(53, 81, 105, 0.394) 0px 0px 12px 0.5px;
+    --color-1: rgba(127, 238, 248, 0.77);
+    --color-2: rgba(101, 235, 184, 0.601);
+    --color-3: rgba(255, 180, 219, 0.616);
+    --color-4: rgba(174, 167, 255, 0.728);
+}
+
+.darkmode .login-cmp {
+    --login-page-background-color:
+        linear-gradient(to bottom, rgb(62, 68, 82), rgb(25, 26, 32));
+    --login-cmp-background-color: rgba(43, 45, 56, 0.34);
+    --box-shadow: rgba(53, 81, 105, 0.394) 0px 0px 12px 0.5px;
+    --color-1: rgba(27, 49, 51, 0.77);
+    --color-2: rgba(31, 73, 57, 0.601);
+    --color-3: rgba(88, 62, 76, 0.616);
+    --color-4: rgba(47, 45, 70, 0.728);
 }
 
 .login-cmp {
-    position: relative;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -22,8 +36,11 @@
     align-items: center;
     justify-content: center;
     background-image: var(--login-page-background-color);
-
+    /* transition: background-image 0.3 ease ,color 0.3 ease; */
 }
+
+
+
 
 .login-cmp>.color {
     position: absolute;
@@ -62,6 +79,12 @@
     animation: fade-in-out 6s ease-in-out infinite;
 }
 
+.floating-login-container {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+
 
 .login-container {
     opacity: 0;
@@ -71,18 +94,27 @@
     z-index: 999;
     border: 1px solid rgba(255, 255, 255, 0.474);
     border-radius: 7px;
-    /* background-color: var(--login-cmp-background-color); */
+    background-color: var(--login-cmp-background-color);
     max-height: 90vh;
     gap: var(--container-inner-gap);
     width: var(--container-width);
     padding: var(--container-inner-padding) 1.2rem;
     box-shadow: var(--box-shadow);
     backdrop-filter: blur(40px);
-    animation: fade-bottom-up 1s forwards;
+    animation: fade-bottom-up 1s ease-in-out forwards;
 
 }
 
+.floating-bar {
+    color: var(--txt-color);
+    margin-bottom: 3px;
+    animation: fade-bottom-up 1s ease-in-out forwards;
+}
 
+.homepg-btn,
+.color-mode-btn {
+    color: var(--txt-color);
+}
 
 .login-container .MuiInputBase-input {
     padding: 0.7rem 0.7rem;
@@ -95,37 +127,52 @@
 
 }
 
+
 @media (min-width: 768px) {
     .login-cmp {
         --container-width: clamp(350px, 32vw, 500px);
 
     }
 
+    .floating-login-container {
+        flex-direction: column;
+    }
+
+    .floating-bar {
+        color: var(--txt-color);
+        margin-bottom: 3px;
+        animation: fade-top-bottom 1s ease-in-out forwards;
+    }
+
+
     .login-cmp>.color:nth-of-type(1) {
         width: calc(var(--color-block-width) + 600px);
         height: calc(var(--color-block-height) + 300px);
-        background-color: rgba(127, 238, 248, 0.77);
+        background-color: var(--color-1);
         top: 5%;
     }
 
     .login-cmp>.color:nth-of-type(2) {
         width: calc(var(--color-block-width) + 600px);
         height: calc(var(--color-block-height) + 300px);
-        background-color: rgba(101, 235, 184, 0.601);
+        background-color: var(--color-2);
+        ;
         left: 10%;
     }
 
     .login-cmp>.color:nth-of-type(3) {
         width: calc(var(--color-block-width) + 600px);
         height: calc(var(--color-block-height) + 200px);
-        background-color: rgba(255, 180, 219, 0.616);
+        background-color: var(--color-3);
+        ;
         bottom: 5%;
     }
 
     .login-cmp>.color:nth-of-type(4) {
         width: calc(var(--color-block-width) + 600px);
         height: calc(var(--color-block-height) + 200px);
-        background-color: rgba(174, 167, 255, 0.728);
+        background-color: var(--color-4);
+        ;
         right: 15%
     }
 

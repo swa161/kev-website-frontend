@@ -37,6 +37,10 @@
     padding: 20px 20px;
 }
 
+.leftBtn.MuiSvgIcon-root,
+.rightBtn.MuiSvgIcon-root {
+    display: none;
+}
 
 .image {
     width: 100%;
@@ -103,6 +107,11 @@
         opacity: 1;
     }
 
+    
+    .leftBtn.MuiSvgIcon-root,
+    .rightBtn.MuiSvgIcon-root {
+        display: block;
+    }
 
     .leftBtn,
     .rightBtn {

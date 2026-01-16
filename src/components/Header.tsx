@@ -2,18 +2,18 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { LanguageIcon } from "./LanguageIcon";
 import WidgetsRoundedIcon from '@mui/icons-material/WidgetsRounded';
 import InfoRoundedIcon from '@mui/icons-material/InfoRounded'
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
 import CottageRoundedIcon from '@mui/icons-material/CottageRounded';
 import CallRoundedIcon from '@mui/icons-material/CallRounded';
-import TranslateRoundedIcon from '@mui/icons-material/TranslateRounded';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import LightModeIcon from '@mui/icons-material/LightMode';
 import './Header.css'
 import { Slide, Typography } from "@mui/material";
+import { useAuthStore } from "../stores/auth.store";
+import { ColorIcon } from "./ColorIcon";
 
 type FullNameResponse = {
     fullName: string
@@ -40,9 +40,9 @@ const headerTextTheme = {
 export function Header() {
     const [name, setName] = useState<FullNameResponse | null>(null)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const [isDarkMode, setIsDarkMode] = useState(() => { return Boolean(localStorage.getItem('theme'))})
     const navigate = useNavigate()
-    const { t, i18n } = useTranslation()
+    const { t } = useTranslation()
+    const isLogIn = useAuthStore(state => state.isLogIn)
 
     useEffect(() => {
         const fetchFullName = async () => {
@@ -59,7 +59,7 @@ export function Header() {
     useEffect(() => {
         const handleLoginKeyDown = (e: KeyboardEvent) => {
             if (e.ctrlKey && e.altKey) {
-                navigate('/login')
+                navigate(isLogIn ? '/profile' : '/login')
             }
         }
         window.addEventListener('keydown', handleLoginKeyDown)
@@ -68,34 +68,10 @@ export function Header() {
             window.removeEventListener('keydown', handleLoginKeyDown)
         }
 
-    }, [navigate])
+    }, [navigate, isLogIn])
 
-
+    console.log(isLogIn)
     const toggleMenu = () => { setIsMenuOpen(!isMenuOpen) }
-
-    const toggleColorMode = () => {
-        if (isDarkMode) {
-            document.documentElement.classList.remove('darkmode')
-            localStorage.removeItem('theme')
-        } else {
-            document.documentElement.classList.add('darkmode')
-            localStorage.setItem('theme', 'darkmode')
-        }
-        setIsDarkMode(!isDarkMode)
-    }
-
-    const setColorIcon = () => {
-        return (isDarkMode ?
-            <LightModeIcon className="color-mode-btn" onClick={toggleColorMode} sx={{ cursor: 'pointer', fontSize: '2rem' }} /> :
-            <DarkModeIcon className="color-mode-btn" onClick={toggleColorMode} sx={{ cursor: 'pointer', fontSize: '2rem' }} />)
-    }
-
-    const languageHandler = () => {
-        const currentLang = i18n.language
-        const newLang = currentLang === 'en' ? 'zh' : 'en'
-        i18n.changeLanguage(newLang)
-        localStorage.setItem('lang', newLang)
-    }
 
     return (
         <header className="header">
@@ -119,8 +95,8 @@ export function Header() {
                     <a href="#contact">
                         <Typography sx={headerTextTheme}>{t('contact')}</Typography>
                     </a>
-                    {setColorIcon()}
-                    <TranslateRoundedIcon onClick={languageHandler} sx={{ cursor: 'pointer' }} />
+                    <ColorIcon />
+                    <LanguageIcon  />
                 </div>
             </div>
 
@@ -135,7 +111,7 @@ export function Header() {
                     <div className="projects-contact-language">
                         <a href="#projects" onClick={toggleMenu}><AccountTreeRoundedIcon className="icon" /></a>
                         <a href="#contact" onClick={toggleMenu}><CallRoundedIcon className="icon" /></a>
-                        <TranslateRoundedIcon className="icon" onClick={() => { languageHandler(); toggleMenu() }} sx={{ cursor: 'pointer' }} />
+                        <LanguageIcon  func={toggleMenu}/>
                     </div>
                     <div className="close">
                         <ClearRoundedIcon className="icon" onClick={toggleMenu} />
@@ -145,9 +121,9 @@ export function Header() {
             <div className="mobile-only bottom-trigger-bar">
                 <div className="mobile-only bottom-trigger-bar-buttons-container">
                     <button className="menu-toggle-btn" onClick={toggleMenu}>
-                        <WidgetsRoundedIcon sx={{ fontSize: '2rem' }} />
+                        <WidgetsRoundedIcon sx={{ fontSize: '2rem' , color: 'var(--txt-color)'}} />
                     </button>
-                    {setColorIcon()}
+                    <ColorIcon />
                 </div>
                 <span className="fullname-section mobile-only">{name?.fullName}</span>
             </div>
