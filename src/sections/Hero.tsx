@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+
 import { Download } from 'lucide-react'
 import './Hero.css'
-import axios from 'axios'
 import type { HeroProps } from '../types/user'
 import { Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import type { SxProps, Theme } from '@mui/material'
+
 
 const titleTheme: SxProps<Theme> = {
     fontSize: {
@@ -48,23 +48,7 @@ const textContentTheme = {
 
 
 export function Hero({ user }: HeroProps) {
-    const [userImg, setUserImg] = useState<string | null>(null)
     const { t }  = useTranslation()
-    useEffect(() => {
-        const fetchUserImg = async () => {
-            const response = await axios.get(
-                '/api/v1/users/1/image',
-                { responseType: 'blob' })
-            const imageUrl = URL.createObjectURL(response.data)
-            setUserImg(imageUrl)
-        }
-
-        fetchUserImg()
-        return () => {
-            if (userImg) URL.revokeObjectURL(userImg)
-        }
-    }, [])
-
     function setTransform(target: HTMLElement | null, px: number, py: number) {
         if (!target || window.innerWidth < 768) {
             return
@@ -115,7 +99,8 @@ export function Hero({ user }: HeroProps) {
                     }}
                     onMouseLeave={(e) => setTransform(e.currentTarget, 0, 0)}
                 >
-                    {userImg ? <img src={userImg} className="user-image" alt="profile" /> : null}
+
+                     <img src={`/api/v1/users/${user?.id}/image`} className="user-image" alt="profile" /> 
                 </div>
 
         </div>

@@ -21,7 +21,7 @@
     --login-page-background-color:
         linear-gradient(to bottom, rgb(62, 68, 82), rgb(25, 26, 32));
     --login-cmp-background-color: rgba(43, 45, 56, 0.34);
-    --box-shadow: rgba(53, 81, 105, 0.394) 0px 0px 12px 0.5px;
+    --box-shadow: rgba(211, 235, 255, 0.394) 0px 0px 12px 0.5px;
     --color-1: rgba(27, 49, 51, 0.77);
     --color-2: rgba(31, 73, 57, 0.601);
     --color-3: rgba(88, 62, 76, 0.616);
@@ -120,9 +120,11 @@
     padding: 0.7rem 0.7rem;
 }
 
-.login-button {
+.login-button.MuiButtonBase-root {
     box-shadow: var(--box-shadow);
     border-color: rgb(170, 170, 170);
+    border-radius: 999px;
+    background-image: var(--login-page-background-color);
     color: var(--txt-color);
 
 }

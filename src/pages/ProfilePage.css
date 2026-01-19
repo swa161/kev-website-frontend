@@ -1,0 +1,98 @@
+.profile-container {
+    --background-color:
+        linear-gradient(140deg, rgb(191, 236, 248) 0%,
+            rgb(216, 235, 255) 33%,
+            rgb(218, 220, 255) 58%,
+            rgba(225, 218, 250, 0.884) 80%,
+            rgb(234, 205, 253) 100%);
+    --inner-width: 70%;
+    --profile-picture-shadow: rgba(17, 17, 22, 0.877) 0px 0px 5px 3px;
+
+}
+
+.darkmode .profile-container {
+    --background-color:
+        linear-gradient(140deg,
+            rgb(39, 48, 51) 0%,
+            rgb(29, 41, 53) 33%,
+            rgb(29, 30, 54) 58%,
+            rgb(36, 30, 56) 80%,
+            rgb(35, 26, 41) 100%);
+    --profile-picture-shadow: rgba(200, 196, 248, 0.877) 0px 0px 5px 3px;
+}
+
+.desktop-only {
+    display: none;
+}
+
+
+.profile-container {
+    width: 100vw;
+    height: 100vh;
+    background-image: var(--background-color);
+    background-size: cover;
+    background-position: center;
+    filter: blur(0px);
+
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+.mobile-only.nav-bar.MuiBox-root {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    bottom: 0;
+    padding: 0 0.9rem 0 0.9rem;
+    height: var(--bottom-bar-height);
+    background-color: var(--background-color);
+    box-shadow: rgb(0, 0, 0, 60%) 0 -0.6px 4.2px 0;
+    z-index: 100;
+}
+
+.profile-icons-wraper {
+    display: flex;
+    gap: 1rem;
+}
+
+.profile-nav-container {
+    width: var(--inner-width);
+}
+
+
+.profile-picture {
+    width: 20rem;
+    height: 25rem;
+    position: relative;
+    aspect-ratio: 9/11;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-top: 1rem;
+
+    box-shadow: var(--profile-picture-shadow);
+}
+
+.image-group {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+
+
+@media (min-width: 768px) {
+    .mobile-only.nav-bar.MuiBox-root {
+        display: none;
+    }
+
+    .desktop-only {
+        display: block;
+    }
+
+}

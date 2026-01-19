@@ -109,7 +109,7 @@ export function RightSide() {
 
     return (
         <div className="rightside-container">
-            <Moon style={{
+            {/* <Moon style={{
                 position: moon.position,
                 zIndex: moon.zIndex,
                 top: moon.top,
@@ -118,7 +118,7 @@ export function RightSide() {
                 width: moon.width,
                 transform: moon.transform,
                 opacity: moon.opacity
-            }} />
+            }} /> */}
             <div className="toggle_cloud">
                 {cloud1s.map((c: DecorationStyle, index) => (
                     <Cloud

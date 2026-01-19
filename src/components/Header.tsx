@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageIcon } from "./LanguageIcon";
@@ -43,6 +43,7 @@ export function Header() {
     const navigate = useNavigate()
     const { t } = useTranslation()
     const isLogIn = useAuthStore(state => state.isLogIn)
+    const menuRef = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
         const fetchFullName = async () => {
@@ -70,7 +71,23 @@ export function Header() {
 
     }, [navigate, isLogIn])
 
-    console.log(isLogIn)
+
+    useEffect(() => {
+        if (!isMenuOpen) return
+
+        const handleClickOutside = (event: TouchEvent | MouseEvent) => {
+            if ( menuRef.current &&
+                !menuRef.current.contains(event.target as Node)
+            ) {
+                setIsMenuOpen(false)
+            }
+        }
+        document.addEventListener('touchstart', handleClickOutside)
+        return () => {
+            document.removeEventListener('touchstart', handleClickOutside)
+        }
+    }, [isMenuOpen])
+
     const toggleMenu = () => { setIsMenuOpen(!isMenuOpen) }
 
     return (
@@ -102,7 +119,7 @@ export function Header() {
 
             <Slide direction="up" in={isMenuOpen} mountOnEnter unmountOnExit
                 className={`mobile-only mobile-menu-overlay ${isMenuOpen ? 'active' : 'hide'}`}>
-                <nav className="mobile-links">
+                <nav ref={menuRef} className="mobile-links">
                     <div className="home-abouts-skills">
                         <a href="#home" onClick={toggleMenu}><CottageRoundedIcon className="icon" /></a>
                         <a href="#about" onClick={toggleMenu}><InfoRoundedIcon className="icon" /></a>
@@ -120,7 +137,7 @@ export function Header() {
             </Slide>
             <div className="mobile-only bottom-trigger-bar">
                 <div className="mobile-only bottom-trigger-bar-buttons-container">
-                    <button className="menu-toggle-btn" onClick={toggleMenu}>
+                    <button className="menu-toggle-btn" onClick={toggleMenu} >
                         <WidgetsRoundedIcon sx={{ fontSize: '2rem' , color: 'var(--txt-color)'}} />
                     </button>
                     <ColorIcon />

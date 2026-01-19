@@ -11,6 +11,8 @@ export function LanguageIcon({func}:{func?: ()=> void}) {
     }
 
     return (
-        <TranslateRoundedIcon onClick={() => {languageHandler(); func?.()}} sx={{ cursor: 'pointer', color: 'var(--txt-color)', fontSize: '2rem' }} />
+        <TranslateRoundedIcon 
+        onClick={() => {languageHandler(); func?.()}} 
+        sx={{ cursor: 'pointer', color: 'var(--txt-color)', fontSize: '2rem' }} />
     )
 }
