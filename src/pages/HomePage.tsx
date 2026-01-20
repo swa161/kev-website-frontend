@@ -44,7 +44,7 @@ export function HomePage({ user }: HeroProps) {
                     <RightSide />
                 </div>
 
-                <Footer />
+                <Footer user={user}/>
             </Fragment>
         </ThemeProvider>
 

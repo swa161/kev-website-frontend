@@ -71,8 +71,8 @@ export function LoginPage() {
             <div className="floating-login-container">
                 <div ref={floatingRef} className="floating-bar">
                     <HomeIcon />
-                    <IconButton><ColorIcon /></IconButton>
-                    <IconButton><LanguageIcon /></IconButton>
+                    <IconButton sx={{padding: 0}}><ColorIcon /></IconButton>
+                    <IconButton sx={{padding: 0}}><LanguageIcon /></IconButton>
 
                 </div>
                 <Box ref={boxRef} className='login-container'>

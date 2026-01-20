@@ -19,13 +19,13 @@
 
 .darkmode .login-cmp {
     --login-page-background-color:
-        linear-gradient(to bottom, rgb(62, 68, 82), rgb(25, 26, 32));
-    --login-cmp-background-color: rgba(43, 45, 56, 0.34);
-    --box-shadow: rgba(211, 235, 255, 0.394) 0px 0px 12px 0.5px;
-    --color-1: rgba(27, 49, 51, 0.77);
+        linear-gradient(to bottom, rgb(26, 29, 36), rgb(25, 26, 32));
+    --login-cmp-background-color: rgba(26, 27, 34, 0.548);
+    --box-shadow: rgba(211, 235, 255, 0.394) 0px 0px 10px 0.5px;
+    --color-1: rgba(18, 33, 34, 0.842);
     --color-2: rgba(31, 73, 57, 0.601);
-    --color-3: rgba(88, 62, 76, 0.616);
-    --color-4: rgba(47, 45, 70, 0.728);
+    --color-3: rgba(20, 14, 17, 0.925);
+    --color-4: rgba(26, 25, 39, 0.728);
 }
 
 .login-cmp {
@@ -106,8 +106,10 @@
 }
 
 .floating-bar {
+    display: flex;
+    gap: 1rem;
     color: var(--txt-color);
-    margin-bottom: 3px;
+    margin: 6px 0;
     animation: fade-bottom-up 1s ease-in-out forwards;
 }
 

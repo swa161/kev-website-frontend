@@ -9,19 +9,26 @@ import { ErrorPage } from './pages/ErrorPage'
 
 function App() {
   const [userData, setUserData] = useState<User | null>(null)
+
+
+  const fetchUserData = async () => {
+    const res = await axios.get<User>('/api/v1/users/1')
+    setUserData(res.data)
+  }
+
   useEffect(() => {
-    const fetchUserData = async () => {
-      const response = await axios.get<User>('/api/v1/users/1')
-      setUserData(response.data)
+    const loadUserDate = async () => {
+      await fetchUserData()
     }
-    fetchUserData()
+    loadUserDate()
   }, [])
+
   return (
     <Routes>
-      <Route index element={userData ?<HomePage user={userData}/> : null}/>
+      <Route index element={userData ? <HomePage user={userData} /> : null} />
       <Route path="/login" element={<LoginPage />} />
       <Route path='/error' element={<ErrorPage />} />
-      <Route path='/profile' element={userData ? <ProfilePage user={userData} /> : null}/>
+      <Route path='/profile' element={userData ? <ProfilePage user={userData} refreshUser={fetchUserData}/> : null} />
     </Routes>
   )
 }

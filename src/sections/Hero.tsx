@@ -18,9 +18,9 @@ const titleTheme: SxProps<Theme> = {
 
 const subTitleTheme = {
     fontSize: {
-        xs: '0.7rem',
-        sm: '0.9rem',
-        md: '1.2rem',
+        xs: '1.2rem',
+        sm: '1.4rem',
+        md: '1.6rem',
         lg: '2rem'
     },
     fontWeight: 500

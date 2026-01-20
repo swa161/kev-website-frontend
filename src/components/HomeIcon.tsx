@@ -12,7 +12,7 @@ export function HomeIcon() {
 
     return (
         <IconButton sx={{padding: 0}} onClick={goToHomePage}>
-            <CottageRoundedIcon className="homepg-btn" sx={{cursor: 'pointer', fontSize: '2rem' }} />
+            <CottageRoundedIcon className="homepg-btn"  sx={{cursor: 'pointer', fontSize: '2rem'}} />
             </IconButton>
     )
 }

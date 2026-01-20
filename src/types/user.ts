@@ -17,4 +17,5 @@ export type User = {
 
 export type HeroProps = {
     user: User | null
+    refreshUser?: () => Promise<void>
 }
