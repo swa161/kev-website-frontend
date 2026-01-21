@@ -90,4 +90,33 @@ const loginButtonTheme = {
 
 }
 
-export {loginContentTheme, textfieldTheme, loginTitleTheme, outlinedInputTheme, loginButtonTheme}
+const tabFontSize = {
+    xs: '1rem',
+    sm: '1.2rem',
+    md: '1.8rem',
+
+}
+
+const timelineTimeContentFontTheme = {
+    fontSize: {
+        xs: '0.68rem',
+        sm: '0.85rem',
+        md: '0.9rem',
+    }
+
+}
+
+const timelineContentFontSizeTheme = {
+    fontWeight: '400px',
+    color: 'var(--selected-color)',
+    fontSize: {
+        xs: '0.85rem',
+        sm: '1.1rem',
+        md: '1.2rem',
+    }
+
+}
+
+export {loginContentTheme, textfieldTheme, loginTitleTheme, outlinedInputTheme, loginButtonTheme, tabFontSize
+    ,timelineTimeContentFontTheme, timelineContentFontSizeTheme
+}

@@ -11,39 +11,14 @@ import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import { useState } from 'react';
 import { useObserver } from '../hooks/useObserver';
-
+import { tabFontSize,timelineTimeContentFontTheme, timelineContentFontSizeTheme} from '../theme/Theme'
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
     value: number;
 }
 
-const tabFontSize = {
-    xs: '1rem',
-    sm: '1.2rem',
-    md: '1.8rem',
 
-}
-
-const timelineTimeContentFontTheme = {
-    fontSize: {
-        xs: '0.68rem',
-        sm: '0.85rem',
-        md: '0.9rem',
-    }
-
-}
-
-const timelineContentFontSizeTheme = {
-    fontWeight: '400px',
-    color: 'var(--selected-color)',
-    fontSize: {
-        xs: '0.85rem',
-        sm: '1.1rem',
-        md: '1.2rem',
-    }
-
-}
 
 function EducationPanel(props: TabPanelProps) {
     return (
