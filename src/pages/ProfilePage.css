@@ -157,6 +157,13 @@
     z-index: 10;
 }
 
+.add-photo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    
+}
+
 @media (min-width: 1050px) {
 
     .profile-container {

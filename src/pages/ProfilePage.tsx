@@ -9,11 +9,12 @@ import axios from "axios"
 import { Fragment, useEffect, useRef, useState, type ChangeEvent } from "react"
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import EditIcon from '@mui/icons-material/Edit';
 import LogoutIcon from '@mui/icons-material/Logout';
 import './ProfilePage.css'
 import SaveIcon from '@mui/icons-material/Save';
 import { tabFontSize } from '../theme/Theme'
+import defaultPhoto from '../assets/add-photo-default.webp'
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 const StyledTextField = styled(TextField)({
     width: 'clamp(200px, 60%, 320px)',
@@ -107,7 +108,8 @@ interface PhotoPanelProps {
     index: number,
     value: number,
     imageData: ImageData[] | null,
-    onDeletePhoto: (imageId: number) => void
+    onDeletePhoto: (imageId: number) => void,
+    openAddPhotoDialog: () => void
 }
 
 
@@ -196,7 +198,7 @@ function PersonalPanel({ form, index, value, onChange, save }: PersonalPanelProp
 
 
 
-function PhotoPanel({ index, value, imageData, onDeletePhoto }: PhotoPanelProps) {
+function PhotoPanel({ index, value, imageData, onDeletePhoto, openAddPhotoDialog }: PhotoPanelProps) {
     return (
         <div className="photo-panel" style={{ display: index === value ? 'flex' : 'none' }}>
             <div className="photos-grid">
@@ -217,10 +219,12 @@ function PhotoPanel({ index, value, imageData, onDeletePhoto }: PhotoPanelProps)
                     </div>
                 ))}
             </div>
-            <AddAPhotoIcon sx={{ fontSize: '2rem', marginTop: '1rem' }} />
+            <AddAPhotoIcon onClick={openAddPhotoDialog} sx={{ fontSize: '2rem', marginTop: '1rem' }} />
         </div>
     )
 }
+
+
 
 export function ProfilePage({ user, refreshUser }: HeroProps) {
     const token = localStorage.getItem('authToken')
@@ -234,6 +238,13 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
     const [value, setValue] = useState(0)
     const [deleteImageId, setDeleteImageId] = useState<number | null>(null)
     const [open, setOpen] = useState(false)
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [openAddPhoto, setOpenAddPhoto] = useState(false)
+    const [submitNewImage, setSubmitNewImage] = useState(0)
+    const newImageRef = useRef<HTMLInputElement | null>(null)
     const [form, setForm] = useState<UpdateProfileRequest>({
         firstName: user?.first_name,
         lastName: user?.last_name,
@@ -243,7 +254,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         title: user?.title,
         description: user?.description,
     });
-    
+
     const handleClose = () => {
         setOpen(false)
     }
@@ -276,10 +287,18 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
 
         }
         fetchImageData()
-    }, [])
+    }, [submitNewImage])
 
     const handleChange = (e: React.SyntheticEvent, newValue: number) => {
         setValue(newValue)
+    }
+
+    const updateTitle = (e: ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.target.value)
+    }
+
+    const updateDescription = (e: ChangeEvent<HTMLInputElement>) => {
+        setDescription(e.target.value)
     }
 
     const handleImageSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -300,8 +319,43 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         refreshImage()
     }
 
-    const handleEditImage = () => {
+    const handleNewImageSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]
+        if (!file) return
+
+        setSelectedFile(file)
+
+        const previewUrl = URL.createObjectURL(file)
+        setSelectedImage(previewUrl)
+    }
+
+    const handleAddPhotoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        if (!selectedFile) return
+        const formData = new FormData()
+        formData.append('image', selectedFile)
+        formData.append('title', title)
+        formData.append('description', description)
+        await axios.post('/api/v1/photos', formData, {
+            headers: {
+                'X-Authorization': token
+            }
+        })
+        setSubmitNewImage(v => v+1)
+        setOpenAddPhoto(false)
+        setTitle("")
+        setDescription("")
+        setSelectedFile(null)
+        setSelectedImage(null)
+    }
+
+    const handleEditProfileImage = () => {
         fileInputRef.current?.click()
+    }
+
+    const openFilePickerForAddImage = () => {
+        newImageRef.current?.click()
+
     }
 
     const refreshImage = () => {
@@ -335,7 +389,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         }
     }
 
-    const requestDeletePhoto =  (imageId: number) => {
+    const requestDeletePhoto = (imageId: number) => {
         setDeleteImageId(imageId)
         setOpen(true)
 
@@ -350,8 +404,8 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
                 }
             })
             setImageData(prev =>
-            prev ? prev.filter(img => Number(img.id) !== deleteImageId) : prev
-        );
+                prev ? prev.filter(img => Number(img.id) !== deleteImageId) : prev
+            );
         } catch (err) {
             console.log("Can not delete the photo: ", err)
         } finally {
@@ -387,8 +441,8 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
                         justifyItems={'center'}
                         alignItems={'center'}
                     >
-                        <IconButton onClick={handleEditImage} className="image-edit">
-                            <EditIcon sx=
+                        <IconButton onClick={handleEditProfileImage} className="image-edit">
+                            <AddPhotoAlternateIcon sx=
                                 {{
                                     fontSize:
                                         { xs: '1.8rem', sm: '2rem', md: '2.1rem', lg: '2.2rem' },
@@ -429,7 +483,13 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
                     </Tabs>
                     <div className="panel-wrapper">
                         <PersonalPanel form={form} value={value} index={0} onChange={onChange} save={save} />
-                        <PhotoPanel value={value} index={1} imageData={imageData} onDeletePhoto={requestDeletePhoto} />
+                        <PhotoPanel
+                            value={value}
+                            index={1}
+                            imageData={imageData}
+                            onDeletePhoto={requestDeletePhoto}
+                            openAddPhotoDialog={() => setOpenAddPhoto(true)}
+                        />
                     </div>
                 </div>
 
@@ -461,7 +521,69 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
                     <Button onClick={confirmDeletePhoto}>Yes</Button>
                 </DialogActions>
             </Dialog>
-        </Fragment>
+            <Dialog
+                open={openAddPhoto}
+                onClose={() => setOpenAddPhoto(false)}
+            >
+                <DialogContent>
+                    {/* <DialogContentText>
+                        Add Photo!
+                    </DialogContentText> */}
+                    <form className="add-photo-form" onSubmit={handleAddPhotoSubmit} id="add-photo-form">
+                        <TextField
+                            autoFocus
+                            required
+                            name="title"
+                            label={"Image Title"}
+                            value={title}
+                            placeholder="Add image title here"
+                            variant="standard"
+                            onChange={updateTitle}
+                            sx={{ minWidth: '300px' }}
+                        />
+                        <TextField
+                            autoFocus
+                            required
+                            multiline
+                            name="description"
+                            label="Description"
+                            value={description}
+                            placeholder="Add image description here"
+                            variant="standard"
+                            onChange={updateDescription}
+                            sx={{ minWidth: '300px' }}
+                        />
+                        <section className="add-photo-img-section">
+                            <Typography variant="subtitle1"> Selected Image</Typography>
+                            <img src={selectedImage ? selectedImage : defaultPhoto} />
+                            <input
+                                ref={newImageRef}
+                                type="file"
+                                accept="image/*"
+                                hidden
+                                onChange={handleNewImageSelected}
+                            />
+                            <AddPhotoAlternateIcon
+                                onClick={openFilePickerForAddImage}
+                                sx=
+                                {{
+                                    fontSize:
+                                        { xs: '1.8rem', sm: '2rem', md: '2.1rem', lg: '2.2rem' },
+                                    color: 'var(--txt-color)'
+                                }
+                                }
+                                className="image-edit" />
+                        </section>
+
+                    </form>
+
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpenAddPhoto(false)}>Cancel</Button>
+                    <Button type="submit" form="add-photo-form">Add</Button>
+                </DialogActions>
+            </Dialog>
+        </Fragment >
 
     )
 }
