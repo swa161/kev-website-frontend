@@ -155,20 +155,15 @@ export function About() {
                         >
                             {imageData && (
                                 <div className='image-container' id='lastClone'>
+
+                                    <div className='image-date'>
+                                        {imageData?.[imageData.length - 1]?.title}
+
+                                    </div>
                                     <div className='image-description'>
                                         {imageData && imageData[imageData.length - 1].description}
                                     </div>
 
-                                    <div className='image-date'>
-                                        {imageData?.[imageData.length - 1]?.created_at && (
-                                            Intl.DateTimeFormat('en-GB', {
-                                                day: '2-digit',
-                                                month: 'short',
-                                                year: 'numeric'
-                                            }).format(new Date(imageData[imageData.length - 1].created_at))
-                                        )}
-
-                                    </div>
                                     <div>
                                         <img
                                             className='image'
@@ -189,18 +184,14 @@ export function About() {
 
                             {imageData?.map((img, index) => (
                                 <div key={img.id} className='image-container'>
-
+                                    <div className='image-date'>
+                                        {img.title}
+                                    </div>
                                     <div className='image-description'>
                                         {img.description}
                                     </div>
 
-                                    <div className='image-date'>
-                                        {Intl.DateTimeFormat('en-GB', {
-                                            day: '2-digit',
-                                            month: 'short',
-                                            year: 'numeric'
-                                        }).format(new Date(img.created_at))}
-                                    </div>
+
                                     <div className='image-and-reflection'>
                                         <img
                                             className='image'
@@ -221,20 +212,15 @@ export function About() {
                             ))}
                             {imageData && (
                                 <div className='image-container' id='firstClone'>
+                                    <div className='image-date'>
+                                        {imageData?.[0]?.title}
+
+                                    </div>
                                     <div className='image-description'>
                                         {imageData && imageData[0].description}
                                     </div>
 
-                                    <div className='image-date'>
-                                        {imageData?.[0]?.created_at && (
-                                            Intl.DateTimeFormat('en-GB', {
-                                                day: '2-digit',
-                                                month: 'short',
-                                                year: 'numeric'
-                                            }).format(new Date(imageData[0].created_at))
-                                        )}
 
-                                    </div>
                                     <div>
                                         <img
                                             className='image'

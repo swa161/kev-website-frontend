@@ -10,6 +10,8 @@ import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
 import CottageRoundedIcon from '@mui/icons-material/CottageRounded';
 import CallRoundedIcon from '@mui/icons-material/CallRounded';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
+import LoginIcon from '@mui/icons-material/Login';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import './Header.css'
 import { Slide, Typography } from "@mui/material";
 import { useAuthStore } from "../stores/auth.store";
@@ -44,6 +46,7 @@ export function Header() {
     const { t } = useTranslation()
     const isLogIn = useAuthStore(state => state.isLogIn)
     const menuRef = useRef<HTMLDivElement | null>(null)
+
 
     useEffect(() => {
         const fetchFullName = async () => {
@@ -141,6 +144,15 @@ export function Header() {
                         <WidgetsRoundedIcon sx={{ fontSize: '2rem' , color: 'var(--txt-color)'}} />
                     </button>
                     <ColorIcon />
+                    {isLogIn ?  
+                    <AccountCircleIcon 
+                    onClick={() => navigate('/profile')}
+                    sx={{ cursor: 'pointer', fontSize: '2rem' }}
+                    /> : 
+                    <LoginIcon 
+                    onClick={() => navigate('/login')}
+                    sx={{ cursor: 'pointer', fontSize: '2rem' }}
+                    />}
                 </div>
                 <span className="fullname-section mobile-only">{name?.fullName}</span>
             </div>

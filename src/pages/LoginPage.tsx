@@ -1,6 +1,6 @@
 import { Alert, Box, Button, IconButton, InputAdornment, OutlinedInput, Snackbar, TextField, Typography } from "@mui/material"
 import './LoginPage.css'
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useAuthStore } from "../stores/auth.store";
@@ -19,6 +19,7 @@ export function LoginPage() {
     const [email, setEmail] = useState<string | ''>('')
     const [password, setPassword] = useState<string | ''>('')
     const boxRef = useRef<HTMLDivElement | null>(null)
+    const isLogIn = useAuthStore(state => state.isLogIn)
     const floatingRef = useRef<HTMLDivElement | null>(null)
     const [error, setError] = useState('')
     const [openSnackBar, setOpenSnackBar] = useState(false)
@@ -60,6 +61,11 @@ export function LoginPage() {
 
     }
 
+    useEffect(() =>{
+        if (isLogIn) {
+            navigate('/profile')
+        }
+    })
 
 
     return (

@@ -7,9 +7,11 @@
             rgb(234, 205, 253) 100%);
     --inner-width: 70%;
     --profile-picture-shadow: rgba(17, 17, 22, 0.877) 0px 0px 5px 3px;
-
+    --box-shadow: rgba(216, 80, 98, 0.394) 0px 0px 12px 0.5px;
+    --photo-shadow: rgba(15, 16, 49, 0.996) 0px 0px 10px 2px;
     --panel-width: 60vw;
-
+    --section-background-color: rgba(255, 255, 255, 0.544);
+    --section-border-radius: 7px;
 }
 
 .darkmode .profile-container {
@@ -21,6 +23,8 @@
             rgb(36, 30, 56) 80%,
             rgb(35, 26, 41) 100%);
     --profile-picture-shadow: rgba(200, 196, 248, 0.877) 0px 0px 5px 3px;
+    --box-shadow: rgb(245, 191, 217) 0px 0px 10px 0.5px;
+    --section-background-color: rgba(71, 68, 68, 0.62);
 }
 
 .desktop-only.profile-nav-container {
@@ -70,6 +74,7 @@
     aspect-ratio: 9/11;
     object-fit: cover;
     border-radius: 5px;
+    margin: 10px;
     box-shadow: var(--profile-picture-shadow);
 }
 
@@ -78,6 +83,10 @@
     flex-direction: column;
     align-items: start;
     padding-top: 1rem;
+    box-shadow: var(--box-shadow);
+    backdrop-filter: blur(40px);
+    border-radius: var(--section-border-radius);
+    background-color: var(--section-background-color);
 }
 
 .top-container {
@@ -86,6 +95,11 @@
     align-items: center;
     gap: 1rem;
     margin-top: 1rem;
+    padding: 0 10px;
+    box-shadow: var(--box-shadow);
+    backdrop-filter: blur(40px);
+    border-radius: var(--section-border-radius);
+    background-color: var(--section-background-color);
 }
 
 .personal-info-container {
@@ -134,7 +148,9 @@
 .photo-cmp {
     display: flex;
     position: relative;
-    width: 100%;
+    width: calc(100% - 2rem);
+    box-shadow: var(--photo-shadow);
+    margin: 1rem;
 }
 
 .photo {
@@ -161,7 +177,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    
+
 }
 
 @media (min-width: 1050px) {
@@ -182,17 +198,24 @@
     }
 
     .desktop-only.profile-nav-container {
+
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: 2rem;
-        background-image: rgba(255, 255, 255, 0);
+        margin-left: 10px;
+        padding: 15px;
+        box-shadow: var(--box-shadow);
+        backdrop-filter: blur(40px);
+        border-radius: var(--section-border-radius);
+        background-color: var(--section-background-color);
     }
 
     .top-container {
         gap: 1.5rem;
         flex-direction: column;
         margin: 0;
+
     }
 
     .panel-wrapper {

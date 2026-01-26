@@ -210,6 +210,7 @@ function PhotoPanel({ index, value, imageData, onDeletePhoto, openAddPhotoDialog
                             component={'img'}
                             src={`/api/v1/photos/${img.id}/image`}
                             className="photo"
+                            sx={{borderRadius: '5px'}}
                         />
 
                         <DeleteForeverIcon
@@ -513,7 +514,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
             >
                 <DialogContent>
                     <DialogContentText>
-                        Are you sure to delete this image?
+                        Are you sure you want to delete this image?
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
