@@ -5,6 +5,7 @@ import type { HeroProps } from '../types/user'
 import { Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import type { SxProps, Theme } from '@mui/material'
+import { base_url } from '../api/client'
 
 
 const titleTheme: SxProps<Theme> = {
@@ -47,7 +48,7 @@ const textContentTheme = {
 
 
 export function Hero({ user }: HeroProps) {
-    const { t }  = useTranslation()
+    const { t } = useTranslation()
     function setTransform(target: HTMLElement | null, px: number, py: number) {
         if (!target || window.innerWidth < 768) {
             return
@@ -67,7 +68,7 @@ export function Hero({ user }: HeroProps) {
             <div className='top-section'>
                 <div className="left-section">
                     <div id="message-container" className='message-container'>
-                        <Typography sx={titleTheme} variant='h2'  className='hero-title'>
+                        <Typography sx={titleTheme} variant='h2' className='hero-title'>
                             {titleMessage}
                         </Typography>
                         <Typography sx={subTitleTheme} variant='subtitle2' className='hero-welcome'>
@@ -78,7 +79,12 @@ export function Hero({ user }: HeroProps) {
                         </Typography>
                     </div>
                     <div className='cv-container'>
-                        <a href='/api/v1/users/1/cv' target='_blank' className='hero-cv'>
+                        <a
+                            href={import.meta.env.VITE_API_BASE_URL
+                                ? `${import.meta.env.VITE_API_BASE_URL}/api/v1/users/1/cv`
+                                : `/api/v1/users/1/cv`}
+                            target='_blank'
+                            className='hero-cv'>
                             <Typography sx={cvTextTheme} variant='subtitle2' className='cv'>
                                 {t('download_cv')}
                             </Typography>
@@ -90,17 +96,21 @@ export function Hero({ user }: HeroProps) {
                 </div>
             </div>
             <div className="user-image-container"
-                    onMouseMove={(e) => {
-                        const rect = e.currentTarget.getBoundingClientRect()
-                        const mouseX = e.clientX - rect.left - rect.width / 2
-                        const mouseY = e.clientY - rect.top - rect.height / 2
-                        setTransform(e.currentTarget, mouseX / rect.width, mouseY / rect.height)
-                    }}
-                    onMouseLeave={(e) => setTransform(e.currentTarget, 0, 0)}
-                >
+                onMouseMove={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect()
+                    const mouseX = e.clientX - rect.left - rect.width / 2
+                    const mouseY = e.clientY - rect.top - rect.height / 2
+                    setTransform(e.currentTarget, mouseX / rect.width, mouseY / rect.height)
+                }}
+                onMouseLeave={(e) => setTransform(e.currentTarget, 0, 0)}
+            >
 
-                     <img src={`/api/v1/users/${user?.id}/image`} className="user-image" alt="profile" /> 
-                </div>
+                <img
+
+                    src={`${base_url}/api/v1/users/${user?.id}/image`}
+                    className="user-image"
+                    alt="profile" />
+            </div>
 
         </div>
     )

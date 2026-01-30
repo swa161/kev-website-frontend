@@ -61,7 +61,6 @@ export function Skills() {
                         <AccordionDetails  className='accordion-details'>
                             <List >
                                 {item.values.map((v, i) => (
-
                                     <ListItem key={i}>
                                         <ListItemIcon>
                                             <CircleIcon sx={{color:'var(--txt-color)'}} />

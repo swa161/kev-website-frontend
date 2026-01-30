@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
 import { useObserver } from '../hooks/useObserver';
-import api from '../api/client';
+import api, { base_url } from '../api/client';
 import './About.css'
 
 
@@ -167,7 +167,8 @@ export function About() {
                                     <div>
                                         <img
                                             className='image'
-                                            src={`/api/v1/photos/${imageData && imageData[imageData.length - 1].id}/image`}
+
+                                            src={`${base_url}/api/v1/photos/${imageData && imageData[imageData.length - 1].id}/image`}
                                             loading='lazy'
                                             alt={imageData?.[imageData.length - 1].title && imageData[imageData.length - 1].title}
                                         />
@@ -195,7 +196,7 @@ export function About() {
                                     <div className='image-and-reflection'>
                                         <img
                                             className='image'
-                                            src={`/api/v1/photos/${img.id}/image`}
+                                            src={`${base_url}/api/v1/photos/${img.id}/image`}
                                             loading='lazy'
                                             alt={img.title}
                                             id={String(index)}
@@ -224,7 +225,8 @@ export function About() {
                                     <div>
                                         <img
                                             className='image'
-                                            src={`/api/v1/photos/${imageData && imageData[0].id}/image`}
+
+                                            src={`${base_url}/api/v1/photos/${imageData && imageData[0].id}/image`}
                                             loading='lazy'
                                             alt={imageData?.[0].title && imageData[0].title}
                                         />

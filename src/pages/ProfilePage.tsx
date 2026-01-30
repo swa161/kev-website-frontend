@@ -15,6 +15,7 @@ import { tabFontSize } from '../theme/Theme'
 import defaultPhoto from '../assets/add-photo-default.webp'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import api from "../api/client"
+import { base_url } from "../api/client"
 
 const StyledTextField = styled(TextField)({
     width: 'clamp(200px, 60%, 320px)',
@@ -208,7 +209,7 @@ function PhotoPanel({ index, value, imageData, onDeletePhoto, openAddPhotoDialog
                             loading="lazy"
                             decoding="async"
                             component={'img'}
-                            src={`/api/v1/photos/${img.id}/image`}
+                            src={`${base_url}/api/v1/photos/${img.id}/image`}
                             className="photo"
                             sx={{borderRadius: '5px'}}
                         />
@@ -428,7 +429,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
                 <section className="image-group">
                     <Box
                         component={'img'}
-                        src={`/api/v1/users/${user?.id}/image?v=${imageVersion}`}
+                        src={`${base_url}/api/v1/users/${user?.id}/image?v=${imageVersion}`}
                         className="profile-picture"
                     />
                     <input
