@@ -5,7 +5,6 @@ import type { HeroProps } from "../types/user"
 import { styled, Box, IconButton, TextField, Typography, Tabs, Tab, Dialog, DialogContent, DialogContentText, DialogActions, Button } from "@mui/material"
 import { HomeIcon } from "../components/HomeIcon"
 import { ColorIcon } from "../components/ColorIcon"
-import axios from "axios"
 import { Fragment, useEffect, useRef, useState, type ChangeEvent } from "react"
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -15,6 +14,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import { tabFontSize } from '../theme/Theme'
 import defaultPhoto from '../assets/add-photo-default.webp'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import api from "../api/client"
 
 const StyledTextField = styled(TextField)({
     width: 'clamp(200px, 60%, 320px)',
@@ -208,7 +208,7 @@ function PhotoPanel({ index, value, imageData, onDeletePhoto, openAddPhotoDialog
                             loading="lazy"
                             decoding="async"
                             component={'img'}
-                            src={`/api/v1/photos/${img.id}/image`}
+                            src={`/v1/photos/${img.id}/image`}
                             className="photo"
                             sx={{borderRadius: '5px'}}
                         />
@@ -261,7 +261,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
     }
 
     const Logout = () => {
-        axios.post('/api/v1/users/logout', {}, { headers: { 'X-Authorization': token } })
+        api.post('/v1/users/logout', {}, { headers: { 'X-Authorization': token } })
             .then(() => {
                 localStorage.removeItem('authToken')
                 navigate('/')
@@ -280,7 +280,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
     useEffect(() => {
         const fetchImageData = async () => {
             try {
-                const res = await axios.get('/api/v1/photos')
+                const res = await api.get('/v1/photos')
                 setImageData(res.data)
             } catch (err) {
                 console.log('Error: ', err)
@@ -308,7 +308,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         try {
             const arrayBuffer = await file.arrayBuffer()
 
-            await axios.put(`/api/v1/users/${user?.id}/image`, arrayBuffer, {
+            await api.put(`/v1/users/${user?.id}/image`, arrayBuffer, {
                 headers: {
                     'X-Authorization': token,
                     'Content-Type': file.type
@@ -337,7 +337,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         formData.append('image', selectedFile)
         formData.append('title', title)
         formData.append('description', description)
-        await axios.post('/api/v1/photos', formData, {
+        await api.post('/v1/photos', formData, {
             headers: {
                 'X-Authorization': token
             }
@@ -377,7 +377,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         )
         console.log(payload)
         try {
-            await axios.patch(`/api/v1/users/${user?.id}`, payload, {
+            await api.patch(`/v1/users/${user?.id}`, payload, {
                 headers: {
                     'X-Authorization': token
                 }
@@ -399,7 +399,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
     const confirmDeletePhoto = async () => {
         if (deleteImageId === null) return
         try {
-            await axios.delete(`/api/v1/photos/${deleteImageId}`, {
+            await api.delete(`/v1/photos/${deleteImageId}`, {
                 headers: {
                     'X-Authorization': token
                 }
@@ -428,7 +428,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
                 <section className="image-group">
                     <Box
                         component={'img'}
-                        src={`/api/v1/users/${user?.id}/image?v=${imageVersion}`}
+                        src={`/v1/users/${user?.id}/image?v=${imageVersion}`}
                         className="profile-picture"
                     />
                     <input

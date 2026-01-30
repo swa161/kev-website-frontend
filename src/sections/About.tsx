@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
 import { useObserver } from '../hooks/useObserver';
-import axios from 'axios'
+import api from '../api/client';
 import './About.css'
 
 
@@ -94,7 +94,7 @@ export function About() {
 
     useEffect(() => {
         const fetchImagesInfo = async () => {
-            const res = await axios.get('/api/v1/photos')
+            const res = await api.get('/v1/photos')
             setImageData(res.data)
         }
         fetchImagesInfo()
@@ -173,7 +173,7 @@ export function About() {
                                         />
                                         {/* <img
                                             className='reflection'
-                                            src={`/api/v1/photos/${imageData?.[imageData.length - 1].title
+                                            src={`/v1/photos/${imageData?.[imageData.length - 1].title
                                                 && imageData[imageData.length - 1].id}/image`}
                                             loading='lazy'
                                             alt={imageData?.[imageData.length - 1].title
@@ -203,7 +203,7 @@ export function About() {
                                         />
                                         {/* <img
                                             className='reflection'
-                                            src={`/api/v1/photos/${img.id}/image`}
+                                            src={`/v1/photos/${img.id}/image`}
                                             loading='lazy'
                                             alt={img.title} /> */}
                                     </div>
@@ -230,7 +230,7 @@ export function About() {
                                         />
                                         {/* <img
                                             className='reflection'
-                                            src={`/api/v1/photos/${imageData?.[0].title
+                                            src={`/v1/photos/${imageData?.[0].title
                                                 && imageData[0].id}/image`}
                                             loading='lazy'
                                             alt={imageData?.[0].title

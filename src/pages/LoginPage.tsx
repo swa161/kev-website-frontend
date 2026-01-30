@@ -4,13 +4,13 @@ import { useEffect, useRef, useState } from "react"
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useAuthStore } from "../stores/auth.store";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { loginContentTheme, textfieldTheme, loginTitleTheme, outlinedInputTheme, loginButtonTheme } from '../theme/Theme'
 import { ColorIcon } from "../components/ColorIcon";
 import { LanguageIcon } from "../components/LanguageIcon";
 import { useTranslation } from "react-i18next";
 import { HomeIcon } from "../components/HomeIcon";
+import api from "../api/client";
 
 
 export function LoginPage() {
@@ -45,7 +45,7 @@ export function LoginPage() {
     }
 
     const Login = () => {
-        axios.post('/api/v1/users/login', { email: email, password: password })
+        api.post('/v1/users/login', { email: email, password: password })
             .then((res) => {
                 setLogInUserId(res.data.userId)
                 localStorage.setItem('authToken', res.data.userToken)

@@ -78,7 +78,7 @@ export function Hero({ user }: HeroProps) {
                         </Typography>
                     </div>
                     <div className='cv-container'>
-                        <a href='http://localhost:4941/api/v1/users/1/cv' target='_blank' className='hero-cv'>
+                        <a href='/api/v1/users/1/cv' target='_blank' className='hero-cv'>
                             <Typography sx={cvTextTheme} variant='subtitle2' className='cv'>
                                 {t('download_cv')}
                             </Typography>
