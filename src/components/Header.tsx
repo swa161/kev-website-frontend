@@ -1,4 +1,4 @@
-import axios from "axios"
+import api from "api"
 import { useState, useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -51,7 +51,7 @@ export function Header() {
     useEffect(() => {
         const fetchFullName = async () => {
             try {
-                const response = await axios.get<FullNameResponse>('/api/v1/users/1/name')
+                const response = await api.get<FullNameResponse>('/v1/users/1/name')
                 setName(response.data)
             } catch (err) {
                 console.error("Failed to fetch fullname.", err)
