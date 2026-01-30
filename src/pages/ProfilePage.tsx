@@ -208,7 +208,7 @@ function PhotoPanel({ index, value, imageData, onDeletePhoto, openAddPhotoDialog
                             loading="lazy"
                             decoding="async"
                             component={'img'}
-                            src={`/v1/photos/${img.id}/image`}
+                            src={`/api/v1/photos/${img.id}/image`}
                             className="photo"
                             sx={{borderRadius: '5px'}}
                         />
@@ -428,7 +428,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
                 <section className="image-group">
                     <Box
                         component={'img'}
-                        src={`/v1/users/${user?.id}/image?v=${imageVersion}`}
+                        src={`/api/v1/users/${user?.id}/image?v=${imageVersion}`}
                         className="profile-picture"
                     />
                     <input
