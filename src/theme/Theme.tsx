@@ -99,7 +99,7 @@ const tabFontSize = {
 
 const timelineTimeContentFontTheme = {
     fontSize: {
-        xs: '0.68rem',
+        xs: '0.75rem',
         sm: '0.85rem',
         md: '0.9rem',
     }

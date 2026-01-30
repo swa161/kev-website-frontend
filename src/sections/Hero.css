@@ -58,6 +58,11 @@
     box-shadow: rgb(0, 0, 0, 60%) 0px 2px 10px 1px;
 }
 
+
+.cv {
+    white-space: nowrap;
+}
+
 .hero-container a {
     display: inline-flex;
     align-items: center;

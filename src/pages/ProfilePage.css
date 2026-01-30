@@ -74,7 +74,7 @@
     aspect-ratio: 9/11;
     object-fit: cover;
     border-radius: 5px;
-    margin: 10px;
+    margin: 0px 10px;
     box-shadow: var(--profile-picture-shadow);
 }
 
@@ -82,7 +82,7 @@
     display: flex;
     flex-direction: column;
     align-items: start;
-    padding-top: 1rem;
+    padding-top: 0.5rem;
     box-shadow: var(--box-shadow);
     backdrop-filter: blur(40px);
     border-radius: var(--section-border-radius);
@@ -190,7 +190,7 @@
     }
 
     .image-group {
-        padding: 0;
+        padding: 0.5rem;
     }
 
     .mobile-only.nav-bar.MuiBox-root {

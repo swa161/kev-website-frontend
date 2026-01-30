@@ -38,8 +38,7 @@ const cvTextTheme = {
 
 const textContentTheme = {
     fontSize: {
-        xs: '0.8rem',
-        sm: '0.8rem',
+        sm: '1.0rem',
         md: '0.9rem',
         lg: '1.2rem'
     },
