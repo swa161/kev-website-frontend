@@ -290,7 +290,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         fetchImageData()
     }, [submitNewImage])
 
-    const handleChange = (e: React.SyntheticEvent, newValue: number) => {
+    const handleChange = (_e: React.SyntheticEvent, newValue: number) => {
         setValue(newValue)
     }
 

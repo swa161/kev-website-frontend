@@ -2,7 +2,6 @@ import './RightSide.css'
 import { Cloud } from './Cloud'
 import { Cloud2 } from './Cloud2'
 import { StarTriple, StarFourPoints } from './Stars'
-import { Moon } from './Moon'
 import type { DecorationStyle } from '../types/decorationTypes'
 import { useEffect } from 'react'
 
@@ -57,13 +56,6 @@ export function RightSide() {
         }
 
     ]
-    const moon: DecorationStyle = {
-        position: 'absolute',
-        width: 'calc(var(--whole-page-side-width)*0.45)',
-        top: '1%',
-        right: 'calc(var(--whole-page-side-width)*0.1)',
-        opacity: 1
-    }
     const startFourPts: DecorationStyle[] = [
 
         {
