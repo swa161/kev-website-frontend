@@ -15,7 +15,8 @@ import { tabFontSize } from '../theme/Theme'
 import defaultPhoto from '../assets/add-photo-default.webp'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import api from "../api/client"
-import { base_url } from "../api/client"
+import { r2PublicUrl } from "../config/r2"
+import imageCompression from 'browser-image-compression'
 
 const StyledTextField = styled(TextField)({
     width: 'clamp(200px, 60%, 320px)',
@@ -118,6 +119,7 @@ interface ImageData {
     id: string,
     title: string,
     description: string,
+    image_url: string,
     created_at: string
 }
 
@@ -209,9 +211,9 @@ function PhotoPanel({ index, value, imageData, onDeletePhoto, openAddPhotoDialog
                             loading="lazy"
                             decoding="async"
                             component={'img'}
-                            src={`${base_url}/api/v1/photos/${img.id}/image`}
+                            src={`${r2PublicUrl}${img.image_url}`}
                             className="photo"
-                            sx={{borderRadius: '5px'}}
+                            sx={{ borderRadius: '5px' }}
                         />
 
                         <DeleteForeverIcon
@@ -247,6 +249,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
     const [openAddPhoto, setOpenAddPhoto] = useState(false)
     const [submitNewImage, setSubmitNewImage] = useState(0)
     const newImageRef = useRef<HTMLInputElement | null>(null)
+    const [progress, setProgress] = useState(0)
     const [form, setForm] = useState<UpdateProfileRequest>({
         firstName: user?.first_name,
         lastName: user?.last_name,
@@ -256,6 +259,12 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         title: user?.title,
         description: user?.description,
     });
+    const options = {
+        maxSizeMB: 1.2,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true,
+        fileType: 'image/webp'
+    }
 
     const handleClose = () => {
         setOpen(false)
@@ -276,7 +285,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         if (!isLogIn) {
             navigate('/error')
         }
-    }, [])
+    })
 
     useEffect(() => {
         const fetchImageData = async () => {
@@ -291,6 +300,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         fetchImageData()
     }, [submitNewImage])
 
+
     const handleChange = (_e: React.SyntheticEvent, newValue: number) => {
         setValue(newValue)
     }
@@ -303,16 +313,25 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         setDescription(e.target.value)
     }
 
+    const closeAddImageDialog = () => {
+        setOpenAddPhoto(false)
+        setTitle("")
+        setDescription("")
+        setSelectedFile(null)
+        setSelectedImage(null)
+    }
+
     const handleImageSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
         if (!file) return
         try {
-            const arrayBuffer = await file.arrayBuffer()
-
+            
+            const compressedProfileImage = await imageCompression(file, options)
+            const arrayBuffer = await compressedProfileImage.arrayBuffer()
             await api.put(`/v1/users/${user?.id}/image`, arrayBuffer, {
                 headers: {
                     'X-Authorization': token,
-                    'Content-Type': file.type
+                    'Content-Type': compressedProfileImage.type
                 }
             })
         } catch (err) {
@@ -334,23 +353,35 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
     const handleAddPhotoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (!selectedFile) return
-        const formData = new FormData()
-        formData.append('image', selectedFile)
-        formData.append('title', title)
-        formData.append('description', description)
-        await api.post('/v1/photos', formData, {
-            headers: {
-                'X-Authorization': token
-            }
-        })
-        setSubmitNewImage(v => v+1)
+
+
+        try {
+            const compressedFile = await imageCompression(selectedFile, options)
+            const formData = new FormData()
+            formData.append('image', compressedFile)
+            formData.append('title', title)
+            formData.append('description', description)
+            await api.post('/v1/photos', formData, {
+                headers: {
+                    'X-Authorization': token
+                },
+                onUploadProgress: (progressEvent) => {
+                    const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total!)
+                    setProgress(percent)
+                }
+            })
+
+
+        } catch (err) { console.log("Error happend while uploading the photo", err) }
+
+        setSubmitNewImage(v => v + 1)
         setOpenAddPhoto(false)
         setTitle("")
         setDescription("")
         setSelectedFile(null)
         setSelectedImage(null)
     }
-
+    console.log(progress)
     const handleEditProfileImage = () => {
         fileInputRef.current?.click()
     }
@@ -429,7 +460,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
                 <section className="image-group">
                     <Box
                         component={'img'}
-                        src={`${base_url}/api/v1/users/${user?.id}/image?v=${imageVersion}`}
+                        src={`${r2PublicUrl}${user?.image_url}?v=${imageVersion}`}
                         className="profile-picture"
                     />
                     <input
@@ -525,7 +556,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
             </Dialog>
             <Dialog
                 open={openAddPhoto}
-                onClose={() => setOpenAddPhoto(false)}
+                onClose={closeAddImageDialog}
             >
                 <DialogContent>
                     {/* <DialogContentText>
@@ -571,7 +602,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
                                 {{
                                     fontSize:
                                         { xs: '1.8rem', sm: '2rem', md: '2.1rem', lg: '2.2rem' },
-                                    color: 'var(--txt-color)'
+                                    color: 'black'
                                 }
                                 }
                                 className="image-edit" />
@@ -581,7 +612,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
 
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => setOpenAddPhoto(false)}>Cancel</Button>
+                    <Button onClick={closeAddImageDialog}>Cancel</Button>
                     <Button type="submit" form="add-photo-form">Add</Button>
                 </DialogActions>
             </Dialog>

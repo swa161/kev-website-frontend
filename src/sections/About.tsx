@@ -1,14 +1,15 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
 import { useObserver } from '../hooks/useObserver';
-import api, { base_url } from '../api/client';
+import api from '../api/client';
 import './About.css'
-
+import { r2PublicUrl } from '../config/r2';
 
 type ImageData = {
     id: string,
     title: string,
     description: string,
+    image_url: string
     created_at: string
 }
 
@@ -168,7 +169,7 @@ export function About() {
                                         <img
                                             className='image'
 
-                                            src={`${base_url}/api/v1/photos/${imageData && imageData[imageData.length - 1].id}/image`}
+                                            src={`${r2PublicUrl}${imageData[imageData.length - 1].image_url}`}
                                             loading='lazy'
                                             alt={imageData?.[imageData.length - 1].title && imageData[imageData.length - 1].title}
                                         />
@@ -196,7 +197,7 @@ export function About() {
                                     <div className='image-and-reflection'>
                                         <img
                                             className='image'
-                                            src={`${base_url}/api/v1/photos/${img.id}/image`}
+                                            src={`${r2PublicUrl}${img.image_url}`}
                                             loading='lazy'
                                             alt={img.title}
                                             id={String(index)}
@@ -226,7 +227,7 @@ export function About() {
                                         <img
                                             className='image'
 
-                                            src={`${base_url}/api/v1/photos/${imageData && imageData[0].id}/image`}
+                                            src={`${r2PublicUrl}${imageData[0].image_url}`}
                                             loading='lazy'
                                             alt={imageData?.[0].title && imageData[0].title}
                                         />

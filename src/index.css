@@ -153,12 +153,12 @@ body {
 }
 
 @keyframes fade-bottom-up {
-    0% {
+    from {
         opacity: 0;
         transform: translateY(3.5rem);
     }
 
-    100% {
+    to {
         opacity: 1;
         transform: translateX(0px);
     }

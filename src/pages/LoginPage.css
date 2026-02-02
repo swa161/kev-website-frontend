@@ -19,8 +19,8 @@
 
 .darkmode .login-cmp {
     --login-page-background-color:
-        linear-gradient(to bottom, rgb(26, 29, 36), rgb(25, 26, 32));
-    --login-cmp-background-color: rgba(26, 27, 34, 0.548);
+        linear-gradient(to bottom, rgb(49, 58, 80), rgb(25, 26, 32));
+    --login-cmp-background-color: linear-gradient(to bottom, rgb(49, 58, 80), rgb(25, 26, 32));
     --box-shadow: rgba(211, 235, 255, 0.394) 0px 0px 10px 0.5px;
     --color-1: rgba(18, 33, 34, 0.842);
     --color-2: rgba(31, 73, 57, 0.601);
@@ -45,7 +45,7 @@
     filter: blur(150px);
 }
 
-.login-cmp>.color:nth-of-type(1) {
+/* .login-cmp>.color:nth-of-type(1) {
     width: calc(var(--color-block-width) + 100px);
     height: var(--color-block-height);
     background-color: rgb(205, 255, 216);
@@ -75,7 +75,7 @@
     background-color: rgb(241, 143, 198);
     transform: translateY(-3rem) translateX(5rem);
     animation: fade-in-out 6s ease-in-out infinite;
-}
+} */
 
 .floating-login-container {
     display: flex;
@@ -108,6 +108,7 @@
     gap: 1rem;
     color: var(--txt-color);
     margin: 6px 0;
+    padding: 8px 0;
     animation: fade-bottom-up 1s ease-in-out forwards;
 }
 
@@ -147,7 +148,7 @@
     }
 
 
-    .login-cmp>.color:nth-of-type(1) {
+    /* .login-cmp>.color:nth-of-type(1) {
         width: calc(var(--color-block-width) + 600px);
         height: calc(var(--color-block-height) + 300px);
         background-color: var(--color-1);
@@ -176,6 +177,6 @@
         background-color: var(--color-4);
         ;
         right: 15%
-    }
+    } */
 
 }

@@ -1,0 +1,1 @@
+export const r2PublicUrl = import.meta.env.R2_PUBLIC_URL || 'https://pub-f11aff8e6e204a66a86c387551371ac8.r2.dev/'

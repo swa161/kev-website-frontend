@@ -2,7 +2,7 @@ export type User = {
   id: number
   title: string
   description: string
-  image_filename: string
+  image_url: string
   create_at: string
   phone_number: string
   email: string
