@@ -5,7 +5,6 @@ import type { HeroProps } from '../types/user'
 import { Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import type { SxProps, Theme } from '@mui/material'
-import { base_url } from '../api/client'
 import { r2PublicUrl } from '../config/r2'
 
 
