@@ -104,7 +104,7 @@ export function Header() {
                         <Typography sx={headerTextTheme}>{t('home')}</Typography>
                     </a>
                     <a href="#about">
-                        <Typography sx={headerTextTheme}>{t('about_me')}</Typography>
+                        <Typography sx={headerTextTheme}>{t('photos')}</Typography>
                         </a>
                     <a href="#skills">
                         <Typography sx={headerTextTheme}>{t('skills')}</Typography>
