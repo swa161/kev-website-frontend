@@ -248,7 +248,6 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
     const [openAddPhoto, setOpenAddPhoto] = useState(false)
     const [submitNewImage, setSubmitNewImage] = useState(0)
     const newImageRef = useRef<HTMLInputElement | null>(null)
-    const [progress, setProgress] = useState(0)
     const [form, setForm] = useState<UpdateProfileRequest>({
         firstName: user?.first_name,
         lastName: user?.last_name,
@@ -358,10 +357,6 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
                 headers: {
                     'X-Authorization': token
                 },
-                onUploadProgress: (progressEvent) => {
-                    const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total!)
-                    setProgress(percent)
-                }
             })
 
 
@@ -374,7 +369,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         setSelectedFile(null)
         setSelectedImage(null)
     }
-    console.log(progress)
+
     const handleEditProfileImage = () => {
         fileInputRef.current?.click()
     }
