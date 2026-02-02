@@ -97,7 +97,7 @@ export function Header() {
         <header className="header">
             <div className="header-inner desktop-only">
                 <a href="#home" className="fullname-section desktop-only">
-                    <Typography sx={headerFullNameTheme}>{name?.fullName}</Typography>
+                    <Typography sx={headerFullNameTheme}>Kevin Wang</Typography>
                 </a>
                 <div className="right-section desktop-only">
                     <a href="#home">

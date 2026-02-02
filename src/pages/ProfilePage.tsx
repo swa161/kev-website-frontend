@@ -232,7 +232,6 @@ function PhotoPanel({ index, value, imageData, onDeletePhoto, openAddPhotoDialog
 
 export function ProfilePage({ user, refreshUser }: HeroProps) {
     const token = localStorage.getItem('authToken')
-    const isLogIn = useAuthStore(state => state.isLogIn)
     const navigate = useNavigate()
     const setIsLogIn = useAuthStore(state => state.setIsLogIn)
     const setLogInUserId = useAuthStore(state => state.setLogInUserId)
@@ -271,21 +270,15 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
     }
 
     const Logout = () => {
+        navigate('/')
         api.post('/v1/users/logout', {}, { headers: { 'X-Authorization': token } })
             .then(() => {
                 localStorage.removeItem('authToken')
-                navigate('/')
                 setIsLogIn(false)
                 setLogInUserId(-1)
 
             })
     }
-
-    useEffect(() => {
-        if (!isLogIn) {
-            navigate('/error')
-        }
-    })
 
     useEffect(() => {
         const fetchImageData = async () => {
@@ -446,7 +439,6 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
             setDeleteImageId(null)
         }
     }
-
     return (
         <Fragment>
 

@@ -5,6 +5,7 @@ import { ProfilePage } from './pages/ProfilePage'
 import type { User } from './types/user'
 import { LoginPage } from './pages/LoginPage'
 import { ErrorPage } from './pages/ErrorPage'
+import { ProtectedRouteForProfilePage } from './components/ProtectedRouteForProfilePage'
 import api from './api/client'
 
 function App() {
@@ -28,7 +29,12 @@ function App() {
       <Route index element={userData ? <HomePage user={userData} /> : null} />
       <Route path="/login" element={<LoginPage />} />
       <Route path='/error' element={<ErrorPage />} />
-      <Route path='/profile' element={userData ? <ProfilePage user={userData} refreshUser={fetchUserData}/> : null} />
+      <Route path='/profile' element={userData 
+        ? 
+        <ProtectedRouteForProfilePage>
+          <ProfilePage user={userData} refreshUser={fetchUserData}/>
+          </ProtectedRouteForProfilePage>
+        : null} />
     </Routes>
   )
 }
