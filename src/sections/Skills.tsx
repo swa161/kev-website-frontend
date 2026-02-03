@@ -10,34 +10,64 @@ import { useObserver } from '../hooks/useObserver';
 
 export function Skills() {
     const { t } = useTranslation()
-    const { ref, visible } = useObserver({threshold: 0})
-    const skillsData = [{
-        title: "Frontend Engineering",
-        expand: 'defaultExpanded',
-        values: [
-            'Mobile-First Design',
-            'Responsive Design',
-            'State Management Fundamentals',
-            'Component-based Architecture',
-            'Performance-aware UI Development'
-        ]
-    }, {
-        title: "Backend Engineering & APIs",
-        values: [
-            'RESTful API design',
-            'Error Handling',
-            'Input Validation',
-            'Authorization Basics',
-            'CORS Configuration',
-            'API Security Baiscs'
-        ]
-    }, {
-        title: "Programming Language",
-        values: ['Python', 'Typescript', 'C#']
-    },{
-        title: "Development Tools",
-        values: ['Vite', 'React', 'Node.js','Express']
-    }]
+    const { ref, visible } = useObserver({ threshold: 0 })
+    const skillsData = [
+        {
+            title: "Frontend Development",
+            expand: "defaultExpanded",
+            values: [
+                "React fundamentals (functional components, hooks)",
+                "TypeScript basics",
+                "Mobile-first & responsive design",
+                "Component-based UI development",
+                "CSS fundamentals"
+            ]
+        },
+        {
+            title: "Backend Development & APIs",
+            values: [
+                "Node.js fundamentals",
+                "Express.js",
+                "RESTful API design",
+                "Basic authentication & authorization concepts",
+                "Error handling and input validation"
+            ]
+        },
+        {
+            title: "Programming Languages",
+            values: [
+                "TypeScript",
+                "Python",
+                "Kotlin"
+            ]
+        },
+        {
+            title: "Databases",
+            values: [
+                "PostgreSQL (basic schema design & queries)",
+                "MySQL (basic queries)",
+                "Relational database fundamentals"
+            ]
+        },
+        {
+            title: "DevOps & Deployment",
+            values: [
+                "CI/CD fundamentals",
+                "Deployment using Vercel and Render",
+                "Environment variable configuration",
+                "Basic production troubleshooting"
+            ]
+        },
+        {
+            title: "Development Tools & Workflow",
+            values: [
+                "Git version control",
+                "Vite",
+                "npm",
+                "VS Code"
+            ]
+        }
+    ]
     return (
         <div ref={ref as React.RefObject<HTMLDivElement>} className={`skill-container ${visible ? 'is-visible' : ''}`}>
 
@@ -58,12 +88,12 @@ export function Skills() {
                         >
                             <Typography className="skills-text" component={'span'}>{item.title}</Typography>
                         </AccordionSummary>
-                        <AccordionDetails  className='accordion-details'>
+                        <AccordionDetails className='accordion-details'>
                             <List >
                                 {item.values.map((v, i) => (
                                     <ListItem key={i}>
                                         <ListItemIcon>
-                                            <CircleIcon sx={{color:'var(--txt-color)'}} />
+                                            <CircleIcon sx={{ color: 'var(--txt-color)' }} />
                                         </ListItemIcon>
                                         <ListItemText className='skills-item' primary={v} />
                                     </ListItem>
