@@ -9,11 +9,13 @@ import { Footer } from "../components/Footer"
 import './HomePage.css'
 import type { HeroProps } from "../types/user"
 import { ThemeProvider } from "@emotion/react"
-import {LeftSide} from '../components/LeftSide'
+import { LeftSide } from '../components/LeftSide'
 import { RightSide } from "../components/RightSide"
 import { theme } from "../theme/Theme"
 
+
 export function HomePage({ user }: HeroProps) {
+
     return (
         <ThemeProvider theme={theme}>
             <Fragment>
@@ -44,9 +46,8 @@ export function HomePage({ user }: HeroProps) {
                     <RightSide />
                 </div>
 
-                <Footer user={user}/>
+                <Footer user={user} />
             </Fragment>
         </ThemeProvider>
-
     )
 }

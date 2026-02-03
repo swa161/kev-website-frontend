@@ -4,46 +4,8 @@ import './Hero.css'
 import type { HeroProps } from '../types/user'
 import { Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import type { SxProps, Theme } from '@mui/material'
 import { r2PublicUrl } from '../config/r2'
-
-
-const titleTheme: SxProps<Theme> = {
-    fontSize: {
-        xs: '2.5rem',
-        sm: '3rem',
-        md: '3.5rem',
-        lg: '4.5rem'
-    }
-}
-
-const subTitleTheme = {
-    fontSize: {
-        xs: '1.2rem',
-        sm: '1.4rem',
-        md: '1.6rem',
-        lg: '2rem'
-    },
-    fontWeight: 500
-}
-
-const cvTextTheme = {
-    fontSize: {
-        xs: '1rem',
-        sm: '1.1rem',
-        md: '1.2rem',
-        lg: '2rem'
-    },
-    fontWeight: 500
-}
-
-const textContentTheme = {
-    fontSize: {
-        sm: '1.0rem',
-        md: '0.9rem',
-        lg: '1.2rem'
-    },
-}
+import { titleTheme, subTitleTheme, cvTextTheme, textContentTheme } from "../theme/Theme"
 
 
 
@@ -74,8 +36,11 @@ export function Hero({ user }: HeroProps) {
                         <Typography sx={subTitleTheme} variant='subtitle2' className='hero-welcome'>
                             {t('welcome')}
                         </Typography>
-                        <Typography sx={textContentTheme} variant='subtitle1' className='hero-description'>
-                            {user?.description}
+                        <Typography fontFamily={'-apple-system'} sx={textContentTheme} variant='subtitle1' className='hero-description'>
+                            {t("hero-about-me")}
+                        </Typography>
+                        <Typography fontFamily={'-apple-system'} sx={textContentTheme} variant='subtitle1' className='hero-description'>
+                            {t("hero-about-me-second")}
                         </Typography>
                     </div>
                     <div className='cv-container'>

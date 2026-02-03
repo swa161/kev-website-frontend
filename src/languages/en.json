@@ -19,5 +19,11 @@
     "password": "Password",
     "photos": "Photos",
     "sign-in": "Sign In",
-    "wrong-email-or-password-error": "Wrong Email or Password!  o(╥﹏╥)o"
+    "hero-about-me": "I am a recent Computer Science graduate from the University of Canterbury, with strong programming fundamentals and hands-on experience gained through academic coursework and personal projects.",
+    "hero-about-me-second": " I am currently working on two separate projects: a full-stack website for a Chinese tutoring business and a WeChat mini game. I am eager to enter the real-world software development industry, continue learning new technologie, and contribute to building digital products that create meaningful value for the community and society.",
+    "hobbit": "In my spare time, I enjoy photography and capturing wonderful moments in life through my lens. Everyone's memories are unique, and I hope to preserve these beautiful and authentic memories through photos and share them with others.",
+    "wrong-email-or-password-error": "Wrong Email or Password!  o(╥﹏╥)o",
+    "loading-text-1": "Thank you for visiting my website!",
+    "loading-text-2": "My apologies — due to a backend server cold start, the website may take 1–3 minutes to load.",
+    "loading-text-3": "Thank you for your patience. The page will load automatically. 😊"
 }

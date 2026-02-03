@@ -1,0 +1,32 @@
+.loadingPage-container {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.loadingPage-container {
+    --loading-page-background-color: linear-gradient(125deg, #a8edea 0%, #fed6e3 100%);
+}
+
+.darkmode .loadingPage-container {
+    --loading-page-background-color: linear-gradient(125deg, #09203f 0%, #537895 100%);
+}
+
+.loadingPage-container {
+    height: 100vh;
+    width: 100vw;
+    background-image: var(--loading-page-background-color);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loadingPage-container .text {
+    padding: 1rem;
+}
+
+.loading-cat {
+
+}

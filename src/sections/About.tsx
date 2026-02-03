@@ -4,6 +4,8 @@ import { useObserver } from '../hooks/useObserver';
 import api from '../api/client';
 import './About.css'
 import { r2PublicUrl } from '../config/r2';
+import { useTranslation } from 'react-i18next';
+import { Typography } from '@mui/material';
 
 type ImageData = {
     id: string,
@@ -21,6 +23,7 @@ export function About() {
     const touchStart = useRef<number>(0)
     const touchEnd = useRef<number>(0)
     const slideRef = useRef<HTMLDivElement | null>(null)
+    const { t } = useTranslation()
 
     const handleTouchStart = (e: React.TouchEvent) => {
         setIsPaused(true)
@@ -138,6 +141,20 @@ export function About() {
     return (
         <Fragment>
             <div ref={ref as React.RefObject<HTMLDivElement>} className={`about-container ${visible ? 'is-visible' : ''}`}>
+                <div className="about-me-container">
+                   <Typography 
+                sx={{fontStyle: 'italic', 
+                    fontWeight: 350,
+                    fontSize: {
+                        xs: '0.9rem',
+                        sm: '1.0rem',
+                        md: '1.1rem',
+                        lg: '1.2rem'
+                    },
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
+                    }}
+                   fontFamily={'-apple-system'} variant='subtitle1'> {t('hobbit')}</Typography>
+                </div>
                 <div className='carousel-container' >
                     {<ArrowBackIosNew className='leftBtn'
                         onClick={previousImg}

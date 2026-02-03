@@ -21,32 +21,21 @@ import imageCompression from 'browser-image-compression'
 const StyledTextField = styled(TextField)({
     width: 'clamp(200px, 60%, 320px)',
     maxWidth: '100%',
-    // Input text
     "& .MuiInputBase-input": {
         color: "var(--txt-color)",
     },
-
-    // Label
     "& .MuiInputLabel-root": {
         color: "var(--txt-color)",
     },
-
-    // Label when focused
     "& .MuiInputLabel-root.Mui-focused": {
         color: "var(--txt-color)",
     },
-
-    // Underline (default)
     "& .MuiInput-underline:before": {
         borderBottomColor: "var(--txt-color)",
     },
-
-    // Underline (hover)
     "& .MuiInput-underline:hover:before": {
         borderBottomColor: "var(--txt-color)",
     },
-
-    // Underline (focused)
     "& .MuiInput-underline:after": {
         borderBottomColor: "var(--txt-color)",
     },
@@ -55,32 +44,21 @@ const StyledTextField = styled(TextField)({
 const StyledTextFieldDescription = styled(TextField)({
     width: '500px',
     maxWidth: '100%',
-    // Input text
     "& .MuiInputBase-input": {
         color: "var(--txt-color)",
     },
-
-    // Label
     "& .MuiInputLabel-root": {
         color: "var(--txt-color)",
     },
-
-    // Label when focused
     "& .MuiInputLabel-root.Mui-focused": {
         color: "var(--txt-color)",
     },
-
-    // Underline (default)
     "& .MuiInput-underline:before": {
         borderBottomColor: "var(--txt-color)",
     },
-
-    // Underline (hover)
     "& .MuiInput-underline:hover:before": {
         borderBottomColor: "var(--txt-color)",
     },
-
-    // Underline (focused)
     "& .MuiInput-underline:after": {
         borderBottomColor: "var(--txt-color)",
     },

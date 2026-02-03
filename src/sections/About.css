@@ -1,7 +1,12 @@
 .about-container {
     overflow: hidden;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-me-container {
+    margin: 0 10px;
 }
 
 .carousel-container {
@@ -68,18 +73,22 @@
         animation: fade-bottom-up 1s;
     }
 
+    .about-me-container {
+        margin: 0 10px;
+        width: 70%;
+    }
+
+
     .carousel-container {
         aspect-ratio: 16 / 9;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        width: 78%;
         margin: 0 auto;
         animation: fade-bottom-up 1s;
     }
 
     .carousel-viewport {
         overflow: hidden;
-        width: 90%;
         margin: 0;
         padding: 0;
 
@@ -87,12 +96,10 @@
 
     .carousel-slide {
         display: flex;
-        width: 100%;
     }
 
     .image-container {
-
-        min-width: 100%;
+        /* min-width: 100%; */
         box-sizing: border-box;
         position: relative;
         display: flex;
@@ -108,7 +115,7 @@
         opacity: 1;
     }
 
-    
+
     .leftBtn.MuiSvgIcon-root,
     .rightBtn.MuiSvgIcon-root {
         display: block;
@@ -120,6 +127,7 @@
         z-index: 100;
         align-self: center;
     }
+
     .leftBtn {
         padding-left: 0rem;
     }

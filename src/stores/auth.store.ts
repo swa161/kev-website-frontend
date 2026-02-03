@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware'
 interface UserState {
     isLogIn: boolean;
     logInUserId: number;
-    setIsLogIn: (isLogdIn: boolean) => void;
+    setIsLogIn: (isLogIn: boolean) => void;
     setLogInUserId: (logInUserId: number) => void;
 }
 

@@ -1,10 +1,48 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles"
+import type { SxProps, Theme } from '@mui/material'
 
 export let theme = createTheme({
 
 })
 theme = responsiveFontSizes(theme)
 
+const titleTheme: SxProps<Theme> = {
+    fontSize: {
+        xs: '2.5rem',
+        sm: '3rem',
+        md: '3.5rem',
+        lg: '4.5rem'
+    }
+}
+
+const subTitleTheme = {
+    fontSize: {
+        xs: '1.2rem',
+        sm: '1.4rem',
+        md: '1.6rem',
+        lg: '2rem'
+    },
+    fontWeight: 500
+}
+
+const cvTextTheme = {
+    fontSize: {
+        xs: '1rem',
+        sm: '1.1rem',
+        md: '1.2rem',
+        lg: '2rem'
+    },
+    fontWeight: 500
+}
+
+const textContentTheme = {
+    fontSize: {
+        sm: '1.0rem',
+        md: '0.9rem',
+        lg: '1.2rem'
+    },
+    fontWeight: 330
+}
 
 const loginTitleTheme = {
     fontFamily: "Helvetica Neue",
@@ -118,5 +156,5 @@ const timelineContentFontSizeTheme = {
 }
 
 export {loginContentTheme, textfieldTheme, loginTitleTheme, outlinedInputTheme, loginButtonTheme, tabFontSize
-    ,timelineTimeContentFontTheme, timelineContentFontSizeTheme
+    ,timelineTimeContentFontTheme, timelineContentFontSizeTheme, titleTheme, subTitleTheme, cvTextTheme, textContentTheme
 }
