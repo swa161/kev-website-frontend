@@ -92,7 +92,7 @@
 }
 
 
-@media (min-width: 768px) {
+@media (min-width: 1083px) {
     .mobile-only {
         display: none;
     }

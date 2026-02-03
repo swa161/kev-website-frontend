@@ -1,7 +1,7 @@
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { useState } from 'react'
-
+import { iconFontSize } from '../theme/Theme'
 export function ColorIcon() {
     const [isDarkMode, setIsDarkMode] = useState(() => { return Boolean(localStorage.getItem('theme'))})
     const toggleColorMode = () => {
@@ -18,7 +18,7 @@ export function ColorIcon() {
 
 
     return isDarkMode ? 
-    (<LightModeIcon className="color-mode-btn" onClick={toggleColorMode} sx={{ cursor: 'pointer', fontSize: '2rem' }} />) : 
-    (<DarkModeIcon className="color-mode-btn" onClick={toggleColorMode} sx={{ cursor: 'pointer', fontSize: '2rem' }} />)
+    (<LightModeIcon className="color-mode-btn" onClick={toggleColorMode} sx={{ cursor: 'pointer', fontSize: iconFontSize }} />) : 
+    (<DarkModeIcon className="color-mode-btn" onClick={toggleColorMode} sx={{ cursor: 'pointer', fontSize: iconFontSize  }} />)
 }
 

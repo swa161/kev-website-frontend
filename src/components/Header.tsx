@@ -16,14 +16,14 @@ import './Header.css'
 import { Slide, Typography } from "@mui/material";
 import { useAuthStore } from "../stores/auth.store";
 import { ColorIcon } from "./ColorIcon";
-
+import { iconFontSize } from '../theme/Theme'
 type FullNameResponse = {
     fullName: string
 }
 
 const headerFullNameTheme = {
     fontSize: {
-        xs: '0.6rem',
+        xs: '0.7rem',
         sm: '0.8rem',
         md: '1.3rem',
         lg: '2rem'
@@ -35,9 +35,11 @@ const headerTextTheme = {
         xs: '0.6rem',
         sm: '0.75rem',
         md: '0.95rem',
-        lg: '1.4rem'
+        lg: '1.33rem'
     }
 }
+
+
 
 export function Header() {
     const [name, setName] = useState<FullNameResponse | null>(null)
@@ -79,7 +81,7 @@ export function Header() {
         if (!isMenuOpen) return
 
         const handleClickOutside = (event: TouchEvent | MouseEvent) => {
-            if ( menuRef.current &&
+            if (menuRef.current &&
                 !menuRef.current.contains(event.target as Node)
             ) {
                 setIsMenuOpen(false)
@@ -105,7 +107,7 @@ export function Header() {
                     </a>
                     <a href="#about">
                         <Typography sx={headerTextTheme}>{t('photos')}</Typography>
-                        </a>
+                    </a>
                     <a href="#skills">
                         <Typography sx={headerTextTheme}>{t('skills')}</Typography>
                     </a>
@@ -116,7 +118,16 @@ export function Header() {
                         <Typography sx={headerTextTheme}>{t('contact')}</Typography>
                     </a>
                     <ColorIcon />
-                    <LanguageIcon  />
+                    <LanguageIcon />
+                    {isLogIn ?
+                        <AccountCircleIcon
+                            onClick={() => navigate('/profile')}
+                            sx={{ cursor: 'pointer', fontSize: iconFontSize }}
+                        /> :
+                        <LoginIcon
+                            onClick={() => navigate('/login')}
+                            sx={{ cursor: 'pointer', fontSize: iconFontSize }}
+                        />}
                 </div>
             </div>
 
@@ -131,7 +142,7 @@ export function Header() {
                     <div className="projects-contact-language">
                         <a href="#projects" onClick={toggleMenu}><AccountTreeRoundedIcon className="icon" /></a>
                         <a href="#contact" onClick={toggleMenu}><CallRoundedIcon className="icon" /></a>
-                        <LanguageIcon  func={toggleMenu}/>
+                        <LanguageIcon func={toggleMenu} />
                     </div>
                     <div className="close">
                         <ClearRoundedIcon className="icon" onClick={toggleMenu} />
@@ -141,18 +152,18 @@ export function Header() {
             <div className="mobile-only bottom-trigger-bar">
                 <div className="mobile-only bottom-trigger-bar-buttons-container">
                     <button className="menu-toggle-btn" onClick={toggleMenu} >
-                        <WidgetsRoundedIcon sx={{ fontSize: '2rem' , color: 'var(--txt-color)'}} />
+                        <WidgetsRoundedIcon sx={{ fontSize: '2rem', color: 'var(--txt-color)' }} />
                     </button>
                     <ColorIcon />
-                    {isLogIn ?  
-                    <AccountCircleIcon 
-                    onClick={() => navigate('/profile')}
-                    sx={{ cursor: 'pointer', fontSize: '2rem' }}
-                    /> : 
-                    <LoginIcon 
-                    onClick={() => navigate('/login')}
-                    sx={{ cursor: 'pointer', fontSize: '2rem' }}
-                    />}
+                    {isLogIn ?
+                        <AccountCircleIcon
+                            onClick={() => navigate('/profile')}
+                            sx={{ cursor: 'pointer', fontSize: '2rem' }}
+                        /> :
+                        <LoginIcon
+                            onClick={() => navigate('/login')}
+                            sx={{ cursor: 'pointer', fontSize: '2rem' }}
+                        />}
                 </div>
                 <span className="fullname-section mobile-only">{name?.fullName}</span>
             </div>

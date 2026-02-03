@@ -44,6 +44,13 @@ const textContentTheme = {
     fontWeight: 330
 }
 
+const iconFontSize = {
+    xs: '1.1rem',
+    sm: '1.3rem',
+    md: '1.6rem',
+    lg: '2rem',
+}
+
 const loginTitleTheme = {
     fontFamily: "Helvetica Neue",
     textAlign: 'center',
@@ -156,5 +163,5 @@ const timelineContentFontSizeTheme = {
 }
 
 export {loginContentTheme, textfieldTheme, loginTitleTheme, outlinedInputTheme, loginButtonTheme, tabFontSize
-    ,timelineTimeContentFontTheme, timelineContentFontSizeTheme, titleTheme, subTitleTheme, cvTextTheme, textContentTheme
+    ,timelineTimeContentFontTheme, timelineContentFontSizeTheme, titleTheme, subTitleTheme, cvTextTheme, textContentTheme, iconFontSize
 }

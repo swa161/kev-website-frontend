@@ -1,6 +1,6 @@
 import TranslateRoundedIcon from '@mui/icons-material/TranslateRounded';
 import { useTranslation } from 'react-i18next';
-
+import { iconFontSize } from '../theme/Theme'
 export function LanguageIcon({func}:{func?: ()=> void}) {
     const {  i18n } = useTranslation()
     const languageHandler = () => {
@@ -13,6 +13,6 @@ export function LanguageIcon({func}:{func?: ()=> void}) {
     return (
         <TranslateRoundedIcon 
         onClick={() => {languageHandler(); func?.()}} 
-        sx={{ cursor: 'pointer', color: 'var(--txt-color)', fontSize: '2rem' }} />
+        sx={{ cursor: 'pointer', color: 'var(--txt-color)', fontSize: iconFontSize }} />
     )
 }
