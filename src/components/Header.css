@@ -90,8 +90,6 @@
     border: none;
     background-color: transparent;
 }
-
-
 @media (min-width: 1083px) {
     .mobile-only {
         display: none;
