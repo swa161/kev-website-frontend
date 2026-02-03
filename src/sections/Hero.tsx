@@ -45,9 +45,7 @@ export function Hero({ user }: HeroProps) {
                     </div>
                     <div className='cv-container'>
                         <a
-                            href={import.meta.env.VITE_API_BASE_URL
-                                ? `${import.meta.env.VITE_API_BASE_URL}/api/v1/users/1/cv`
-                                : `/api/v1/users/1/cv`}
+                            href={`${r2PublicUrl}cv/KevinWangCV.pdf`}
                             target='_blank'
                             className='hero-cv'>
                             <Typography sx={cvTextTheme} variant='subtitle2' className='cv'>
