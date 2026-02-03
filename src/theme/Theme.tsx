@@ -45,7 +45,7 @@ const textContentTheme = {
 }
 
 const iconFontSize = {
-    xs: '1.1rem',
+    xs: '2rem',
     sm: '1.3rem',
     md: '1.6rem',
     lg: '2rem',
