@@ -26,7 +26,7 @@ function EducationPanel(props: TabPanelProps) {
             <Timeline className='time-line' sx={{ gap: '5px', padding: '1rem' }} position='alternate'>
                 <TimelineItem>
                     <TimelineOppositeContent sx={timelineTimeContentFontTheme}>
-                        Feb 2025 - Now
+                        Feb 2025 - Nov 2025
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineDot />

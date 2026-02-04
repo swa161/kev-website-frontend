@@ -2,10 +2,11 @@
 import { useNavigate } from "react-router-dom"
 import { useAuthStore } from "../stores/auth.store"
 import type { HeroProps } from "../types/user"
-import { styled, Box, IconButton, TextField, Typography, Tabs, Tab, Dialog, DialogContent, DialogContentText, DialogActions, Button } from "@mui/material"
+import { styled, Box, IconButton, TextField, Typography, Tabs, Tab, Dialog, DialogContent, DialogContentText, DialogActions, Button, Alert, type AlertColor } from "@mui/material"
 import { HomeIcon } from "../components/HomeIcon"
 import { ColorIcon } from "../components/ColorIcon"
-import { Fragment, useEffect, useRef, useState, type ChangeEvent } from "react"
+import { Fragment, useEffect, useCallback, useRef, useState, type ChangeEvent } from "react"
+import { useDropzone } from 'react-dropzone'
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -17,6 +18,9 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import api from "../api/client"
 import { r2PublicUrl } from "../config/r2"
 import imageCompression from 'browser-image-compression'
+import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
+import Snackbar from '@mui/material/Snackbar';
+
 
 const StyledTextField = styled(TextField)({
     width: 'clamp(200px, 60%, 320px)',
@@ -64,7 +68,9 @@ const StyledTextFieldDescription = styled(TextField)({
     },
 });
 
-
+interface FileWithPreview extends File {
+    preview: string
+}
 
 interface UpdateProfileRequest {
     firstName?: string,
@@ -101,6 +107,11 @@ interface ImageData {
     created_at: string
 }
 
+interface SnackState {
+    open: boolean,
+    message: string,
+    severity: AlertColor
+}
 
 function PersonalPanel({ form, index, value, onChange, save }: PersonalPanelProps) {
     if (index !== value) return null;
@@ -201,7 +212,7 @@ function PhotoPanel({ index, value, imageData, onDeletePhoto, openAddPhotoDialog
                     </div>
                 ))}
             </div>
-            <AddAPhotoIcon onClick={openAddPhotoDialog} sx={{ fontSize: '2rem', marginTop: '1rem' }} />
+            <AddAPhotoIcon onClick={openAddPhotoDialog} sx={{ fontSize: '2rem', marginTop: '1rem', marginRight: '1rem' }} />
         </div>
     )
 }
@@ -226,6 +237,12 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
     const [openAddPhoto, setOpenAddPhoto] = useState(false)
     const [submitNewImage, setSubmitNewImage] = useState(0)
     const newImageRef = useRef<HTMLInputElement | null>(null)
+    const [cv, setCV] = useState<FileWithPreview | null>(null)
+    const [cvSnack, setCVSnack] = useState<SnackState>({
+        open: false,
+        message: '',
+        severity: 'success'
+    })
     const [form, setForm] = useState<UpdateProfileRequest>({
         firstName: user?.first_name,
         lastName: user?.last_name,
@@ -241,9 +258,26 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         useWebWorker: true,
         fileType: 'image/webp'
     }
+    const onDrop = useCallback((accptedFiles: File[]) => {
+        console.log(accptedFiles)
+        const selectedfile = accptedFiles[0]
+        if (selectedfile) {
+            setCV(Object.assign(selectedfile, { preview: URL.createObjectURL(selectedfile) }))
+        }
+    }, [])
+    console.log(cv)
+    const { getRootProps, getInputProps } = useDropzone({ onDrop })
 
     const handleClose = () => {
         setOpen(false)
+    }
+
+    const showCVSnack = (message: string, severity: AlertColor = 'success') => {
+        setCVSnack({ open: true, message, severity })
+    }
+
+    const handleCloseCVSnack = () => {
+        setCVSnack((prev) => ({ ...prev, open: false }))
     }
 
     const Logout = () => {
@@ -295,7 +329,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         const file = e.target.files?.[0]
         if (!file) return
         try {
-            
+
             const compressedProfileImage = await imageCompression(file, options)
             const arrayBuffer = await compressedProfileImage.arrayBuffer()
             await api.put(`/v1/users/${user?.id}/image`, arrayBuffer, {
@@ -313,9 +347,7 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
     const handleNewImageSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
         if (!file) return
-
         setSelectedFile(file)
-
         const previewUrl = URL.createObjectURL(file)
         setSelectedImage(previewUrl)
     }
@@ -391,7 +423,6 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
     const requestDeletePhoto = (imageId: number) => {
         setDeleteImageId(imageId)
         setOpen(true)
-
     }
 
     const confirmDeletePhoto = async () => {
@@ -412,6 +443,28 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
             setDeleteImageId(null)
         }
     }
+
+    const uploadCV = async () => {
+        if (!cv) return
+        try {
+            const arrayBuffer = await cv.arrayBuffer()
+            await api.put(`/v1/users/${user?.id}/cv`, arrayBuffer, {
+                headers: {
+                    'X-Authorization': token,
+                    'Content-Type': cv.type
+                }
+            })
+            const message = 'Successfully uploaded CV.'
+            showCVSnack(message, 'success')
+        } catch (err) {
+            const message = 'Failed to upload CV.'
+            showCVSnack(message, 'error')
+            console.log(err)
+        }
+        setCV(null)
+        await refreshUser?.()
+    }
+
     return (
         <Fragment>
 
@@ -422,36 +475,80 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
                     <LogoutIcon onClick={Logout}
                         sx={{ cursor: 'pointer', color: 'var(--txt-color)', fontSize: '2rem' }} />
                 </div>
-                <section className="image-group">
-                    <Box
-                        component={'img'}
-                        src={`${r2PublicUrl}${user?.image_url}?v=${imageVersion}`}
-                        className="profile-picture"
-                    />
-                    <input
-                        ref={fileInputRef}
-                        type="file"
-                        accept="image/*"
-                        hidden
-                        onChange={handleImageSelected}
-                    />
-                    <Box display={"flex"}
-                        justifyItems={'center'}
-                        alignItems={'center'}
-                    >
-                        <IconButton onClick={handleEditProfileImage} className="image-edit">
-                            <AddPhotoAlternateIcon sx=
-                                {{
-                                    fontSize:
-                                        { xs: '1.8rem', sm: '2rem', md: '2.1rem', lg: '2.2rem' },
-                                    color: 'var(--txt-color)'
-                                }
-                                }
-                                className="image-edit" />
-                        </IconButton>
-                        <Typography variant="subtitle2">Edit Image</Typography></Box>
+                <div className="profile-picture-and-cv-container">
+                    <section className="image-group">
+                        <Box
+                            component={'img'}
+                            src={`${r2PublicUrl}${user?.image_url}?v=${imageVersion}`}
+                            className="profile-picture"
+                        />
+                        <input
+                            ref={fileInputRef}
+                            type="file"
+                            accept="image/*"
+                            hidden
+                            onChange={handleImageSelected}
+                        />
+                        <Box display={"flex"}
+                            justifyItems={'center'}
+                            alignItems={'center'}
+                        >
+                            <IconButton onClick={handleEditProfileImage} className="image-edit">
+                                <AddPhotoAlternateIcon sx=
+                                    {{
+                                        fontSize:
+                                            { xs: '1.8rem', sm: '2rem', md: '2.1rem', lg: '2.2rem' },
+                                        color: 'var(--txt-color)'
+                                    }
+                                    }
+                                    className="image-edit" />
+                            </IconButton>
+                            <Typography variant="subtitle2">Edit Image</Typography></Box>
 
-                </section>
+                    </section>
+                    <section className="cv-group">
+                        <Typography variant="h5">Update CV File</Typography>
+                        {!cv && <div {...getRootProps()}>
+                            <input {...getInputProps()} />
+                            {
+                                <Typography
+                                    sx={{
+                                        fontSize: {
+                                            xs: '0.9rem',
+                                            sm: '1.1rem',
+                                            md: '1.2rem',
+                                            lg: '1.3rem'
+                                        },
+                                        border: '2px solid black',
+                                        borderRadius: '3px'
+
+                                    }} >Drag 'n' drop CV file here, or click to select files</Typography>
+                            }
+                        </div>}
+
+                        {cv ? <div className="cv-preview">
+                            <iframe src={cv.preview} />
+                            <div className="cv-uploadbutton-text-container">
+                                <Typography
+                                    component='a'
+                                    href={cv.preview}
+                                    sx={{
+                                        textDecoration: 'none',
+                                        paddingTop: '5px',
+                                        color: 'var(--txt-color)',
+                                        paddingBottom: '5px',
+                                        fontSize: '1.6rem'
+                                    }}>{cv.name}</Typography>
+                                <IconButton onClick={uploadCV}>
+                                    <CloudUploadOutlinedIcon sx={{
+                                        fontSize: '2rem'
+                                    }} />
+                                </IconButton>
+                            </div>
+                        </div> : <>No File</>}
+                    </section>
+                </div>
+
                 <div className="top-container">
                     <Tabs
                         sx={{
@@ -581,6 +678,22 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
                     <Button type="submit" form="add-photo-form">Add</Button>
                 </DialogActions>
             </Dialog>
+            <Snackbar
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                open={cvSnack.open}
+                onClose={handleCloseCVSnack}
+                key={'bottom' + 'center'}
+                autoHideDuration={1200}
+            >
+                <Alert
+                    onClose={handleCloseCVSnack}
+                    severity={cvSnack.severity}
+                    variant="filled"
+                    sx={{ width: '100%' }}
+                >
+                    Successfully uploaded CV
+                </Alert>
+            </Snackbar>
         </Fragment >
 
     )

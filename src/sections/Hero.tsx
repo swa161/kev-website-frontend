@@ -45,7 +45,7 @@ export function Hero({ user }: HeroProps) {
                     </div>
                     <div className='cv-container'>
                         <a
-                            href={`${r2PublicUrl}cv/KevinWangCV.pdf`}
+                            href={`${r2PublicUrl}${user?.cv_filename}`}
                             target='_blank'
                             className='hero-cv'>
                             <Typography sx={cvTextTheme} variant='subtitle2' className='cv'>
