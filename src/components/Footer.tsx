@@ -23,7 +23,7 @@ export function Footer({ user }: HeroProps) {
                     target="_blank"
                     sx={footerButtonTheme}
                 >
-                    <LinkedInIcon sx={{fontSize: '1.8rem'}} />
+                    <LinkedInIcon sx={{fontSize: '1.8rem',color: 'var(--txt-color)'}} />
                 </IconButton>
                 <IconButton
                     href="https://github.com/swa161?tab=repositories"
@@ -32,7 +32,7 @@ export function Footer({ user }: HeroProps) {
                     target="_blank"
                     sx={footerButtonTheme}
                 >
-                    <GitHubIcon sx={{fontSize: '1.8rem'}}/>
+                    <GitHubIcon sx={{fontSize: '1.8rem', color: 'var(--txt-color)'}}/>
                 </IconButton>
 
             </div>
