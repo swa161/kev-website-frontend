@@ -24,6 +24,8 @@
     "hobbit": "In my spare time, I enjoy photography and capturing wonderful moments in life through my lens. Everyone's memories are unique, and I hope to preserve these beautiful and authentic memories through photos and share them with others.",
     "wrong-email-or-password-error": "Wrong Email or Password!  o(╥﹏╥)o",
     "loading-text-1": "Thank you for visiting my website!",
-    "loading-text-2": "My apologies — due to a backend server cold start, the website may take 1–3 minutes to load.",
-    "loading-text-3": "Thank you for your patience. The page will load automatically. 😊"
+    "loading-text-2": "This website may take 1–3 minutes to load the first time due to the server starting up after inactivity",
+    "loading-text-3": "Thank you for your patience — the page will load automatically😊"
+
+
 }

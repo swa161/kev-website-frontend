@@ -142,18 +142,19 @@ export function About() {
         <Fragment>
             <div ref={ref as React.RefObject<HTMLDivElement>} className={`about-container ${visible ? 'is-visible' : ''}`}>
                 <div className="about-me-container">
-                   <Typography 
-                sx={{fontStyle: 'italic', 
-                    fontWeight: 350,
-                    fontSize: {
-                        xs: '0.9rem',
-                        sm: '1.0rem',
-                        md: '1.1rem',
-                        lg: '1.2rem'
-                    },
-                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
-                    }}
-                   fontFamily={'-apple-system'} variant='subtitle1'> {t('hobbit')}</Typography>
+                    <Typography
+                        sx={{
+                            fontStyle: 'italic',
+                            fontWeight: 350,
+                            fontSize: {
+                                xs: '0.9rem',
+                                sm: '1.0rem',
+                                md: '1.1rem',
+                                lg: '1.2rem'
+                            },
+                            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
+                        }}
+                        fontFamily={'-apple-system'} variant='subtitle1'> {t('hobbit')}</Typography>
                 </div>
                 <div className='carousel-container' >
                     {<ArrowBackIosNew className='leftBtn'

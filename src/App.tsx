@@ -34,7 +34,6 @@ function App() {
     }
     loadUserDate()
   }, [])
-  console.log(isLoading)
   return (
     <>
     {isLoading && <LoadingPage />}

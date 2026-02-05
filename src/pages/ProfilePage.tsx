@@ -259,13 +259,11 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         fileType: 'image/webp'
     }
     const onDrop = useCallback((accptedFiles: File[]) => {
-        console.log(accptedFiles)
         const selectedfile = accptedFiles[0]
         if (selectedfile) {
             setCV(Object.assign(selectedfile, { preview: URL.createObjectURL(selectedfile) }))
         }
     }, [])
-    console.log(cv)
     const { getRootProps, getInputProps } = useDropzone({ onDrop })
 
     const handleClose = () => {
@@ -405,7 +403,6 @@ export function ProfilePage({ user, refreshUser }: HeroProps) {
         const payload = Object.fromEntries(
             Object.entries(form).filter(([, v]) => v !== undefined && v !== "")
         )
-        console.log(payload)
         try {
             await api.patch(`/v1/users/${user?.id}`, payload, {
                 headers: {
