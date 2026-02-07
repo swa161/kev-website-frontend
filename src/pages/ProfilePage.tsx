@@ -46,7 +46,6 @@ const StyledTextField = styled(TextField)({
 });
 
 const StyledTextFieldDescription = styled(TextField)({
-    width: '500px',
     maxWidth: '100%',
     "& .MuiInputBase-input": {
         color: "var(--txt-color)",
