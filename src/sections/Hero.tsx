@@ -43,7 +43,7 @@ export function Hero({ user }: HeroProps) {
                             {t("hero-about-me-second")}
                         </Typography>
                     </div>
-                    <div className='cv-container'>
+                    {/* <div className='cv-container'>
                         <a
                             href={`${r2PublicUrl}${user?.cv_filename}`}
                             target='_blank'
@@ -55,7 +55,7 @@ export function Hero({ user }: HeroProps) {
                                 <Download size={30} />
                             </span>
                         </a>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className="user-image-container"
