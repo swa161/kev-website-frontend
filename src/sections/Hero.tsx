@@ -1,11 +1,12 @@
 
-import { Download } from 'lucide-react'
+// import { Download } from 'lucide-react'
 import './Hero.css'
 import type { HeroProps } from '../types/user'
 import { Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { r2PublicUrl } from '../config/r2'
-import { titleTheme, subTitleTheme, cvTextTheme, textContentTheme } from "../theme/Theme"
+import { titleTheme, subTitleTheme, textContentTheme } from "../theme/Theme"
+// import { cvTextTheme } from '../theme/Theme'
 
 
 
