@@ -3,6 +3,9 @@
 This repository contains the frontend application for my personal website. It is build with React and TypeScript, focusing on mobile-first responsive design and maintainable component architecture.
 
 
+## Website
+`https://kev-website-frontend.vercel.app/`
+
 # Setup & Installation
 ## Local running frontend in dev mode
 1. clone the repository
