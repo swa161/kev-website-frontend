@@ -1,75 +1,41 @@
-# React + TypeScript + Vite
+# Kevin Wang Personal Website Frontend
+## Author: Kevin Wang
+This repository contains the frontend application for my personal website. It is build with React and TypeScript, focusing on mobile-first responsive design and maintainable component architecture.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# Setup & Installation
+## Local running frontend in dev mode
+1. clone the repository
+2. install dependencies `npm install`
+3. create .env file. Use enviroment variables configured in the dashboard:`https://vercel.com/kevin-wangs-projects-611e61c5/kev-website-frontend/settings/environment-variables`
+4. navigate to the root of the project. Run `npm run dev` to run locally in development mode.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Tech Stack
+- Vite + React
+- TypeScript
+- Material UI
+- React-dropzone 
+- Zustand (global state management )
+- i18next (internationalization)
 
-## React Compiler
+# Project Structure (Folders)
+- `api`: contains `client.ts` which configures the Axios instance and base API URL.
+- `assets`: Static assests such as decoration svgs, placeholder image for image upload functionality, and loading page GIF.
+- `components`: all reusable & custom components created in this project are stored in this folder.
+- `config`: place for configuration,i18next.ts contains configuration for translation between english and chinese.
+- `hooks`: all custom react hooks created in this project are stored in this folder.
+- `languages`: translation files (en.json and zh.json) used by i18next.
+- `pages`: page-level components that are directly connected to application routes.
+- `sections`: modular sections used specifically on the homepage.
+- `stores`: global state management logic implemented with Zustand.
+- `theme`: all resuable theme configuration for MUI components.
+- `types`: shared TypeScript type definitions and interfaces.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
 
-Note: This will impact Vite dev & build performances.
+# Future improvements
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Refactor and clean up the existing codebase to improve readability, maintainability, and file organization.
+- Change the overall aesthetics of the website
+- Migrate hard-coded content (such as skills and projects) to database for improved scalability and maintainability.
+- Add a Chinese version of personal information in the database to support full internationalization (backend enhancement).
+- Improve the visual design and overall aesthetics of the profile page.
