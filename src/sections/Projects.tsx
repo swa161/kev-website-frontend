@@ -97,8 +97,8 @@ function WorkPanel(props: TabPanelProps) {
                         <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent sx={timelineContentFontSizeTheme}>
-                        <a href='https://github.com/swa161/StrucSmart' target='_blank'>StrucSmart (AI-assisted ETABS model generation tool) (View on GitHub)</a>
-                        
+                        {/* <a href='https://github.com/swa161/StrucSmart' target='_blank'>StrucSmart (AI-assisted ETABS model generation tool) (View on GitHub)</a> */}
+                        StrucSmart (AI-assisted ETABS model generation tool)
                     </TimelineContent>
                 </TimelineItem>
                 <TimelineItem>
