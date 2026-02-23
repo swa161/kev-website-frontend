@@ -90,7 +90,20 @@ function WorkPanel(props: TabPanelProps) {
             <Timeline className='time-line' sx={{ gap: '5px', padding: '1rem' }} position='alternate'>
                 <TimelineItem>
                     <TimelineOppositeContent sx={timelineTimeContentFontTheme}>
-                        Jan 2026- Now
+                        Feb 2026- Present
+                    </TimelineOppositeContent>
+                    <TimelineSeparator>
+                        <TimelineDot />
+                        <TimelineConnector />
+                    </TimelineSeparator>
+                    <TimelineContent sx={timelineContentFontSizeTheme}>
+                        <a href='https://github.com/swa161/StrucSmart' target='_blank'>StrucSmart (AI-assisted ETABS model generation tool) (View on GitHub)</a>
+                        
+                    </TimelineContent>
+                </TimelineItem>
+                <TimelineItem>
+                    <TimelineOppositeContent sx={timelineTimeContentFontTheme}>
+                        Jan 2026- Present
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineDot />
@@ -100,21 +113,21 @@ function WorkPanel(props: TabPanelProps) {
                         Donglin Chinese School Website
                     </TimelineContent>
                 </TimelineItem>
-                <TimelineItem>
+                                <TimelineItem>
                     <TimelineOppositeContent sx={timelineTimeContentFontTheme}>
-                        Jan 2026- Now
+                        Jan 2026- On Hold
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineDot />
                         <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent sx={timelineContentFontSizeTheme}>
-                        Wechat Mini Program
+                        Wechat Mini Game
                     </TimelineContent>
                 </TimelineItem>
                 <TimelineItem>
                     <TimelineOppositeContent sx={timelineTimeContentFontTheme}>
-                        Nov 2025 - Now
+                        Nov 2025 - Present
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineDot />

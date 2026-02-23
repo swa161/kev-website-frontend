@@ -14,6 +14,10 @@
     font-size: 0.9rem;
     color: var(--subtitle1-color);
 }
+.time-line a {
+    text-decoration: none;
+    color: var(--selected-color);
+}
 
 
 @media (min-width: 768px) {
