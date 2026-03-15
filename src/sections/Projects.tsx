@@ -11,7 +11,7 @@ import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import { useState } from 'react';
 import { useObserver } from '../hooks/useObserver';
-import { tabFontSize,timelineTimeContentFontTheme, timelineContentFontSizeTheme} from '../theme/Theme'
+import { tabFontSize, timelineTimeContentFontTheme, timelineContentFontSizeTheme } from '../theme/Theme'
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -82,7 +82,6 @@ function EducationPanel(props: TabPanelProps) {
 
 function WorkPanel(props: TabPanelProps) {
 
-
     return (
         <div
             hidden={props.value !== props.index}
@@ -113,7 +112,7 @@ function WorkPanel(props: TabPanelProps) {
                         Donglin Chinese School Website
                     </TimelineContent>
                 </TimelineItem>
-                                <TimelineItem>
+                {/* <TimelineItem>
                     <TimelineOppositeContent sx={timelineTimeContentFontTheme}>
                         Jan 2026- On Hold
                     </TimelineOppositeContent>
@@ -124,7 +123,7 @@ function WorkPanel(props: TabPanelProps) {
                     <TimelineContent sx={timelineContentFontSizeTheme}>
                         Wechat Mini Game
                     </TimelineContent>
-                </TimelineItem>
+                </TimelineItem> */}
                 <TimelineItem>
                     <TimelineOppositeContent sx={timelineTimeContentFontTheme}>
                         Nov 2025 - Present
@@ -187,7 +186,7 @@ function WorkPanel(props: TabPanelProps) {
 export function Projects() {
     const { t } = useTranslation()
     const [value, setValue] = useState(0)
-    const { ref, visible } = useObserver({threshold: 0})
+    const { ref, visible } = useObserver({ threshold: 0 })
     const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue)
     }

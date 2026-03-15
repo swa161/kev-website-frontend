@@ -17,7 +17,7 @@ export function Footer({ user }: HeroProps) {
             <Typography variant="h1" className="footer-name">{`${user?.first_name} ${user?.last_name}`}</Typography>
             <div className="icon-wraper">
                 <IconButton
-                    href="https://www.linkedin.com/in/kevin-wang-900755289/"
+                    href="https://www.linkedin.com/in/shilong-wang-900755289"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn"
                     target="_blank"
