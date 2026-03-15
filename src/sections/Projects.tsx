@@ -89,6 +89,19 @@ function WorkPanel(props: TabPanelProps) {
             <Timeline className='time-line' sx={{ gap: '5px', padding: '1rem' }} position='alternate'>
                 <TimelineItem>
                     <TimelineOppositeContent sx={timelineTimeContentFontTheme}>
+                        March 2026- Present
+                    </TimelineOppositeContent>
+                    <TimelineSeparator>
+                        <TimelineDot />
+                        <TimelineConnector />
+                    </TimelineSeparator>
+                    <TimelineContent sx={timelineContentFontSizeTheme}>
+                        {/* <a href='https://github.com/swa161/StrucSmart' target='_blank'>StrucSmart (AI-assisted ETABS model generation tool) (View on GitHub)</a> */}
+                        Personal Website (Redesign)
+                    </TimelineContent>
+                </TimelineItem>
+                <TimelineItem>
+                    <TimelineOppositeContent sx={timelineTimeContentFontTheme}>
                         Feb 2026- Present
                     </TimelineOppositeContent>
                     <TimelineSeparator>
@@ -126,7 +139,7 @@ function WorkPanel(props: TabPanelProps) {
                 </TimelineItem> */}
                 <TimelineItem>
                     <TimelineOppositeContent sx={timelineTimeContentFontTheme}>
-                        Nov 2025 - Present
+                        Nov 2025 - Feb 2026
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineDot />
