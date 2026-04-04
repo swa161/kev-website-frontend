@@ -9,8 +9,8 @@ import { Footer } from "../components/Footer"
 import './HomePage.css'
 import type { HeroProps } from "../types/user"
 import { ThemeProvider } from "@emotion/react"
-import { LeftSide } from '../components/LeftSide'
-import { RightSide } from "../components/RightSide"
+// import { LeftSide } from '../components/LeftSide'
+// import { RightSide } from "../components/RightSide"
 import { theme } from "../theme/Theme"
 
 
@@ -21,7 +21,7 @@ export function HomePage({ user }: HeroProps) {
             <Fragment>
                 <Header />
                 <div className="whole-page-container">
-                    <LeftSide />
+                    {/* <LeftSide /> */}
                     <div className="sections-container">
                         <section id='home' className="hero-section">
                             <Hero user={user} />
@@ -43,7 +43,7 @@ export function HomePage({ user }: HeroProps) {
                             <Contact user={user} />
                         </section>
                     </div>
-                    <RightSide />
+                    {/* <RightSide /> */}
                 </div>
 
                 <Footer user={user} />
