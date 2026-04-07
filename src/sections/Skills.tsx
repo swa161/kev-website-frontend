@@ -36,8 +36,9 @@ export function Skills() {
         {
             title: "Programming Languages",
             values: [
-                "TypeScript",
+                "JavaScript | TypeScript",
                 "Python",
+                "C#",
                 "Kotlin"
             ]
         },

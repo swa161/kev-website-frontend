@@ -87,19 +87,7 @@ function WorkPanel(props: TabPanelProps) {
             hidden={props.value !== props.index}
             className="work-panel">
             <Timeline className='time-line' sx={{ gap: '5px', padding: '1rem' }} position='alternate'>
-                <TimelineItem>
-                    <TimelineOppositeContent sx={timelineTimeContentFontTheme}>
-                        March 2026- Present
-                    </TimelineOppositeContent>
-                    <TimelineSeparator>
-                        <TimelineDot />
-                        <TimelineConnector />
-                    </TimelineSeparator>
-                    <TimelineContent sx={timelineContentFontSizeTheme}>
-                        {/* <a href='https://github.com/swa161/StrucSmart' target='_blank'>StrucSmart (AI-assisted ETABS model generation tool) (View on GitHub)</a> */}
-                        Personal Website (Redesign)
-                    </TimelineContent>
-                </TimelineItem>
+
                 <TimelineItem>
                     <TimelineOppositeContent sx={timelineTimeContentFontTheme}>
                         Feb 2026- Present
@@ -125,18 +113,6 @@ function WorkPanel(props: TabPanelProps) {
                         Donglin Chinese School Website
                     </TimelineContent>
                 </TimelineItem>
-                {/* <TimelineItem>
-                    <TimelineOppositeContent sx={timelineTimeContentFontTheme}>
-                        Jan 2026- On Hold
-                    </TimelineOppositeContent>
-                    <TimelineSeparator>
-                        <TimelineDot />
-                        <TimelineConnector />
-                    </TimelineSeparator>
-                    <TimelineContent sx={timelineContentFontSizeTheme}>
-                        Wechat Mini Game
-                    </TimelineContent>
-                </TimelineItem> */}
                 <TimelineItem>
                     <TimelineOppositeContent sx={timelineTimeContentFontTheme}>
                         Nov 2025 - Feb 2026

@@ -175,13 +175,13 @@ export function About() {
                             {imageData && (
                                 <div className='image-container' id='lastClone'>
 
-                                    <div className='image-date'>
+                                    {/* <div className='image-date'>
                                         {imageData?.[imageData.length - 1]?.title}
 
                                     </div>
                                     <div className='image-description'>
                                         {imageData && imageData[imageData.length - 1].description}
-                                    </div>
+                                    </div> */}
 
                                     <div>
                                         <img
@@ -191,25 +191,18 @@ export function About() {
                                             loading='lazy'
                                             alt={imageData?.[imageData.length - 1].title && imageData[imageData.length - 1].title}
                                         />
-                                        {/* <img
-                                            className='reflection'
-                                            src={`/v1/photos/${imageData?.[imageData.length - 1].title
-                                                && imageData[imageData.length - 1].id}/image`}
-                                            loading='lazy'
-                                            alt={imageData?.[imageData.length - 1].title
-                                                && imageData[imageData.length - 1].title} /> */}
                                     </div>
                                 </div>
                             )}
 
                             {imageData?.map((img, index) => (
                                 <div key={img.id} className='image-container'>
-                                    <div className='image-date'>
+                                    {/* <div className='image-date'>
                                         {img.title}
                                     </div>
                                     <div className='image-description'>
                                         {img.description}
-                                    </div>
+                                    </div> */}
 
 
                                     <div className='image-and-reflection'>
@@ -221,41 +214,28 @@ export function About() {
                                             id={String(index)}
 
                                         />
-                                        {/* <img
-                                            className='reflection'
-                                            src={`/v1/photos/${img.id}/image`}
-                                            loading='lazy'
-                                            alt={img.title} /> */}
                                     </div>
 
                                 </div>
                             ))}
                             {imageData && (
                                 <div className='image-container' id='firstClone'>
-                                    <div className='image-date'>
+                                    {/* <div className='image-date'>
                                         {imageData?.[0]?.title}
 
                                     </div>
                                     <div className='image-description'>
                                         {imageData && imageData[0].description}
-                                    </div>
+                                    </div> */}
 
 
                                     <div>
                                         <img
                                             className='image'
-
                                             src={`${r2PublicUrl}${imageData[0].image_url}`}
                                             loading='lazy'
                                             alt={imageData?.[0].title && imageData[0].title}
                                         />
-                                        {/* <img
-                                            className='reflection'
-                                            src={`/v1/photos/${imageData?.[0].title
-                                                && imageData[0].id}/image`}
-                                            loading='lazy'
-                                            alt={imageData?.[0].title
-                                                && imageData[0].title} /> */}
                                     </div>
                                 </div>
                             )}
