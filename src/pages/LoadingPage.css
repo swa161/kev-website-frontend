@@ -24,9 +24,18 @@
 
 .loadingPage-container {
     position: relative;
+    display: flex;
+    flex-direction: column;
     cursor: default;
     
     
+}
+
+.reflection-text {
+    position: relative;
+    transform: scaleY(-1);
+    mask-image: linear-gradient(to bottom, #00000060, transparent 70%);
+
 }
 
 .loadingPage-container span {
@@ -39,7 +48,7 @@
     font-weight: 700;
     animation: loading-text-animation 2s ease-in-out infinite;
     animation-delay: calc(0.15s * var(--i));
-    -webkit-box-reflect: below -20px linear-gradient(transparent, #00000046);
+    
 }
 
 
