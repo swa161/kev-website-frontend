@@ -36,7 +36,7 @@ function App() {
   }, [])
   return (
     <>
-    {<LoadingPage />}
+    {isLoading && <LoadingPage />}
       <Routes>
         <Route index element={userData ? <HomePage user={userData} /> : null} />
         <Route path="/login" element={<LoginPage />} />
