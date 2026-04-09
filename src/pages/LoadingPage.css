@@ -1,15 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 .loadingPage-container {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 .loadingPage-container {
-    --loading-page-background-color: linear-gradient(125deg, #a8edea 0%, #fed6e3 100%);
-}
-
-.darkmode .loadingPage-container {
-    --loading-page-background-color: linear-gradient(125deg, #09203f 0%, #537895 100%);
+    --loading-page-background-color: linear-gradient(125deg, #010913 0%, #000000 100%);
 }
 
 .loadingPage-container {
@@ -18,15 +17,48 @@
     background-image: var(--loading-page-background-color);
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 
-.loadingPage-container .text {
-    padding: 1rem;
+.loadingPage-container {
+    position: relative;
+    cursor: default;
+    
+    
 }
 
-.loading-cat {
+.loadingPage-container span {
+    position: relative;
+    display: inline-flex;
+    color: transparent;
+    font-size: 3rem;
+    padding: 0.5rem;
+    -webkit-text-stroke: 1px #fff9;
+    font-weight: 700;
+    animation: loading-text-animation 2s ease-in-out infinite;
+    animation-delay: calc(0.15s * var(--i));
+    -webkit-box-reflect: below -20px linear-gradient(transparent, #00000046);
+}
 
+
+@keyframes loading-text-animation {
+    0% {
+        transform: translateY(0px);
+        color: transparent;
+        text-shadow: none;
+    }
+
+    20% {
+        transform: translateY(-60px);
+        color: #fff;
+        text-shadow: 0 0 5px #fff, 0 0 25px #fff;
+    }
+
+    40%, 100% {
+        transform: translateY(0px);
+        color: transparent;
+        text-shadow: none;
+    }
 }

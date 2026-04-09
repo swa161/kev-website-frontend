@@ -1,32 +1,23 @@
-import { Typography } from "@mui/material"
 import "./LoadingPage.css"
-import loadingCat from '../assets/nyan-cat-poptart-cat.gif'
-import { useTranslation } from "react-i18next"
-import { styled } from "@mui/material"
+import type React from "react"
 
-const StyledLoadingTypography = styled(Typography)({
-    fontFamily: '-apple-system',
-    textShadow: '1px 1px 2px rgba(0, 0, 0, 0.17)',
-})
-
-const textTheme = {
-    fontSize: {
-        xs: '1.2rem',
-        sm: '1.5rem',
-        md: '2rem',
-        lg: '2.1rem'
-    },
-    
-}
 
 export function LoadingPage() {
-    const { t } = useTranslation()
+
     return (
         <div className="loadingPage-container">
-            <StyledLoadingTypography sx={textTheme} variant="subtitle2" className="text one">{t("loading-text-1")}</StyledLoadingTypography>
-            <StyledLoadingTypography sx={textTheme} className="text two">{t("loading-text-2")}</StyledLoadingTypography>
-            <StyledLoadingTypography sx={textTheme} className="text thress">{t("loading-text-3")} </StyledLoadingTypography>
-            <img className="loading-cat" src={loadingCat} />
+
+            <span style= {{"--i": 1} as React.CSSProperties}>L</span>
+            <span style= {{"--i": 2} as React.CSSProperties}>O</span>
+            <span style= {{"--i": 3} as React.CSSProperties}>A</span>
+            <span style= {{"--i": 4} as React.CSSProperties}>D</span>
+            <span style= {{"--i": 5} as React.CSSProperties}>I</span>
+            <span style= {{"--i": 6} as React.CSSProperties}>N</span>
+            <span style= {{"--i": 7} as React.CSSProperties}>G</span>
+            <span style= {{"--i": 8} as React.CSSProperties}>.</span>
+            <span style= {{"--i": 9} as React.CSSProperties}>.</span>
+            <span style= {{"--i": 10} as React.CSSProperties}>.</span>
+
         </div>
     )
 }
